@@ -20,9 +20,9 @@ while True:
         if humidity <= 3000:
             print("Temperature={0:0.1f}\N{DEGREE SIGN}C  Humidity={1:0.1f}%".format(temperature, humidity))
             record.write('{0}, {1}, {2:0.1f}\N{DEGREE SIGN}C, {3:0.1f}%\r\n'.format(time.strftime('%d/%m/%Y'),
-                                                                                    time.strftime('%H:%M'), temperature,
+                                                                                    time.strftime('%H:%M:%S'), temperature,
                                                                                     humidity))
     else:
         print("Failed to retrieve data from humidity sensor")
 
-    time.sleep(5)
+    time.sleep(30)#5
