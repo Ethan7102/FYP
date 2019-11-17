@@ -1,12 +1,11 @@
 #!/usr/bin/python
 import os
-import time
 import Adafruit_DHT
 import json
 import ssl
 import sys
 import time
-import datetime
+from datetime import date, datetime
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 
 # ****************************************************
@@ -32,7 +31,7 @@ myMQTTClient.configureMQTTOperationTimeout(5)  # 5 sec
 
 # connect and publish
 myMQTTClient.connect()
-myMQTTClient.publish("Navio/dht22", "connected", 0)
+myMQTTClient.publish("Navio/DHT22", "connected", 0)
 
 # ****************************************************
 # Publish AWS
@@ -47,15 +46,18 @@ except:
 
 while True:
     humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+    now = datetime.utcnow()
+    now_str = now.strftime('%Y-%m-%dT%H:%M:%SZ')  # e.g. 2016-04-18T06:12:25.877Z
 
     if humidity is not None and temperature is not None:
         if humidity <= 3000:
             print("Temperature={0:0.1f}\N{DEGREE SIGN}C  Humidity={1:0.1f}%".format(temperature, humidity))
             record.write('{0}, {1}, {2:0.1f}\N{DEGREE SIGN}C, {3:0.1f}%\r\n'.format(time.strftime('%d/%m/%Y'),time.strftime('%H:%M:%S'), temperature,humidity))
-            payload = '{ "timestamp": "' + time.strftime('%d/%m/%Y %H:%M:%S') + '","temperature": ' + "{:.2f}".format(temperature) + ',"humidity": ' + "{:.2f}".format(humidity) + ' }'
+
+            payload = '{ "timestamp": "' + now_str + '","temperature": ' + "{:.2f}".format(temperature) + ',"humidity": ' + "{:.2f}".format(humidity) + ' }'
             print(payload)
-            myMQTTClient.publish("topic/sensorData", payload,0)
+            myMQTTClient.publish("Navio/DHT22", payload, 0)
     else:
         print("Failed to retrieve data from humidity sensor")
 
-    time.sleep(5)  # 5
+    time.sleep(10)
