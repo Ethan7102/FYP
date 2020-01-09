@@ -1,12 +1,25 @@
 #!/usr/bin/python
 import os
-import Adafruit_DHT
 import json
 import ssl
 import sys
+import subprocess
 import time
 from datetime import date, datetime
-from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
+
+try:
+    import Adafruit_DHT
+except ImportError:
+    subprocess.call([sys.executable, "-m", "pip", "install", "Adafruit_DHT"])
+finally:
+    import Adafruit_DHT
+
+try:
+    from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
+except ImportError:
+    subprocess.call([sys.executable, "-m", "pip", "install", "AWSIoTPythonSDK"])
+finally:
+    from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 
 # ****************************************************
 # Set Pin No, AWS Config
@@ -52,9 +65,12 @@ while True:
     if humidity is not None and temperature is not None:
         if humidity <= 3000:
             print("Temperature={0:0.1f}\N{DEGREE SIGN}C  Humidity={1:0.1f}%".format(temperature, humidity))
-            record.write('{0}, {1}, {2:0.1f}\N{DEGREE SIGN}C, {3:0.1f}%\r\n'.format(time.strftime('%d/%m/%Y'),time.strftime('%H:%M:%S'), temperature,humidity))
+            record.write('{0}, {1}, {2:0.1f}\N{DEGREE SIGN}C, {3:0.1f}%\r\n'.format(time.strftime('%d/%m/%Y'),
+                                                                                    time.strftime('%H:%M:%S'),
+                                                                                    temperature, humidity))
 
-            payload = '{ "timestamp": "' + now_str + '","temperature": ' + "{:.2f}".format(temperature) + ',"humidity": ' + "{:.2f}".format(humidity) + ' }'
+            payload = '{ "timestamp": "' + now_str + '","temperature": ' + "{:.2f}".format(
+                temperature) + ',"humidity": ' + "{:.2f}".format(humidity) + ' }'
             print(payload)
             myMQTTClient.publish("Navio/DHT22", payload, 0)
     else:
