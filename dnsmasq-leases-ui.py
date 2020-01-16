@@ -1,15 +1,17 @@
-#!/usr/bin/python
-
-
+#!/usr/bin/python3
+import argparse
 import datetime
-import signal
+import gstreamcam as gst
 import sys
-from collections import defaultdict
-from subprocess import Popen, PIPE
 import subprocess
 
-import re
-
+try:
+    import sh
+except ImportError:
+    subprocess.call([sys.executable, "-m", "pip", "install", "sh"])
+finally:
+    mport
+sh
 try:
     import picamera
 except ImportError:
@@ -67,6 +69,38 @@ def getLeases():
     return leases
 
 
-if __name__ == "__main__":
+class myClass(list):
+    def __new__(self, *args, **kwargs):
+        return super(L, self).__new__(self, args, kwargs)
+
+    def __init__(self, *args, **kwargs):
+        if len(args) == 1 and hasattr(args[0], '__iter__'):
+            list.__init__(self, args[0])
+        else:
+            list.__init__(self, args)
+        self.__dict__.update(kwargs)
+
+    def __call__(self, **kwargs):
+        self.__dict__.update(kwargs)
+        return self
+
+
+def main():
+    myClass.hostname = ""
+    myClass.codec = "h264"
+    myClass.debug = ""
+    myClass.sdp = ""
+    ipAddress = list()
     for item in getLeases():
         print(item['ipAddress'])
+        ipAddress.append(item['ipAddress'])
+
+    myClass.hostname = ipAddress
+    # print(ipAddress)
+    print(myClass.hostname)
+    # gst.main(myClass)
+
+    print(sh.ip("neigh show dev wlan0"))
+
+    if __name__ == "__main__":
+        main()

@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from subprocess import Popen, PIPE
 import re
 import argparse
@@ -61,14 +62,14 @@ def main(arguments):
     rtppay = encoders[arguments.codec][0]
     # port = arguments.port
     port = 5600
-    arglist = [gstreamer, "-v", "rpicamsrc", "bitrate=%d" % 4000000,
+    arglist = [gstreamer, "-v", "rpicamsrc", "bitrate=%d" % 1500000,
                "!", "video/x-raw, width=1280, height=720, framerate=30/1, profile=high",
                "!", "omxh264enc", "!", encoders[arguments.codec][1], "!", encoders[arguments.codec][2],
                "!", "multiudpsink", "clients="]
     for hostname in arguments.hostname:
         arglist[14] += hostname + ":5600" + ","
 
-    # print(arglist)
+    print(arglist)
 
     if arguments.debug:
         print("Calling gstreamer:\n", " ".join(arglist))
