@@ -60,10 +60,13 @@ def main(arguments):
                 'openh264': (b'GstRtpH264Pay', 'openh264enc', 'rtph264pay')}
     rtppay = encoders[arguments.codec][0]
     port = arguments.port
-    arglist = [gstreamer, "-v", "rpicamsrc", "bitrate=%d" % 5000000,
-               "!", "video/x-h264,width=800,height=600", "!",
-               encoders[arguments.codec][1], "!", encoders[arguments.codec][2], "!", "udpsink", "host=%s" % hostname,
+    arglist = [gstreamer, "-v", "rpicamsrc", "bitrate=%d" % 4000000,
+               "!", "video/x-raw, width=1280, height=720, framerate=30/1, profile=high",
+               "!", "omxh264enc", "!", encoders[arguments.codec][1], "!", encoders[arguments.codec][2],
+               "!", "udpsink",
+               "host=%s" % hostname,
                "port=%d" % port]
+
     if arguments.debug:
         print("Calling gstreamer:\n", " ".join(arglist))
     process = Popen(arglist, stdout=PIPE)

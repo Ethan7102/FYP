@@ -68,22 +68,5 @@ def getLeases():
 
 
 if __name__ == "__main__":
-    while True:
-        for item in getLeases():
-            print(item['ipAddress'])
-
-            # start the gstreamer process with a pipe for stdin
-            gstreamer = subprocess.Popen([
-                'gst-launch-1.0', '-v',
-                'fdsrc',
-                '!', 'h264parse',
-                '!', 'rtph264pay', 'config-interval=1', 'pt=96',
-                '!', 'udpsink', 'host=' + item['ipAddress'], 'port=5600'
-            ], stdin=subprocess.PIPE)
-
-            # initialize the camera
-            camera = picamera.PiCamera(resolution=(1280, 720), framerate=30)
-            camera.hflip = True
-
-            # start recording to gstreamer's stdin
-            camera.start_recording(gstreamer.stdin, format='h264', bitrate=4000000)
+    for item in getLeases():
+        print(item['ipAddress'])
