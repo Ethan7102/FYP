@@ -54,18 +54,21 @@ def createsdp(hostname, streams):
 
 def main(arguments):
     gstreamer = 'gst-launch-1.0.exe' if 'win' in sys.platform else 'gst-launch-1.0'
-    hostname = arguments.hostname
+    hostname = arguments.hostname[0]
     encoders = {'h264': (b'GstRtpH264Pay', 'h264parse', 'rtph264pay'),
                 'vp8': (b'GstRtpVP8Pay', 'vp8enc', 'rtpvp8pay'),
                 'openh264': (b'GstRtpH264Pay', 'openh264enc', 'rtph264pay')}
     rtppay = encoders[arguments.codec][0]
-    port = arguments.port
+    # port = arguments.port
+    port = 5600
     arglist = [gstreamer, "-v", "rpicamsrc", "bitrate=%d" % 4000000,
                "!", "video/x-raw, width=1280, height=720, framerate=30/1, profile=high",
                "!", "omxh264enc", "!", encoders[arguments.codec][1], "!", encoders[arguments.codec][2],
-               "!", "udpsink",
-               "host=%s" % hostname,
-               "port=%d" % port]
+               "!", "multiudpsink", "clients="]
+    for hostname in arguments.hostname:
+        arglist[14] += hostname + ":5600" + ","
+
+    # print(arglist)
 
     if arguments.debug:
         print("Calling gstreamer:\n", " ".join(arglist))
@@ -101,7 +104,7 @@ def main(arguments):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("hostname", help="hostname or IP address of the destination")
+    parser.add_argument("hostname", help="hostname or IP address of the destination", nargs='+')
     parser.add_argument("--sdp", help="generates SDP file for the stream (defaults to false)", action="store_true")
     parser.add_argument("--debug", help="shows command line in use to call gstreamer", action="store_true")
     parser.add_argument("--port", "-p", help="port (defaults to 5000)", type=int, default=5000)
@@ -111,7 +114,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    args.hostname = socket.gethostbyname(args.hostname)
+    # args.hostname = socket.gethostbyname(args.hostname)
     print("Using hostname %s using device %d" % (args.hostname, args.camera))
 
     main(args)
