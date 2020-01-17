@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-import datetime
 from re import L
+from gstreamcam import main as gst
 import sys
 import subprocess
 
@@ -19,46 +19,12 @@ finally:
     import picamera
 
 
-# DNSMASQ_LEASES_FILE = "/var/lib/misc/dnsmasq.leases"
-
-
-class LeaseEntry:
-    def __init__(self, ipAddress, macAddress):
-        self.macAddress = macAddress.upper()
-        self.ipAddress = ipAddress
-        self.name = name
-
-    def serialize(self):
-        return {
-            'staticIP': self.staticIP,
-            'leasetime': self.leasetime,
-            'macAddress': self.macAddress,
-            'ipAddress': self.ipAddress,
-            'name': self.name
-        }
-
-
-def leaseSort(arg):
-    # Fixed IPs first
-    if arg.staticIP == True:
-        return '0' + arg.ipAddress
-    else:
-        return arg.ipAddress
-
-
 def getIP():
     leases = list()
-    with open(DNSMASQ_LEASES_FILE) as f:
-        for line in f:
-            elements = line.split()
-            if len(elements) == 5:
-                entry = LeaseEntry(elements[0],
-                                   elements[1],
-                                   elements[2],
-                                   elements[3])
-                leases.append(entry)
-    leases.sort(key=leaseSort)
-    leases = [lease.serialize() for lease in leases]
+    for line in ip("neigh", "show", "dev", "wlan0"):
+        elements = line.split()
+        leases.append(elements[0])
+
     return leases
 
 
@@ -83,16 +49,9 @@ def main():
     myClass.codec = "h264"
     myClass.debug = ""
     myClass.sdp = ""
-    ipAddress = list()
-    for item in getIP():
-        print(item['ipAddress'])
-        ipAddress.append(item['ipAddress'])
 
-    myClass.hostname = ipAddress
-    # print(ipAddress)
-    print(myClass.hostname)
-    # gst.main(myClass)
-    print(ip("neigh", "show", "dev", "wlan0"))
+    myClass.hostname = getIP()
+    gst(myClass)
 
 
 if __name__ == "__main__":
