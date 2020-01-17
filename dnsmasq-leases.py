@@ -98,8 +98,8 @@ def main():
     # print(ipAddress)
     print(myClass.hostname)
     # gst.main(myClass)
-
     print(ip("neigh", "show", "dev", "wlan0"))
 
-    if __name__ == "__main__":
-        main()
+
+if __name__ == "__main__":
+    main()
