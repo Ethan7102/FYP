@@ -1,17 +1,16 @@
 #!/usr/bin/python3
-import argparse
 import datetime
-import gstreamcam as gst
+from re import L
 import sys
 import subprocess
 
 try:
-    import sh
+    from sh import ip
 except ImportError:
     subprocess.call([sys.executable, "-m", "pip", "install", "sh"])
 finally:
-    mport
-sh
+    from sh import ip
+
 try:
     import picamera
 except ImportError:
@@ -100,7 +99,7 @@ def main():
     print(myClass.hostname)
     # gst.main(myClass)
 
-    print(sh.ip("neigh show dev wlan0"))
+    print(ip("neigh", "show", "dev", "wlan0"))
 
     if __name__ == "__main__":
         main()
