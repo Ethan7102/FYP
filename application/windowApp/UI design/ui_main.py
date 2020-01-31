@@ -221,6 +221,7 @@ class Ui_MainWindow(object):
         self.graphicsView_2.setObjectName("graphicsView_2")
         self.verticalLayout_7.addWidget(self.graphicsView_2)
         """
+        #draw graph
         self.figure = plt.figure()
         self.canvas = FigureCanvas(self.figure)
         # self.toolbar = NavigationToolbar(self.canvas, self)
@@ -286,7 +287,7 @@ class Ui_MainWindow(object):
         self.label_9.setText(_translate("MainWindow", "Map"))
         self.label_2.setText(_translate("MainWindow", "Data Collection"))
         self.pushButton.setText(_translate("MainWindow", "Start"))
-        self.menuFile.setTitle(_translate("MainWindow", "File"))
+        self.menuFile.setTitle(_translate("MainWindow", "Mission"))
         self.menuConnection.setTitle(_translate("MainWindow", "Connection"))
         self.actionNew_Mission.setText(_translate("MainWindow", "New Mission"))
         self.actionView_Mission.setText(_translate("MainWindow", "View Mission"))

@@ -1,11 +1,11 @@
 import sys
-import ui_main
+import ui_newMission
 import matplotlib.pyplot as plt
 from PyQt5.QtWidgets import QApplication, QMainWindow
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     MainWindow = QMainWindow()
-    ui = ui_main.Ui_MainWindow()
+    ui = ui_newMission.Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
