@@ -235,7 +235,7 @@ class Ui_MainWindow(object):
 
 
 
-
+        #draw graph
         self.horizontalLayout_2.addLayout(self.verticalLayout_7)
         self.verticalLayout_6.addLayout(self.horizontalLayout_2)
         MainWindow.setCentralWidget(self.centralwidget)
