@@ -13,13 +13,12 @@ from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 import matplotlib.pyplot as plt
-
 import random
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1092, 785)
+        MainWindow.resize(1792, 1008)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -210,6 +209,8 @@ class Ui_MainWindow(object):
         self.label_2.setObjectName("label_2")
         self.verticalLayout_7.addWidget(self.label_2)
 
+
+
         """
         self.graphicsView_2 = QtWidgets.QGraphicsView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -220,27 +221,24 @@ class Ui_MainWindow(object):
         self.graphicsView_2.setObjectName("graphicsView_2")
         self.verticalLayout_7.addWidget(self.graphicsView_2)
         """
-
         self.figure = plt.figure()
         self.canvas = FigureCanvas(self.figure)
-        #self.toolbar = NavigationToolbar(self.canvas, self)
+        # self.toolbar = NavigationToolbar(self.canvas, self)
         self.button = QPushButton('Plot')
         self.button.clicked.connect(self.plot)
-        #layout = QVBoxLayout()
-        #self.verticalLayout_7.addWidget(self.toolbar)
+        # layout = QVBoxLayout()
+        # self.verticalLayout_7.addWidget(self.toolbar)
         self.verticalLayout_7.addWidget(self.canvas)
         self.verticalLayout_7.addWidget(self.button)
 
-
-
-
-
-
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setObjectName("pushButton")
+        self.verticalLayout_7.addWidget(self.pushButton)
         self.horizontalLayout_2.addLayout(self.verticalLayout_7)
         self.verticalLayout_6.addLayout(self.horizontalLayout_2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1092, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1792, 22))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -269,10 +267,10 @@ class Ui_MainWindow(object):
         self.menuConnection.addAction(self.actionDisconnect)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuConnection.menuAction())
-        self.menubar.setNativeMenuBar(False)  # False for current window, True for parent window
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.menubar.setNativeMenuBar(False)  # False for current window, True for parent window
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -287,14 +285,16 @@ class Ui_MainWindow(object):
         self.label_10.setText(_translate("MainWindow", "Vertical Speed"))
         self.label_9.setText(_translate("MainWindow", "Map"))
         self.label_2.setText(_translate("MainWindow", "Data Collection"))
+        self.pushButton.setText(_translate("MainWindow", "Start"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.menuConnection.setTitle(_translate("MainWindow", "Connection"))
         self.actionNew_Mission.setText(_translate("MainWindow", "New Mission"))
         self.actionView_Mission.setText(_translate("MainWindow", "View Mission"))
-        self.actionSave.setText(_translate("MainWindow", "Save"))
+        self.actionSave.setText(_translate("MainWindow", "Output Result"))
         self.actionClose.setText(_translate("MainWindow", "Quit"))
         self.actionConnect.setText(_translate("MainWindow", "Connect"))
         self.actionDisconnect.setText(_translate("MainWindow", "Disconnect"))
+
     def plot(self):
         data = [random.random() for i in range(10)]
         self.figure.clear()
