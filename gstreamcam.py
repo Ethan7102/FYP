@@ -63,7 +63,7 @@ def main(arguments):
     # port = arguments.port
     port = 5600
     arglist = [gstreamer, "-v", "rpicamsrc", "bitrate=%d" % 1500000,
-               "!", "video/x-raw, width=1280, height=720, framerate=30/1, profile=high",
+               "!", "video/x-raw, width=1280, height=720, framerate=30/1",
                "!", "omxh264enc", "!", encoders[arguments.codec][1], "!", encoders[arguments.codec][2],
                "!", "multiudpsink", "clients="]
     for hostname in arguments.hostname:
