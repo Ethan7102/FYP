@@ -1,4 +1,4 @@
-# Project Title
+# FYP - Automated Data Collecting System for Environment Using UAV and Smartphone
 
 One Paragraph of project description goes here
 
