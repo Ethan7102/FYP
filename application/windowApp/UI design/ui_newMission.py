@@ -7,6 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 
+
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout
 
@@ -18,7 +20,7 @@ import random
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1792, 1008)
+        MainWindow.resize(1793, 1007)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -200,7 +202,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7 = QtWidgets.QVBoxLayout()
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
@@ -208,40 +210,122 @@ class Ui_MainWindow(object):
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.verticalLayout_7.addWidget(self.label_2)
-
-
-
-        """
-        self.graphicsView_2 = QtWidgets.QGraphicsView(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(1)
-        sizePolicy.setVerticalStretch(5)
-        sizePolicy.setHeightForWidth(self.graphicsView_2.sizePolicy().hasHeightForWidth())
-        self.graphicsView_2.setSizePolicy(sizePolicy)
-        self.graphicsView_2.setObjectName("graphicsView_2")
-        self.verticalLayout_7.addWidget(self.graphicsView_2)
-        """
-        self.figure = plt.figure()
-        self.canvas = FigureCanvas(self.figure)
-        # self.toolbar = NavigationToolbar(self.canvas, self)
-        self.button = QPushButton('Plot')
-        self.button.clicked.connect(self.plot)
-        # layout = QVBoxLayout()
-        # self.verticalLayout_7.addWidget(self.toolbar)
-        self.verticalLayout_7.addWidget(self.canvas)
-        self.verticalLayout_7.addWidget(self.button)
-
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
+        self.pushButton.setSizePolicy(sizePolicy)
         self.pushButton.setObjectName("pushButton")
         self.verticalLayout_7.addWidget(self.pushButton)
+
+        self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.scrollArea.sizePolicy().hasHeightForWidth())
+        self.scrollArea.setSizePolicy(sizePolicy)
+        self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 849, 367))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.verticalLayout_11 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_11.setObjectName("verticalLayout_11")
+        """
+        self.graphicsView_2 = QtWidgets.QGraphicsView(self.scrollAreaWidgetContents)
+        self.graphicsView_2.setObjectName("graphicsView_2")
+        """
+
+        #1
+        #draw graph
+        self.figure = plt.figure()
+        self.figure.set_size_inches(11,8)
+        self.canvas = FigureCanvas(self.figure)
+        #fig = plt.gcf()
+        #fig.set_size_inches(5, 5)
+        # self.toolbar = NavigationToolbar(self.canvas, self)
+        plt.suptitle("Temperature")
+
+        #test temperature
+        data = [random.random() for i in range(10)]
+        self.figure.clear()
+        plt.suptitle("Temperature (C) 1")
+        y = (25.2,25.3,25.4,25.7,25.6,25.3,25.4,25.6,25.6,25.7)
+        x = (5,10,15,20,25,30,35,40,45,50)
+        ax = self.figure.add_subplot(111)
+        ax.plot(x, y)
+        self.canvas.draw()
+
+        #self.button = QPushButton('Plot')
+        #self.button.clicked.connect(self.plot)
+        # layout = QVBoxLayout()
+        # self.verticalLayout_7.addWidget(self.toolbar)
+        #self.verticalLayout_7.addWidget(self.canvas)
+
+        self.verticalLayout_11.addWidget(self.canvas)
+
+
+        #2
+        # draw graph
+        self.figure = plt.figure()
+        self.figure.set_size_inches(11, 8)
+        self.canvas = FigureCanvas(self.figure)
+        # fig = plt.gcf()
+        # fig.set_size_inches(5, 5)
+        # self.toolbar = NavigationToolbar(self.canvas, self)
+        plt.suptitle("Temperature")
+
+        # test temperature
+        data = [random.random() for i in range(10)]
+        self.figure.clear()
+        plt.suptitle("Temperature (C)")
+        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
+        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
+        ax = self.figure.add_subplot(111)
+        ax.plot(x, y)
+        self.canvas.draw()
+        #self.verticalLayout_7.addWidget(self.button)
+        self.verticalLayout_11.addWidget(self.canvas)
+        #3
+        # draw graph
+        self.figure = plt.figure()
+        self.figure.set_size_inches(11, 8)
+        self.canvas = FigureCanvas(self.figure)
+        # fig = plt.gcf()
+        # fig.set_size_inches(5, 5)
+        # self.toolbar = NavigationToolbar(self.canvas, self)
+        plt.suptitle("Temperature")
+
+        # test temperature
+        data = [random.random() for i in range(10)]
+        self.figure.clear()
+        plt.suptitle("Temperature (C)")
+        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
+        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
+        ax = self.figure.add_subplot(111)
+        ax.plot(x, y)
+        self.canvas.draw()
+        self.verticalLayout_11.addWidget(self.canvas)
+        #self.verticalLayout_7.addWidget(self.button)
+
+
+        self.verticalLayout_4.addLayout(self.verticalLayout_11)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.verticalLayout_7.addWidget(self.scrollArea)
+
         self.horizontalLayout_2.addLayout(self.verticalLayout_7)
         self.verticalLayout_6.addLayout(self.horizontalLayout_2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1792, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1793, 22))
         self.menubar.setObjectName("menubar")
-        self.menuFile = QtWidgets.QMenu(self.menubar)
-        self.menuFile.setObjectName("menuFile")
+        self.menuMission = QtWidgets.QMenu(self.menubar)
+        self.menuMission.setObjectName("menuMission")
         self.menuConnection = QtWidgets.QMenu(self.menubar)
         self.menuConnection.setObjectName("menuConnection")
         MainWindow.setMenuBar(self.menubar)
@@ -260,17 +344,16 @@ class Ui_MainWindow(object):
         self.actionConnect.setObjectName("actionConnect")
         self.actionDisconnect = QtWidgets.QAction(MainWindow)
         self.actionDisconnect.setObjectName("actionDisconnect")
-        self.menuFile.addAction(self.actionNew_Mission)
-        self.menuFile.addAction(self.actionSave)
-        self.menuFile.addAction(self.actionClose)
+        self.menuMission.addAction(self.actionNew_Mission)
+        self.menuMission.addAction(self.actionSave)
+        self.menuMission.addAction(self.actionClose)
         self.menuConnection.addAction(self.actionConnect)
         self.menuConnection.addAction(self.actionDisconnect)
-        self.menubar.addAction(self.menuFile.menuAction())
+        self.menubar.addAction(self.menuMission.menuAction())
         self.menubar.addAction(self.menuConnection.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        self.menubar.setNativeMenuBar(False)  # False for current window, True for parent window
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -286,7 +369,7 @@ class Ui_MainWindow(object):
         self.label_9.setText(_translate("MainWindow", "Map"))
         self.label_2.setText(_translate("MainWindow", "Data Collection"))
         self.pushButton.setText(_translate("MainWindow", "Start"))
-        self.menuFile.setTitle(_translate("MainWindow", "File"))
+        self.menuMission.setTitle(_translate("MainWindow", "Mission"))
         self.menuConnection.setTitle(_translate("MainWindow", "Connection"))
         self.actionNew_Mission.setText(_translate("MainWindow", "New Mission"))
         self.actionView_Mission.setText(_translate("MainWindow", "View Mission"))
@@ -294,10 +377,3 @@ class Ui_MainWindow(object):
         self.actionClose.setText(_translate("MainWindow", "Quit"))
         self.actionConnect.setText(_translate("MainWindow", "Connect"))
         self.actionDisconnect.setText(_translate("MainWindow", "Disconnect"))
-
-    def plot(self):
-        data = [random.random() for i in range(10)]
-        self.figure.clear()
-        ax = self.figure.add_subplot(111)
-        ax.plot(data, '*-')
-        self.canvas.draw()

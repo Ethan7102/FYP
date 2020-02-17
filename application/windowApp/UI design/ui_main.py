@@ -197,10 +197,11 @@ class Ui_MainWindow(object):
         self.graphicsView_3.setObjectName("graphicsView_3")
         self.verticalLayout_9.addWidget(self.graphicsView_3)
         self.horizontalLayout_2.addLayout(self.verticalLayout_9)
+
         self.verticalLayout_7 = QtWidgets.QVBoxLayout()
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
@@ -208,8 +209,32 @@ class Ui_MainWindow(object):
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.verticalLayout_7.addWidget(self.label_2)
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setObjectName("pushButton")
+        self.verticalLayout_7.addWidget(self.pushButton)
 
 
+        self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.scrollArea.sizePolicy().hasHeightForWidth())
+        self.scrollArea.setSizePolicy(sizePolicy)
+        self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 849, 1024))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+
+
+
+        #store graphs
+
+
+        self.verticalLayout_graphs = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_graphs.setObjectName("verticalLayout_graphs")
 
         """
         self.graphicsView_2 = QtWidgets.QGraphicsView(self.centralwidget)
@@ -221,28 +246,133 @@ class Ui_MainWindow(object):
         self.graphicsView_2.setObjectName("graphicsView_2")
         self.verticalLayout_7.addWidget(self.graphicsView_2)
         """
+        #1
         #draw graph
-        self.figure = plt.figure()
+        self.figure = plt.figure(figsize=(1,2.5))
         self.canvas = FigureCanvas(self.figure)
+        self.canvas.setMinimumSize(self.canvas.size())
+        #fig = plt.gcf()
+        #fig.set_size_inches(5, 5)
         # self.toolbar = NavigationToolbar(self.canvas, self)
-        self.button = QPushButton('Plot')
-        self.button.clicked.connect(self.plot)
+        plt.suptitle("Temperature")
+
+        #test temperature
+        data = [random.random() for i in range(10)]
+        self.figure.clear()
+        plt.suptitle("Temperature (C)")
+        y = (25.2,25.3,25.4,25.7,25.6,25.3,25.4,25.6,25.6,25.7)
+        x = (5,10,15,20,25,30,35,40,45,50)
+        ax = self.figure.add_subplot(111)
+        ax.plot(x, y)
+        self.canvas.draw()
+
+        #self.button = QPushButton('Plot')
+        #self.button.clicked.connect(self.plot)
         # layout = QVBoxLayout()
         # self.verticalLayout_7.addWidget(self.toolbar)
-        self.verticalLayout_7.addWidget(self.canvas)
-        self.verticalLayout_7.addWidget(self.button)
+        #self.verticalLayout_7.addWidget(self.canvas)
+        self.verticalLayout_graphs.addWidget(self.canvas)
 
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setObjectName("pushButton")
-        self.verticalLayout_7.addWidget(self.pushButton)
+        #2
+        # draw graph
+        self.figure = plt.figure(figsize=(1,2.5))
+        self.canvas = FigureCanvas(self.figure)
+        self.canvas.setMinimumSize(self.canvas.size())
+        # fig = plt.gcf()
+        # fig.set_size_inches(5, 5)
+        # self.toolbar = NavigationToolbar(self.canvas, self)
+        plt.suptitle("Temperature")
+
+        # test temperature
+        data = [random.random() for i in range(10)]
+        self.figure.clear()
+        plt.suptitle("Temperature (C)")
+        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
+        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
+        ax = self.figure.add_subplot(111)
+        ax.plot(x, y)
+        self.canvas.draw()
+        self.verticalLayout_graphs.addWidget(self.canvas)
+        #self.verticalLayout_7.addWidget(self.button)
+
+        #3
+        # draw graph
+        self.figure = plt.figure(figsize=(1,2.5))
+        self.canvas = FigureCanvas(self.figure)
+        self.canvas.setMinimumSize(self.canvas.size())
+        # fig = plt.gcf()
+        # fig.set_size_inches(5, 5)
+        # self.toolbar = NavigationToolbar(self.canvas, self)
+        plt.suptitle("Temperature")
+
+        # test temperature
+        data = [random.random() for i in range(10)]
+        self.figure.clear()
+        plt.suptitle("Temperature (C)")
+        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
+        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
+        ax = self.figure.add_subplot(111)
+        ax.plot(x, y)
+        self.canvas.draw()
+        self.verticalLayout_graphs.addWidget(self.canvas)
+        #self.verticalLayout_7.addWidget(self.button)
+        #4
+        # draw graph
+        self.figure = plt.figure(figsize=(1,2.5))
+        self.canvas = FigureCanvas(self.figure)
+        self.canvas.setMinimumSize(self.canvas.size())
+        # fig = plt.gcf()
+        # fig.set_size_inches(5, 5)
+        # self.toolbar = NavigationToolbar(self.canvas, self)
+        plt.suptitle("Temperature")
+
+        # test temperature
+        data = [random.random() for i in range(10)]
+        self.figure.clear()
+        plt.suptitle("Temperature (C)")
+        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
+        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
+        ax = self.figure.add_subplot(111)
+        ax.plot(x, y)
+        self.canvas.draw()
+        self.verticalLayout_graphs.addWidget(self.canvas)
+        #self.verticalLayout_7.addWidget(self.button)
+        #5
+        # draw graph
+        self.figure = plt.figure(figsize=(1,2.5))
+        self.canvas = FigureCanvas(self.figure)
+        self.canvas.setMinimumSize(self.canvas.size())
+        # fig = plt.gcf()
+        # fig.set_size_inches(5, 5)
+        # self.toolbar = NavigationToolbar(self.canvas, self)
+        plt.suptitle("Temperature")
+
+        # test temperature
+        data = [random.random() for i in range(10)]
+        self.figure.clear()
+        plt.suptitle("Temperature (C)")
+        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
+        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
+        ax = self.figure.add_subplot(111)
+        ax.plot(x, y)
+        self.canvas.draw()
+        self.verticalLayout_graphs.addWidget(self.canvas)
+        #self.verticalLayout_7.addWidget(self.button)
+
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.verticalLayout_7.addWidget(self.scrollArea)
+
         self.horizontalLayout_2.addLayout(self.verticalLayout_7)
         self.verticalLayout_6.addLayout(self.horizontalLayout_2)
         MainWindow.setCentralWidget(self.centralwidget)
+
+        #Menu
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1792, 22))
         self.menubar.setObjectName("menubar")
-        self.menuFile = QtWidgets.QMenu(self.menubar)
-        self.menuFile.setObjectName("menuFile")
+        self.menuMission = QtWidgets.QMenu(self.menubar)
+        self.menuMission.setObjectName("menuFile")
         self.menuConnection = QtWidgets.QMenu(self.menubar)
         self.menuConnection.setObjectName("menuConnection")
         MainWindow.setMenuBar(self.menubar)
@@ -255,19 +385,26 @@ class Ui_MainWindow(object):
         self.actionView_Mission.setObjectName("actionView_Mission")
         self.actionSave = QtWidgets.QAction(MainWindow)
         self.actionSave.setObjectName("actionSave")
+        #quit
         self.actionClose = QtWidgets.QAction(MainWindow)
         self.actionClose.setObjectName("actionClose")
+        self.actionClose.triggered.connect(QApplication.quit)
+        #connect
         self.actionConnect = QtWidgets.QAction(MainWindow)
         self.actionConnect.setObjectName("actionConnect")
+        self.actionConnect.triggered.connect(self.connect)
         self.actionDisconnect = QtWidgets.QAction(MainWindow)
         self.actionDisconnect.setObjectName("actionDisconnect")
-        self.menuFile.addAction(self.actionNew_Mission)
-        self.menuFile.addAction(self.actionSave)
-        self.menuFile.addAction(self.actionClose)
+        self.menuMission.addAction(self.actionNew_Mission)
+        self.menuMission.addAction(self.actionSave)
+        self.menuMission.addAction(self.actionClose)
         self.menuConnection.addAction(self.actionConnect)
         self.menuConnection.addAction(self.actionDisconnect)
-        self.menubar.addAction(self.menuFile.menuAction())
+        self.menubar.addAction(self.menuMission.menuAction())
         self.menubar.addAction(self.menuConnection.menuAction())
+
+
+
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -287,7 +424,7 @@ class Ui_MainWindow(object):
         self.label_9.setText(_translate("MainWindow", "Map"))
         self.label_2.setText(_translate("MainWindow", "Data Collection"))
         self.pushButton.setText(_translate("MainWindow", "Start"))
-        self.menuFile.setTitle(_translate("MainWindow", "Mission"))
+        self.menuMission.setTitle(_translate("MainWindow", "Mission"))
         self.menuConnection.setTitle(_translate("MainWindow", "Connection"))
         self.actionNew_Mission.setText(_translate("MainWindow", "New Mission"))
         self.actionView_Mission.setText(_translate("MainWindow", "View Mission"))
@@ -299,6 +436,32 @@ class Ui_MainWindow(object):
     def plot(self):
         data = [random.random() for i in range(10)]
         self.figure.clear()
+        plt.suptitle("Temperature (C)")
         ax = self.figure.add_subplot(111)
         ax.plot(data, '*-')
         self.canvas.draw()
+
+    def connect(self):
+        print("Start simulator (SITL)")
+        import dronekit_sitl
+        sitl = dronekit_sitl.start_default()
+        connection_string = 'tcp:127.0.0.1:5760'
+
+        from dronekit import connect, VehicleMode
+        vehicle = connect(connection_string, wait_ready=True)
+
+        # Get some vehicle attributes (state)
+        print("Get some vehicle attribute values:")
+        print(" GPS: %s" % vehicle.gps_0)
+        print(" Battery: %s" % vehicle.battery)
+        print(" Last Heartbeat: %s" % vehicle.last_heartbeat)
+        print(" Is Armable?: %s" % vehicle.is_armable)
+        print(" System status: %s" % vehicle.system_status.state)
+        print(" Mode: %s" % vehicle.mode.name)  # settable
+
+        # Close vehicle object before exiting script
+        vehicle.close()
+
+        # Shut down simulator
+        sitl.stop()
+        print("Completed")
