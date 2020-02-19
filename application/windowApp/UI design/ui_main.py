@@ -392,7 +392,10 @@ class Ui_MainWindow(object):
         #connect
         self.actionConnect = QtWidgets.QAction(MainWindow)
         self.actionConnect.setObjectName("actionConnect")
-        self.actionConnect.triggered.connect(self.connect)
+
+
+        self.actionConnect.triggered.connect(drone=self.connect)
+        print(" GPS: %s" % self.drone.gps_0)
         self.actionDisconnect = QtWidgets.QAction(MainWindow)
         self.actionDisconnect.setObjectName("actionDisconnect")
         self.menuMission.addAction(self.actionNew_Mission)
@@ -442,6 +445,9 @@ class Ui_MainWindow(object):
         self.canvas.draw()
 
     def connect(self):
+
+
+        """
         print("Start simulator (SITL)")
         import dronekit_sitl
         sitl = dronekit_sitl.start_default()
@@ -449,6 +455,7 @@ class Ui_MainWindow(object):
 
         from dronekit import connect, VehicleMode
         vehicle = connect(connection_string, wait_ready=True)
+        return vehicle
 
         # Get some vehicle attributes (state)
         print("Get some vehicle attribute values:")
@@ -465,3 +472,20 @@ class Ui_MainWindow(object):
         # Shut down simulator
         sitl.stop()
         print("Completed")
+        """
+import dronekit_sitl
+from dronekit import connect, VehicleMode
+class Drone:
+
+    def __init__(self,conection_string):
+        self.conection_string=conection_string
+        sitl = dronekit_sitl.start_default()
+
+    def connectDrone(self):
+        drone = connect(self.connection_string, wait_ready=True)
+
+    def getDrone(self):
+        return self.drone
+    def disconnectDrone(self):
+        self.drone.close()
+        self.sitl.stop()
