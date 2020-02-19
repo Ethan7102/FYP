@@ -15,6 +15,9 @@ from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as Navigatio
 import matplotlib.pyplot as plt
 import random
 
+from windowApp.main.Drone import Drone
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -395,9 +398,11 @@ class Ui_MainWindow(object):
 
 
         self.actionConnect.triggered.connect(self.connect)
-        #print(" GPS: %s" % self.drone.gps_0)
+
+
         self.actionDisconnect = QtWidgets.QAction(MainWindow)
         self.actionDisconnect.setObjectName("actionDisconnect")
+        self.actionDisconnect.triggered.connect(self.disconnect)
         self.menuMission.addAction(self.actionNew_Mission)
         self.menuMission.addAction(self.actionSave)
         self.menuMission.addAction(self.actionClose)
@@ -405,7 +410,9 @@ class Ui_MainWindow(object):
         self.menuConnection.addAction(self.actionDisconnect)
         self.menubar.addAction(self.menuMission.menuAction())
         self.menubar.addAction(self.menuConnection.menuAction())
-
+        #menu button setting
+        self.actionConnect.setDisabled(False)
+        self.actionDisconnect.setDisabled(True)
 
 
 
@@ -436,56 +443,27 @@ class Ui_MainWindow(object):
         self.actionConnect.setText(_translate("MainWindow", "Connect"))
         self.actionDisconnect.setText(_translate("MainWindow", "Disconnect"))
 
-    def plot(self):
+    """
+        def plot(self):
         data = [random.random() for i in range(10)]
         self.figure.clear()
         plt.suptitle("Temperature (C)")
         ax = self.figure.add_subplot(111)
         ax.plot(data, '*-')
         self.canvas.draw()
+    """
 
     def connect(self):
-
-
-
-        print("Start simulator (SITL)")
-        import dronekit_sitl
-        sitl = dronekit_sitl.start_default()
-        connection_string = 'tcp:127.0.0.1:5760'
-
-        from dronekit import connect, VehicleMode
-        vehicle = connect(connection_string, wait_ready=True)
-
-
-        # Get some vehicle attributes (state)
-        print("Get some vehicle attribute values:")
-        print(" GPS: %s" % vehicle.gps_0)
-        print(" Battery: %s" % vehicle.battery)
-        print(" Last Heartbeat: %s" % vehicle.last_heartbeat)
-        print(" Is Armable?: %s" % vehicle.is_armable)
-        print(" System status: %s" % vehicle.system_status.state)
-        print(" Mode: %s" % vehicle.mode.name)  # settable
-
-        # Close vehicle object before exiting script
-        vehicle.close()
-
-        # Shut down simulator
-        sitl.stop()
-        print("Completed")
-
-import dronekit_sitl
-from dronekit import connect, VehicleMode
-class Drone:
-
-    def __init__(self,conection_string):
-        self.conection_string=conection_string
-        sitl = dronekit_sitl.start_default()
-
-    def connectDrone(self):
-        drone = connect(self.connection_string, wait_ready=True)
-
-    def getDrone(self):
-        return self.drone
-    def disconnectDrone(self):
-        self.drone.close()
-        self.sitl.stop()
+        self.drone = Drone('tcp:127.0.0.1:5760')
+        self.vehicle=self.drone.getDrone()
+        self.detail={"airSpeed":self.vehicle.airspeed,"attltude":self.vehicle.attitude,"altitude":"","turnCoordinator":"","heading":self.vehicle.heading,"verticalSpeed":""}
+        self.actionConnect.setDisabled(True)
+        self.actionDisconnect.setDisabled(False)
+        #print(*self.detail.items(),sep='\n')
+        print(self.detail["airSpeed"])
+        print(self.detail["attltude"])
+        print(self.detail["heading"])
+    def disconnect(self):
+        self.drone.disconnectDrone()
+        self.actionConnect.setDisabled(False)
+        self.actionDisconnect.setDisabled(True)
