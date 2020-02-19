@@ -7,15 +7,8 @@
 # WARNING! All changes made in this file will be lost!
 
 
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout
 
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-import matplotlib.pyplot as plt
-import random
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -218,7 +211,6 @@ class Ui_MainWindow(object):
         self.pushButton.setSizePolicy(sizePolicy)
         self.pushButton.setObjectName("pushButton")
         self.verticalLayout_7.addWidget(self.pushButton)
-
         self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -232,92 +224,17 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 849, 367))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.verticalLayout_11 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_11.setSizeConstraint(QtWidgets.QLayout.SetNoConstraint)
         self.verticalLayout_11.setObjectName("verticalLayout_11")
-        """
         self.graphicsView_2 = QtWidgets.QGraphicsView(self.scrollAreaWidgetContents)
         self.graphicsView_2.setObjectName("graphicsView_2")
-        """
-
-        #1
-        #draw graph
-        self.figure = plt.figure()
-        self.figure.set_size_inches(11,8)
-        self.canvas = FigureCanvas(self.figure)
-        #fig = plt.gcf()
-        #fig.set_size_inches(5, 5)
-        # self.toolbar = NavigationToolbar(self.canvas, self)
-        plt.suptitle("Temperature")
-
-        #test temperature
-        data = [random.random() for i in range(10)]
-        self.figure.clear()
-        plt.suptitle("Temperature (C) 1")
-        y = (25.2,25.3,25.4,25.7,25.6,25.3,25.4,25.6,25.6,25.7)
-        x = (5,10,15,20,25,30,35,40,45,50)
-        ax = self.figure.add_subplot(111)
-        ax.plot(x, y)
-        self.canvas.draw()
-
-        #self.button = QPushButton('Plot')
-        #self.button.clicked.connect(self.plot)
-        # layout = QVBoxLayout()
-        # self.verticalLayout_7.addWidget(self.toolbar)
-        #self.verticalLayout_7.addWidget(self.canvas)
-
-        self.verticalLayout_11.addWidget(self.canvas)
-
-
-        #2
-        # draw graph
-        self.figure = plt.figure()
-        self.figure.set_size_inches(11, 8)
-        self.canvas = FigureCanvas(self.figure)
-        # fig = plt.gcf()
-        # fig.set_size_inches(5, 5)
-        # self.toolbar = NavigationToolbar(self.canvas, self)
-        plt.suptitle("Temperature")
-
-        # test temperature
-        data = [random.random() for i in range(10)]
-        self.figure.clear()
-        plt.suptitle("Temperature (C)")
-        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
-        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
-        ax = self.figure.add_subplot(111)
-        ax.plot(x, y)
-        self.canvas.draw()
-        #self.verticalLayout_7.addWidget(self.button)
-        self.verticalLayout_11.addWidget(self.canvas)
-        #3
-        # draw graph
-        self.figure = plt.figure()
-        self.figure.set_size_inches(11, 8)
-        self.canvas = FigureCanvas(self.figure)
-        # fig = plt.gcf()
-        # fig.set_size_inches(5, 5)
-        # self.toolbar = NavigationToolbar(self.canvas, self)
-        plt.suptitle("Temperature")
-
-        # test temperature
-        data = [random.random() for i in range(10)]
-        self.figure.clear()
-        plt.suptitle("Temperature (C)")
-        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
-        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
-        ax = self.figure.add_subplot(111)
-        ax.plot(x, y)
-        self.canvas.draw()
-        self.verticalLayout_11.addWidget(self.canvas)
-        #self.verticalLayout_7.addWidget(self.button)
-
-
+        self.verticalLayout_11.addWidget(self.graphicsView_2)
         self.verticalLayout_4.addLayout(self.verticalLayout_11)
-
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout_7.addWidget(self.scrollArea)
-
         self.horizontalLayout_2.addLayout(self.verticalLayout_7)
         self.verticalLayout_6.addLayout(self.horizontalLayout_2)
         MainWindow.setCentralWidget(self.centralwidget)

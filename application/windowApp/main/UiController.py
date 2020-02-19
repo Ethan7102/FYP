@@ -9,6 +9,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout
+from PyQt5.QtCore import QThread, pyqtSignal, QDateTime, QObject
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
@@ -16,6 +17,8 @@ import matplotlib.pyplot as plt
 import random
 
 from windowApp.main.Drone import Drone
+from windowApp.main.BackendThread import BackendThread
+
 
 
 class Ui_MainWindow(object):
@@ -56,7 +59,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_10 = QtWidgets.QVBoxLayout()
         self.verticalLayout_10.setObjectName("verticalLayout_10")
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
@@ -216,7 +219,6 @@ class Ui_MainWindow(object):
         self.pushButton.setObjectName("pushButton")
         self.verticalLayout_7.addWidget(self.pushButton)
 
-
         self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -231,10 +233,7 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 849, 1024))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
 
-
-
-        #store graphs
-
+        # store graphs
 
         self.verticalLayout_graphs = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_graphs.setObjectName("verticalLayout_graphs")
@@ -249,36 +248,36 @@ class Ui_MainWindow(object):
         self.graphicsView_2.setObjectName("graphicsView_2")
         self.verticalLayout_7.addWidget(self.graphicsView_2)
         """
-        #1
-        #draw graph
-        self.figure = plt.figure(figsize=(1,2.5))
+        # 1
+        # draw graph
+        self.figure = plt.figure(figsize=(1, 2.5))
         self.canvas = FigureCanvas(self.figure)
         self.canvas.setMinimumSize(self.canvas.size())
-        #fig = plt.gcf()
-        #fig.set_size_inches(5, 5)
+        # fig = plt.gcf()
+        # fig.set_size_inches(5, 5)
         # self.toolbar = NavigationToolbar(self.canvas, self)
         plt.suptitle("Temperature")
 
-        #test temperature
+        # test temperature
         data = [random.random() for i in range(10)]
         self.figure.clear()
         plt.suptitle("Temperature (C)")
-        y = (25.2,25.3,25.4,25.7,25.6,25.3,25.4,25.6,25.6,25.7)
-        x = (5,10,15,20,25,30,35,40,45,50)
+        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
+        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
         ax = self.figure.add_subplot(111)
         ax.plot(x, y)
         self.canvas.draw()
 
-        #self.button = QPushButton('Plot')
-        #self.button.clicked.connect(self.plot)
+        # self.button = QPushButton('Plot')
+        # self.button.clicked.connect(self.plot)
         # layout = QVBoxLayout()
         # self.verticalLayout_7.addWidget(self.toolbar)
-        #self.verticalLayout_7.addWidget(self.canvas)
+        # self.verticalLayout_7.addWidget(self.canvas)
         self.verticalLayout_graphs.addWidget(self.canvas)
 
-        #2
+        # 2
         # draw graph
-        self.figure = plt.figure(figsize=(1,2.5))
+        self.figure = plt.figure(figsize=(1, 2.5))
         self.canvas = FigureCanvas(self.figure)
         self.canvas.setMinimumSize(self.canvas.size())
         # fig = plt.gcf()
@@ -296,11 +295,11 @@ class Ui_MainWindow(object):
         ax.plot(x, y)
         self.canvas.draw()
         self.verticalLayout_graphs.addWidget(self.canvas)
-        #self.verticalLayout_7.addWidget(self.button)
+        # self.verticalLayout_7.addWidget(self.button)
 
-        #3
+        # 3
         # draw graph
-        self.figure = plt.figure(figsize=(1,2.5))
+        self.figure = plt.figure(figsize=(1, 2.5))
         self.canvas = FigureCanvas(self.figure)
         self.canvas.setMinimumSize(self.canvas.size())
         # fig = plt.gcf()
@@ -318,10 +317,10 @@ class Ui_MainWindow(object):
         ax.plot(x, y)
         self.canvas.draw()
         self.verticalLayout_graphs.addWidget(self.canvas)
-        #self.verticalLayout_7.addWidget(self.button)
-        #4
+        # self.verticalLayout_7.addWidget(self.button)
+        # 4
         # draw graph
-        self.figure = plt.figure(figsize=(1,2.5))
+        self.figure = plt.figure(figsize=(1, 2.5))
         self.canvas = FigureCanvas(self.figure)
         self.canvas.setMinimumSize(self.canvas.size())
         # fig = plt.gcf()
@@ -339,10 +338,10 @@ class Ui_MainWindow(object):
         ax.plot(x, y)
         self.canvas.draw()
         self.verticalLayout_graphs.addWidget(self.canvas)
-        #self.verticalLayout_7.addWidget(self.button)
-        #5
+        # self.verticalLayout_7.addWidget(self.button)
+        # 5
         # draw graph
-        self.figure = plt.figure(figsize=(1,2.5))
+        self.figure = plt.figure(figsize=(1, 2.5))
         self.canvas = FigureCanvas(self.figure)
         self.canvas.setMinimumSize(self.canvas.size())
         # fig = plt.gcf()
@@ -360,8 +359,7 @@ class Ui_MainWindow(object):
         ax.plot(x, y)
         self.canvas.draw()
         self.verticalLayout_graphs.addWidget(self.canvas)
-        #self.verticalLayout_7.addWidget(self.button)
-
+        # self.verticalLayout_7.addWidget(self.button)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout_7.addWidget(self.scrollArea)
@@ -370,7 +368,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.addLayout(self.horizontalLayout_2)
         MainWindow.setCentralWidget(self.centralwidget)
 
-        #Menu
+        # Menu
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1792, 22))
         self.menubar.setObjectName("menubar")
@@ -388,17 +386,15 @@ class Ui_MainWindow(object):
         self.actionView_Mission.setObjectName("actionView_Mission")
         self.actionSave = QtWidgets.QAction(MainWindow)
         self.actionSave.setObjectName("actionSave")
-        #quit
+        # quit
         self.actionClose = QtWidgets.QAction(MainWindow)
         self.actionClose.setObjectName("actionClose")
         self.actionClose.triggered.connect(QApplication.quit)
-        #connect
+        # connect
         self.actionConnect = QtWidgets.QAction(MainWindow)
         self.actionConnect.setObjectName("actionConnect")
 
-
         self.actionConnect.triggered.connect(self.connect)
-
 
         self.actionDisconnect = QtWidgets.QAction(MainWindow)
         self.actionDisconnect.setObjectName("actionDisconnect")
@@ -410,15 +406,33 @@ class Ui_MainWindow(object):
         self.menuConnection.addAction(self.actionDisconnect)
         self.menubar.addAction(self.menuMission.menuAction())
         self.menubar.addAction(self.menuConnection.menuAction())
-        #menu button setting
+        # menu button setting
         self.actionConnect.setDisabled(False)
         self.actionDisconnect.setDisabled(True)
-
-
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.menubar.setNativeMenuBar(False)  # False for current window, True for parent window
+
+        #update detail
+
+
+        self.backend = BackendThread()
+        self.backend.update_detail.connect(self.updateDetail)
+        self.thread = QThread()
+        self.backend.moveToThread(self.thread)
+        #start thread
+        self.thread.started.connect(self.backend.run)
+        self.thread.start()
+
+
+   # def updateDetail(self,airSpeed,attltude,altitude,turnCoordinator,heading,verticalSpeed):
+    #    self.label_7.setText("Airspeed" + ": " + airSpeed)
+    def updateDetail(self,detail):
+        self.label_7.setText("Airspeed" + ": " + str(detail["airSpeed"]))
+        self.label_4.setText("Attitude" + ": \n" + str(detail["attltude"]).replace(",", "\n"))
+        self.label_3.setText("Heading" + ": " + str(detail["heading"]))
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -455,14 +469,20 @@ class Ui_MainWindow(object):
 
     def connect(self):
         self.drone = Drone('tcp:127.0.0.1:5760')
-        self.vehicle=self.drone.getDrone()
-        self.detail={"airSpeed":self.vehicle.airspeed,"attltude":self.vehicle.attitude,"altitude":"","turnCoordinator":"","heading":self.vehicle.heading,"verticalSpeed":""}
+        self.vehicle = self.drone.getDrone()
+        self.detail = {"airSpeed": self.vehicle.airspeed, "attltude": self.vehicle.attitude, "altitude": "",
+                       "turnCoordinator": "", "heading": self.vehicle.heading, "verticalSpeed": ""}
         self.actionConnect.setDisabled(True)
         self.actionDisconnect.setDisabled(False)
-        #print(*self.detail.items(),sep='\n')
+        # print(*self.detail.items(),sep='\n')
         print(self.detail["airSpeed"])
         print(self.detail["attltude"])
         print(self.detail["heading"])
+        self.label_7.setText("Airspeed" + ": " + str(self.detail["airSpeed"]))
+        self.label_4.setText("Attitude" + ": \n" +str(self.detail["attltude"]).replace(",","\n"))
+        self.label_3.setText("Heading" + ": " + str(self.detail["heading"]))
+        self.backend.setVehicle(self.vehicle)
+
     def disconnect(self):
         self.drone.disconnectDrone()
         self.actionConnect.setDisabled(False)
