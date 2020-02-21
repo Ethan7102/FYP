@@ -58,7 +58,7 @@
         <item>
          <widget class="QLabel" name="label_5">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -84,7 +84,7 @@
             <item>
              <widget class="QLabel" name="label_7">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -95,41 +95,39 @@
              </widget>
             </item>
             <item>
-             <widget class="QGraphicsView" name="graphicsView_4">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>1</horstretch>
-                <verstretch>1</verstretch>
-               </sizepolicy>
+             <widget class="QLabel" name="lblAirspeed">
+              <property name="font">
+               <font>
+                <pointsize>48</pointsize>
+               </font>
               </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>0</height>
-               </size>
+              <property name="text">
+               <string/>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QLabel" name="label_6">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Turn Coordinator</string>
+               <string>Groundspeed</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QGraphicsView" name="graphicsView_6">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>1</horstretch>
-                <verstretch>1</verstretch>
-               </sizepolicy>
+             <widget class="QLabel" name="lblGroundspeed">
+              <property name="font">
+               <font>
+                <pointsize>48</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string/>
               </property>
              </widget>
             </item>
@@ -140,7 +138,7 @@
             <item>
              <widget class="QLabel" name="label_4">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -151,29 +149,39 @@
              </widget>
             </item>
             <item>
-             <widget class="QGraphicsView" name="graphicsView_5">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>1</horstretch>
-                <verstretch>1</verstretch>
-               </sizepolicy>
+             <widget class="QLabel" name="lblAttitude">
+              <property name="font">
+               <font>
+                <pointsize>48</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string/>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QLabel" name="label_3">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>Heading</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QGraphicsView" name="graphicsView_7">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>1</horstretch>
-                <verstretch>1</verstretch>
-               </sizepolicy>
+             <widget class="QLabel" name="lblHeading">
+              <property name="font">
+               <font>
+                <pointsize>48</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string/>
               </property>
              </widget>
             </item>
@@ -184,7 +192,7 @@
             <item>
              <widget class="QLabel" name="label_8">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -195,19 +203,21 @@
              </widget>
             </item>
             <item>
-             <widget class="QGraphicsView" name="graphicsView_8">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>1</horstretch>
-                <verstretch>1</verstretch>
-               </sizepolicy>
+             <widget class="QLabel" name="lblAltitude">
+              <property name="font">
+               <font>
+                <pointsize>48</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string/>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QLabel" name="label_10">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -218,12 +228,26 @@
              </widget>
             </item>
             <item>
-             <widget class="QGraphicsView" name="graphicsView_9">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>1</horstretch>
-                <verstretch>1</verstretch>
-               </sizepolicy>
+             <widget class="QLabel" name="lblVerticalSpeed">
+              <property name="font">
+               <font>
+                <pointsize>48</pointsize>
+               </font>
+              </property>
+              <property name="lineWidth">
+               <number>1</number>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="textFormat">
+               <enum>Qt::AutoText</enum>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="indent">
+               <number>-1</number>
               </property>
              </widget>
             </item>
@@ -327,7 +351,7 @@
              <x>0</x>
              <y>0</y>
              <width>849</width>
-             <height>367</height>
+             <height>385</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">

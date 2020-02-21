@@ -11,12 +11,11 @@ class BackendThread(QObject):
     def run(self):
         while True:
             if(self.exist):
-                detail = {"airSpeed": self.vehicle.airspeed, "attltude": self.vehicle.attitude, "altitude": "",
-                          "turnCoordinator": "", "heading": self.vehicle.heading, "verticalSpeed": ""}
+                detail = {"airspeed": self.vehicle.airspeed, "attltude": self.vehicle.attitude, "altitude": self.vehicle.location.global_relative_frame.alt,
+                          "groundspeed": self.vehicle.groundspeed, "heading": self.vehicle.heading, "verticalSpeed": self.vehicle.velocity}
             else:
-                detail = {"airSpeed": "", "attltude": "", "altitude": "",
-                          "turnCoordinator": "", "heading": "", "verticalSpeed": ""}
-            #self.update_detail.emit(detail["airSpeed"],detail["attltude"],detail["altitude"],detail["turnCoordinator"],detail["heading"],detail["verticalSpeed"])
+                detail = {"airspeed": "", "attltude": "", "altitude": "",
+                          "groundspeed": "", "heading": "", "verticalSpeed": ""}
             self.update_detail.emit(detail)
             time.sleep(1)
     def setVehicle(self,vehicle):
