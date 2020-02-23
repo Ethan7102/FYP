@@ -22,29 +22,33 @@ def on_log(mosq, obj, level, string):
     print(string)
 
 
-client = mqtt.Client()
-# Assign event callbacks
-client.on_message = on_message
-client.on_connect = on_connect
-client.on_subscribe = on_subscribe
+def main():
+    client = mqtt.Client()
+    # Assign event callbacks
+    client.on_message = on_message
+    client.on_connect = on_connect
+    client.on_subscribe = on_subscribe
 
-# Uncomment to enable debug messages
-client.on_log = on_log
+    # Uncomment to enable debug messages
+    client.on_log = on_log
 
-# Connect to the Broker
-#client.connect('192.168.12.1', 1883, 60)
-client.connect('navio.local', 1883, 60)
+    # Connect to the Broker
+    # client.connect('192.168.12.1', 1883, 60)
+    client.connect('navio.local', 1883, 60)
 
-client.loop_start()  # start the loop
+    client.loop_start()  # start the loop
 
-# Subscribe to messages
-client.subscribe('/IoTSensor/DHT22', 0)
+    # Subscribe to messages
+    client.subscribe('/IoTSensor/DHT22', 0)
 
-try:
-    while True:
-        time.sleep(1)
+    try:
+        while True:
+            time.sleep(1)
 
-except KeyboardInterrupt:
-    print('exiting')
-    client.disconnect()
-    client.loop_stop()
+    except KeyboardInterrupt:
+        print('exiting')
+        client.disconnect()
+        client.loop_stop()
+
+
+
