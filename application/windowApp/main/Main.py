@@ -7,6 +7,7 @@ if __name__ == '__main__':
     MainWindow = QMainWindow()
     ui = UiController.Ui_MainWindow()
     ui.setupUi(MainWindow)
+    #ui.start()
     MainWindow.show()
     sys.exit(app.exec_())
 
