@@ -56,7 +56,7 @@ class Ui_MainWindow(object):
         self.graphicsView.setObjectName("graphicsView")
         self.verticalLayout_8.addWidget(self.graphicsView)
 
-        
+
         self.horizontalLayout.addLayout(self.verticalLayout_8)
         self.verticalLayout_10 = QtWidgets.QVBoxLayout()
         self.verticalLayout_10.setObjectName("verticalLayout_10")
