@@ -8,8 +8,13 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout
+from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout,QLabel
 from PyQt5.QtCore import QThread, pyqtSignal, QDateTime, QObject
+
+from PyQt5.QtCore import QTimer, QPoint, pyqtSignal,QCoreApplication
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QLabel
+from PyQt5.QtWidgets import QWidget, QAction, QVBoxLayout, QHBoxLayout
+from PyQt5.QtGui import QFont, QPainter, QImage, QTextCursor
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
@@ -19,8 +24,18 @@ import random
 from application.windowApp.main.Drone import Drone
 from application.windowApp.main.BackendThread import BackendThread
 
+from pyqtlet import L, MapWidget
 
-class Ui_MainWindow(object):
+import gi
+from gi.overrides import Gtk
+
+gi.require_version('Gst', '1.0')
+gi.require_version('GstVideo', '1.0')
+from gi.repository import Gst, GObject, GstVideo
+GObject.threads_init()
+Gst.init(None)
+
+class Ui_MainWindow(QMainWindow):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1792, 1008)
@@ -38,7 +53,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_8 = QtWidgets.QVBoxLayout()
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
@@ -46,7 +61,7 @@ class Ui_MainWindow(object):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.verticalLayout_8.addWidget(self.label)
-
+        """
         self.graphicsView = QtWidgets.QGraphicsView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
@@ -55,7 +70,28 @@ class Ui_MainWindow(object):
         self.graphicsView.setSizePolicy(sizePolicy)
         self.graphicsView.setObjectName("graphicsView")
         self.verticalLayout_8.addWidget(self.graphicsView)
+        """
 
+        #creat Simple Window
+        container = QWidget(self)
+        container.setWindowTitle('Test1')
+
+        #container.connect('destroy', self.quit)
+        self.setCentralWidget(container)
+        self.winId = container.winId()
+        self.resize(480, 320)
+
+        # Create GStreamer pipeline
+        self.Video_pipeline()
+
+        # Create bus to get events from GStreamer pipeline
+        self.bus = self.pipeline.get_bus()
+        self.bus.add_signal_watch()
+        self.bus.enable_sync_message_emission()
+        self.bus.connect('message::error', self.on_error)
+        self.bus.connect('message::eos', self.on_eos)
+        self.bus.connect('sync-message::element', self.on_sync_message)
+        self.verticalLayout_8.addWidget(container)
 
         self.horizontalLayout.addLayout(self.verticalLayout_8)
         self.verticalLayout_10 = QtWidgets.QVBoxLayout()
@@ -210,7 +246,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9 = QtWidgets.QVBoxLayout()
         self.verticalLayout_9.setObjectName("verticalLayout_9")
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
@@ -222,6 +258,7 @@ class Ui_MainWindow(object):
         self.label_9.setAlignment(QtCore.Qt.AlignCenter)
         self.label_9.setObjectName("label_9")
         self.verticalLayout_9.addWidget(self.label_9)
+        """
         self.graphicsView_3 = QtWidgets.QGraphicsView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
@@ -230,8 +267,22 @@ class Ui_MainWindow(object):
         self.graphicsView_3.setSizePolicy(sizePolicy)
         self.graphicsView_3.setObjectName("graphicsView_3")
         self.verticalLayout_9.addWidget(self.graphicsView_3)
-        self.horizontalLayout_2.addLayout(self.verticalLayout_9)
+        """
 
+        #Map
+        self.mapWidget = MapWidget()
+        self.verticalLayout_9.addWidget(self.mapWidget)
+
+        # Working with the maps with pyqtlet
+        self.map = L.map(self.mapWidget)
+        self.map.setView([12.97, 77.59], 10)
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(self.map)
+        self.marker = L.marker([12.934056, 77.610029])
+        self.marker.bindPopup('Maps are a treasure.')
+        self.map.addLayer(self.marker)
+
+
+        self.horizontalLayout_2.addLayout(self.verticalLayout_9)
         self.verticalLayout_7 = QtWidgets.QVBoxLayout()
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
@@ -451,6 +502,70 @@ class Ui_MainWindow(object):
         self.thread.started.connect(self.backend.run)
         self.thread.start()
 
+
+
+    def Video_pipeline(self):
+        self.pipeline = Gst.Pipeline()
+        self.tcpsrc = Gst.ElementFactory.make('tcpclientsrc','tcpsrc')
+        self.tcpsrc.set_property("host", '192.168.12.1')
+        self.tcpsrc.set_property("port", 5000)
+
+        self.gdepay = Gst.ElementFactory.make('gdpdepay', 'gdepay')
+
+
+        self.rdepay = Gst.ElementFactory.make('rtph264depay', 'rdepay')
+
+        self.avdec = Gst.ElementFactory.make('avdec_h264', 'avdec')
+
+        self.vidconvert = Gst.ElementFactory.make('videoconvert', 'vidconvert')
+
+        self.asink = Gst.ElementFactory.make('autovideosink', 'asink')
+        self.asink.set_property('sync', False)
+        #self.asink.set_property('emit-signals', True)
+        #self.set_property('drop', True)
+
+        self.pipeline.add(self.tcpsrc)
+        self.pipeline.add(self.gdepay)
+
+        self.pipeline.add(self.avdec)
+
+        self.pipeline.add(self.rdepay)
+
+        self.pipeline.add(self.vidconvert)
+        self.pipeline.add(self.asink)
+
+        self.tcpsrc.link(self.gdepay)
+        self.gdepay.link(self.rdepay)
+        self.rdepay.link(self.avdec)
+        self.avdec.link(self.vidconvert)
+        self.vidconvert.link(self.asink)
+    def on_sync_message(self, bus, message):
+        if message.get_structure().get_name() == 'prepare-window-handle':
+            message.src.set_property('force-aspect-ratio', True)
+            message.src.set_window_handle(self.winId)
+
+    def quit(self, container):
+        self.pipeline.set_state(Gst.State.NULL)
+        self.pipeline_A.set_state(Gst.State.NULL)
+        Gtk.main_quit()
+
+    def on_eos(self, bus, msg):
+        print('on_eos(): seeking to start of video')
+        self.pipeline.seek_simple(
+            Gst.Format.TIME,
+            Gst.SeekFlags.FLUSH | Gst.SeekFlags.KEY_UNIT,
+            0
+        )
+
+    def on_error(self, bus, msg):
+        print('on_error():', msg.parse_error())
+
+    def start(self):
+        self.pipeline.set_state(Gst.State.PLAYING)
+        #self.pipeline_A.set_state(Gst.State.PLAYING)
+        #self.showMaximized()
+        #self.verticalLayout_8.addWidget(self)
+
     def updateDetail(self, detail):
         self.lblAirspeed.setText(str(detail['airspeed']))
         self.lblAttitude.setText(str(detail['attitude_pitch'])+"\n"+str(detail['attitude_yaw'])+"\n"+str(detail['attitude_roll']))
@@ -507,9 +622,11 @@ class Ui_MainWindow(object):
         self.label_3.setText("Heading" + ": " + str(self.detail["heading"]))
         """
         self.backend.setVehicle(self.vehicle)
+        self.start()
 
     def disconnect(self):
         self.drone.disconnectDrone()
         self.actionConnect.setDisabled(False)
         self.actionDisconnect.setDisabled(True)
         self.backend.exist=False
+        self.quit()
