@@ -5,13 +5,13 @@
 # Created by: PyQt5 UI code generator 5.14.1
 #
 # WARNING! All changes made in this file will be lost!
-
-
+import os
+import time
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout,QLabel
+from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout, QLabel
 from PyQt5.QtCore import QThread, pyqtSignal, QDateTime, QObject
 
-from PyQt5.QtCore import QTimer, QPoint, pyqtSignal,QCoreApplication
+from PyQt5.QtCore import QTimer, QPoint, pyqtSignal, QCoreApplication
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QLabel
 from PyQt5.QtWidgets import QWidget, QAction, QVBoxLayout, QHBoxLayout
 from PyQt5.QtGui import QFont, QPainter, QImage, QTextCursor
@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 import random
 
 from application.windowApp.main.Drone import Drone
-from application.windowApp.main.BackendThread import BackendThread
+from application.windowApp.main.BackendThread import BackendThread_UAVDetails
 
 from pyqtlet import L, MapWidget
 
@@ -32,8 +32,12 @@ from gi.overrides import Gtk
 gi.require_version('Gst', '1.0')
 gi.require_version('GstVideo', '1.0')
 from gi.repository import Gst, GObject, GstVideo
+
 GObject.threads_init()
 Gst.init(None)
+from application.windowApp.main.updateData import MqttClient
+from application.windowApp.main.PlotCanvas import PlotCanvas
+
 
 class Ui_MainWindow(QMainWindow):
     def setupUi(self, MainWindow):
@@ -72,11 +76,11 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout_8.addWidget(self.graphicsView)
         """
 
-        #creat Simple Window
+        # creat Simple Window
         container = QWidget(self)
         container.setWindowTitle('Test1')
 
-        #container.connect('destroy', self.quit)
+        # container.connect('destroy', self.quit)
         self.setCentralWidget(container)
         self.winId = container.winId()
         self.resize(480, 320)
@@ -122,7 +126,7 @@ class Ui_MainWindow(QMainWindow):
         self.label_7.setObjectName("label_7")
         self.verticalLayout_3.addWidget(self.label_7)
 
-        #uav detail ui
+        # uav detail ui
         self.lblAirspeed = QtWidgets.QLabel(self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(48)
@@ -235,10 +239,11 @@ class Ui_MainWindow(QMainWindow):
         self.lblVerticalSpeed.setIndent(-1)
         self.lblVerticalSpeed.setObjectName("lblVerticalSpeed")
         self.verticalLayout.addWidget(self.lblVerticalSpeed)
-        #end uav detail ui
+        # end uav detail ui
 
         self.horizontalLayout_3.addLayout(self.verticalLayout)
         self.verticalLayout_10.addLayout(self.horizontalLayout_3)
+
         self.horizontalLayout.addLayout(self.verticalLayout_10)
         self.verticalLayout_6.addLayout(self.horizontalLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
@@ -269,7 +274,7 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout_9.addWidget(self.graphicsView_3)
         """
 
-        #Map
+        # Map
         self.mapWidget = MapWidget()
         self.verticalLayout_9.addWidget(self.mapWidget)
 
@@ -281,7 +286,6 @@ class Ui_MainWindow(QMainWindow):
         self.marker = L.marker([22.310409, 114.257598])
         self.marker.bindPopup('UAV Hare')
         self.map.addLayer(self.marker)
-
 
         self.horizontalLayout_2.addLayout(self.verticalLayout_9)
         self.verticalLayout_7 = QtWidgets.QVBoxLayout()
@@ -328,16 +332,38 @@ class Ui_MainWindow(QMainWindow):
         self.graphicsView_2.setObjectName("graphicsView_2")
         self.verticalLayout_7.addWidget(self.graphicsView_2)
         """
-        # 1
+
+
         # draw graph
-        self.figure = plt.figure(figsize=(1, 2.5))
-        self.canvas = FigureCanvas(self.figure)
-        self.canvas.setMinimumSize(self.canvas.size())
+        #1 temperature
+        self.data_temp = []
+        self.data_temp_time = []
+        self.canvas_temp = PlotCanvas(self, width=1, height=4)
+        self.canvas_temp.init_plot("Temperature","Temperature(C)","Time(s)")
+        self.canvas_temp.setMinimumSize(self.canvas_temp.size())
+        self.verticalLayout_graphs.addWidget((self.canvas_temp))
+        #2 humidity
+        self.data_hum = []
+        self.data_hum_time = []
+        self.canvas_hum = PlotCanvas(self,width=1,height=4)
+        self.canvas_hum.init_plot("Humidity","Humidity(%)","Time(s)")
+        self.canvas_hum.setMinimumSize(self.canvas_hum.size())
+        self.verticalLayout_graphs.addWidget((self.canvas_hum))
+
+
+        """
+        self.figure_temp = plt.figure(figsize=(1, 2.5))
+        self.axes = self.figure_temp.add_subplot(111)
+#        FigureCanvas.__init__(self,self.figure_temp)
+        FigureCanvas.updateGeometry(self)
+#        self.init_plot()
+        self.canvas_temp = FigureCanvas(self.figure_temp)
+        self.canvas_temp.setMinimumSize(self.canvas_temp.size())
         # fig = plt.gcf()
         # fig.set_size_inches(5, 5)
         # self.toolbar = NavigationToolbar(self.canvas, self)
         plt.suptitle("Temperature")
-
+        
         # test temperature
         data = [random.random() for i in range(10)]
         self.figure.clear()
@@ -347,100 +373,14 @@ class Ui_MainWindow(QMainWindow):
         ax = self.figure.add_subplot(111)
         ax.plot(x, y)
         self.canvas.draw()
-
+        
         # self.button = QPushButton('Plot')
         # self.button.clicked.connect(self.plot)
         # layout = QVBoxLayout()
         # self.verticalLayout_7.addWidget(self.toolbar)
         # self.verticalLayout_7.addWidget(self.canvas)
-        self.verticalLayout_graphs.addWidget(self.canvas)
-
-        # 2
-        # draw graph
-        self.figure = plt.figure(figsize=(1, 2.5))
-        self.canvas = FigureCanvas(self.figure)
-        self.canvas.setMinimumSize(self.canvas.size())
-        # fig = plt.gcf()
-        # fig.set_size_inches(5, 5)
-        # self.toolbar = NavigationToolbar(self.canvas, self)
-        plt.suptitle("Temperature")
-
-        # test temperature
-        data = [random.random() for i in range(10)]
-        self.figure.clear()
-        plt.suptitle("Temperature (C)")
-        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
-        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
-        ax = self.figure.add_subplot(111)
-        ax.plot(x, y)
-        self.canvas.draw()
-        self.verticalLayout_graphs.addWidget(self.canvas)
-        # self.verticalLayout_7.addWidget(self.button)
-
-        # 3
-        # draw graph
-        self.figure = plt.figure(figsize=(1, 2.5))
-        self.canvas = FigureCanvas(self.figure)
-        self.canvas.setMinimumSize(self.canvas.size())
-        # fig = plt.gcf()
-        # fig.set_size_inches(5, 5)
-        # self.toolbar = NavigationToolbar(self.canvas, self)
-        plt.suptitle("Temperature")
-
-        # test temperature
-        data = [random.random() for i in range(10)]
-        self.figure.clear()
-        plt.suptitle("Temperature (C)")
-        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
-        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
-        ax = self.figure.add_subplot(111)
-        ax.plot(x, y)
-        self.canvas.draw()
-        self.verticalLayout_graphs.addWidget(self.canvas)
-        # self.verticalLayout_7.addWidget(self.button)
-        # 4
-        # draw graph
-        self.figure = plt.figure(figsize=(1, 2.5))
-        self.canvas = FigureCanvas(self.figure)
-        self.canvas.setMinimumSize(self.canvas.size())
-        # fig = plt.gcf()
-        # fig.set_size_inches(5, 5)
-        # self.toolbar = NavigationToolbar(self.canvas, self)
-        plt.suptitle("Temperature")
-
-        # test temperature
-        data = [random.random() for i in range(10)]
-        self.figure.clear()
-        plt.suptitle("Temperature (C)")
-        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
-        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
-        ax = self.figure.add_subplot(111)
-        ax.plot(x, y)
-        self.canvas.draw()
-        self.verticalLayout_graphs.addWidget(self.canvas)
-        # self.verticalLayout_7.addWidget(self.button)
-        # 5
-        # draw graph
-        self.figure = plt.figure(figsize=(1, 2.5))
-        self.canvas = FigureCanvas(self.figure)
-        self.canvas.setMinimumSize(self.canvas.size())
-        # fig = plt.gcf()
-        # fig.set_size_inches(5, 5)
-        # self.toolbar = NavigationToolbar(self.canvas, self)
-        plt.suptitle("Temperature")
-
-        # test temperature
-        data = [random.random() for i in range(10)]
-        self.figure.clear()
-        plt.suptitle("Temperature (C)")
-        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
-        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
-        ax = self.figure.add_subplot(111)
-        ax.plot(x, y)
-        self.canvas.draw()
-        self.verticalLayout_graphs.addWidget(self.canvas)
-        # self.verticalLayout_7.addWidget(self.button)
-
+        self.verticalLayout_graphs.addWidget(self.canvas_temp)
+        """
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout_7.addWidget(self.scrollArea)
 
@@ -464,8 +404,10 @@ class Ui_MainWindow(QMainWindow):
         self.actionNew_Mission.setObjectName("actionNew_Mission")
         self.actionView_Mission = QtWidgets.QAction(MainWindow)
         self.actionView_Mission.setObjectName("actionView_Mission")
+        #output JSON
         self.actionSave = QtWidgets.QAction(MainWindow)
         self.actionSave.setObjectName("actionSave")
+        self.actionSave.triggered.connect(self.output)
         # quit
         self.actionClose = QtWidgets.QAction(MainWindow)
         self.actionClose.setObjectName("actionClose")
@@ -495,7 +437,7 @@ class Ui_MainWindow(QMainWindow):
         self.menubar.setNativeMenuBar(False)  # False for current window, True for parent window
 
         # update detail
-        self.backend = BackendThread()
+        self.backend = BackendThread_UAVDetails()
         self.backend.update_detail.connect(self.updateDetail)
         self.thread = QThread()
         self.backend.moveToThread(self.thread)
@@ -503,16 +445,99 @@ class Ui_MainWindow(QMainWindow):
         self.thread.started.connect(self.backend.run)
         self.thread.start()
 
+        """
+        #data collect
+        from application.windowApp.main.test import MqttClient
+        self.client = MqttClient(self)
+        self.client.messageSignal.connect(self.on_dataCollected)
+        self.client.hostname="navio.local"
+        self.client.connectToHost()
+
+    def on_dataCollected(self,msg):
+        print("hi")
+        """
+        self.client = MqttClient(self)
+        self.client.stateChanged.connect(self.on_stateChanged)
+        self.client.messageSignal.connect(self.on_messageSignal)
+
+        self.client.hostname = "192.168.12.1"
+        self.client.connectToHost()
+
+    @QtCore.pyqtSlot(int)
+    def on_stateChanged(self, state):
+        if state == MqttClient.Connected:
+            print(state)
+            self.client.subscribe("/IoTSensor/DHT22")
+
+    @QtCore.pyqtSlot(str)
+    def on_messageSignal(self, msg):
+        try:
+            val = msg
+            val = val.replace("Temperature=", "")
+            val = val.replace("Humidity=", "")
+            val = val.split(" ")
+            self.storeData(self.data_temp,val[0].replace("C",""),self.data_temp_time)
+            self.storeData(self.data_hum,val[2].replace("%",""),self.data_hum_time)
+            # self.label_5.setText(val)
+            """
+            for x in self.data_temp:
+                print(x)
+            for x in self.data_temp_time:
+                print(x)
+            """
+            self.draw()
+        except ValueError:
+            print("error: Not is number")
+
+    def storeData(self,target,data,time):
+        from decimal import Decimal
+        target.append(float(data))
+        if (len(time) != 0):
+            time.append(time[-1] + 5)
+        else:
+            time.append(5)
+
+    def draw(self):
+        #print("draw")
+        self.canvas_temp.update_figure(self.data_temp_time,self.data_temp)
+        self.canvas_hum.update_figure(self.data_hum_time,self.data_hum)
+
+    def output(self):
+
+            #time.strftime('%d/%m/%Y')+' '+time.strftime('%H:%M:%S')
+            directory =time.strftime('%d-%m-%Y')+' '+time.strftime('%H-%M-%S')
+            os.mkdir(directory)
+            record = open(directory+"/"+'raw_data.txt','a+')
+            output_temp =""
+            output_hum=""
+            try:
+                if len(self.data_temp)!=0:
+                    output_temp= ["%.1f" % number for number in self.data_temp]
+                    output_temp=','.join(output_temp)
+                if len(self.data_hum!=0):
+                    output_hum = ["%.1f" % number for number in self.data_hum]
+                    output_hum=','.join(output_hum)
+            except:
+                pass
+            #print(output_temp)
+
+            output = "{\n" \
+                     "\"Temperature\":{" \
+                     "\n\t\"Data\":["+output_temp+"],\n\t\"Unit\":5," \
+                    "\n\t\"Humidity\":["+output_hum+"],\n\t\"Unit\":5\n\t}\n}"
+            record.write(output)
+            self.canvas_temp.outputImage(directory+"/"+"Temperature")
+            self.canvas_hum.outputImage(directory+"/"+"Humidity")
+
 
 
     def Video_pipeline(self):
         self.pipeline = Gst.Pipeline()
-        self.tcpsrc = Gst.ElementFactory.make('tcpclientsrc','tcpsrc')
+        self.tcpsrc = Gst.ElementFactory.make('tcpclientsrc', 'tcpsrc')
         self.tcpsrc.set_property("host", '192.168.12.1')
         self.tcpsrc.set_property("port", 5000)
 
         self.gdepay = Gst.ElementFactory.make('gdpdepay', 'gdepay')
-
 
         self.rdepay = Gst.ElementFactory.make('rtph264depay', 'rdepay')
 
@@ -522,8 +547,8 @@ class Ui_MainWindow(QMainWindow):
 
         self.asink = Gst.ElementFactory.make('autovideosink', 'asink')
         self.asink.set_property('sync', False)
-        #self.asink.set_property('emit-signals', True)
-        #self.set_property('drop', True)
+        # self.asink.set_property('emit-signals', True)
+        # self.set_property('drop', True)
 
         self.pipeline.add(self.tcpsrc)
         self.pipeline.add(self.gdepay)
@@ -540,6 +565,7 @@ class Ui_MainWindow(QMainWindow):
         self.rdepay.link(self.avdec)
         self.avdec.link(self.vidconvert)
         self.vidconvert.link(self.asink)
+
     def on_sync_message(self, bus, message):
         if message.get_structure().get_name() == 'prepare-window-handle':
             message.src.set_property('force-aspect-ratio', True)
@@ -563,16 +589,17 @@ class Ui_MainWindow(QMainWindow):
 
     def start(self):
         self.pipeline.set_state(Gst.State.PLAYING)
-        #self.pipeline_A.set_state(Gst.State.PLAYING)
-        #self.showMaximized()
-        #self.verticalLayout_8.addWidget(self)
+        # self.pipeline_A.set_state(Gst.State.PLAYING)
+        # self.showMaximized()
+        # self.verticalLayout_8.addWidget(self)
 
     def updateDetail(self, detail):
         self.lblAirspeed.setText(str(detail['airspeed']))
-        self.lblAttitude.setText(str(detail['attitude_pitch'])+"\n"+str(detail['attitude_yaw'])+"\n"+str(detail['attitude_roll']))
+        self.lblAttitude.setText(
+            str(detail['attitude_pitch']) + "\n" + str(detail['attitude_yaw']) + "\n" + str(detail['attitude_roll']))
         self.lblAltitude.setText(str(detail['altitude']))
         self.lblGroundspeed.setText(str(detail['groundspeed']))
-        self.lblHeading.setText( str(detail["heading"]))
+        self.lblHeading.setText(str(detail["heading"]))
         self.lblVerticalSpeed.setText(str(detail['verticalSpeed']))
 
     def retranslateUi(self, MainWindow):
@@ -597,6 +624,7 @@ class Ui_MainWindow(QMainWindow):
         self.actionClose.setText(_translate("MainWindow", "Quit"))
         self.actionConnect.setText(_translate("MainWindow", "Connect"))
         self.actionDisconnect.setText(_translate("MainWindow", "Disconnect"))
+
     """
         def plot(self):
         data = [random.random() for i in range(10)]
@@ -608,7 +636,7 @@ class Ui_MainWindow(QMainWindow):
     """
 
     def connect(self):
-        #self.drone = Drone('tcp:127.0.0.1:5760')
+        # self.drone = Drone('tcp:127.0.0.1:5760')
         self.drone = Drone('udp:0.0.0.0:14550')
         self.vehicle = self.drone.getDrone()
         self.actionConnect.setDisabled(True)
@@ -629,5 +657,5 @@ class Ui_MainWindow(QMainWindow):
         self.drone.disconnectDrone()
         self.actionConnect.setDisabled(False)
         self.actionDisconnect.setDisabled(True)
-        self.backend.exist=False
+        self.backend.exist = False
         self.quit()
