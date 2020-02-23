@@ -275,10 +275,11 @@ class Ui_MainWindow(QMainWindow):
 
         # Working with the maps with pyqtlet
         self.map = L.map(self.mapWidget)
-        self.map.setView([12.97, 77.59], 10)
+        self.map.setView([22.310409, 114.257598], 20)
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(self.map)
-        self.marker = L.marker([12.934056, 77.610029])
-        self.marker.bindPopup('Maps are a treasure.')
+
+        self.marker = L.marker([22.310409, 114.257598])
+        self.marker.bindPopup('UAV Hare')
         self.map.addLayer(self.marker)
 
 
