@@ -16,8 +16,8 @@ from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as Navigatio
 import matplotlib.pyplot as plt
 import random
 
-from windowApp.main.Drone import Drone
-from windowApp.main.BackendThread import BackendThread
+from application.windowApp.main.Drone import Drone
+from application.windowApp.main.BackendThread import BackendThread
 
 
 class Ui_MainWindow(object):
@@ -46,6 +46,7 @@ class Ui_MainWindow(object):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.verticalLayout_8.addWidget(self.label)
+
         self.graphicsView = QtWidgets.QGraphicsView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
@@ -54,6 +55,8 @@ class Ui_MainWindow(object):
         self.graphicsView.setSizePolicy(sizePolicy)
         self.graphicsView.setObjectName("graphicsView")
         self.verticalLayout_8.addWidget(self.graphicsView)
+
+        
         self.horizontalLayout.addLayout(self.verticalLayout_8)
         self.verticalLayout_10 = QtWidgets.QVBoxLayout()
         self.verticalLayout_10.setObjectName("verticalLayout_10")
@@ -89,6 +92,10 @@ class Ui_MainWindow(object):
         font.setPointSize(48)
         self.lblAirspeed.setFont(font)
         self.lblAirspeed.setText("")
+        self.lblAirspeed.setLineWidth(1)
+        self.lblAirspeed.setTextFormat(QtCore.Qt.AutoText)
+        self.lblAirspeed.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblAirspeed.setIndent(-1)
         self.lblAirspeed.setObjectName("lblAirspeed")
         self.verticalLayout_3.addWidget(self.lblAirspeed)
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
@@ -104,6 +111,10 @@ class Ui_MainWindow(object):
         font.setPointSize(48)
         self.lblGroundspeed.setFont(font)
         self.lblGroundspeed.setText("")
+        self.lblGroundspeed.setLineWidth(1)
+        self.lblGroundspeed.setTextFormat(QtCore.Qt.AutoText)
+        self.lblGroundspeed.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblGroundspeed.setIndent(-1)
         self.lblGroundspeed.setObjectName("lblGroundspeed")
         self.verticalLayout_3.addWidget(self.lblGroundspeed)
         self.horizontalLayout_3.addLayout(self.verticalLayout_3)
@@ -122,6 +133,10 @@ class Ui_MainWindow(object):
         font.setPointSize(48)
         self.lblAttitude.setFont(font)
         self.lblAttitude.setText("")
+        self.lblAttitude.setLineWidth(1)
+        self.lblAttitude.setTextFormat(QtCore.Qt.AutoText)
+        self.lblAttitude.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblAttitude.setIndent(-1)
         self.lblAttitude.setObjectName("lblAttitude")
         self.verticalLayout_2.addWidget(self.lblAttitude)
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
@@ -137,6 +152,10 @@ class Ui_MainWindow(object):
         font.setPointSize(48)
         self.lblHeading.setFont(font)
         self.lblHeading.setText("")
+        self.lblHeading.setLineWidth(1)
+        self.lblHeading.setTextFormat(QtCore.Qt.AutoText)
+        self.lblHeading.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblHeading.setIndent(-1)
         self.lblHeading.setObjectName("lblHeading")
         self.verticalLayout_2.addWidget(self.lblHeading)
         self.horizontalLayout_3.addLayout(self.verticalLayout_2)
@@ -155,6 +174,10 @@ class Ui_MainWindow(object):
         font.setPointSize(48)
         self.lblAltitude.setFont(font)
         self.lblAltitude.setText("")
+        self.lblAltitude.setLineWidth(1)
+        self.lblAltitude.setTextFormat(QtCore.Qt.AutoText)
+        self.lblAltitude.setAlignment(QtCore.Qt.AlignCenter)
+        self.lblAltitude.setIndent(-1)
         self.lblAltitude.setObjectName("lblAltitude")
         self.verticalLayout.addWidget(self.lblAltitude)
         self.label_10 = QtWidgets.QLabel(self.centralwidget)
@@ -231,7 +254,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.scrollArea.sizePolicy().hasHeightForWidth())
         self.scrollArea.setSizePolicy(sizePolicy)
         self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
-        self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
@@ -430,7 +453,7 @@ class Ui_MainWindow(object):
 
     def updateDetail(self, detail):
         self.lblAirspeed.setText(str(detail['airspeed']))
-        self.lblAttitude.setText(str(detail["attltude"]).replace(",", "\n"))
+        self.lblAttitude.setText(str(detail['attitude_pitch'])+"\n"+str(detail['attitude_yaw'])+"\n"+str(detail['attitude_roll']))
         self.lblAltitude.setText(str(detail['altitude']))
         self.lblGroundspeed.setText(str(detail['groundspeed']))
         self.lblHeading.setText( str(detail["heading"]))

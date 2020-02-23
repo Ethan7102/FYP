@@ -21,7 +21,7 @@ finally:
 
 def getIP():
     leases = list()
-    for line in ip("neigh", "show", "dev", "wlan0"):
+    for line in ip("neigh", "show", "dev", "ap0"):
         elements = line.split()
         leases.append(elements[0])
 
