@@ -41,6 +41,7 @@ from application.windowApp.main.PlotCanvas import PlotCanvas
 
 class Ui_MainWindow(QMainWindow):
     def setupUi(self, MainWindow):
+        self.drone = None
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1792, 1008)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -456,12 +457,15 @@ class Ui_MainWindow(QMainWindow):
     def on_dataCollected(self,msg):
         print("hi")
         """
-        self.client = MqttClient(self)
-        self.client.stateChanged.connect(self.on_stateChanged)
-        self.client.messageSignal.connect(self.on_messageSignal)
 
-        self.client.hostname = "192.168.12.1"
-        self.client.connectToHost()
+        if self.drone is not None:
+
+            self.client = MqttClient(self)
+            self.client.stateChanged.connect(self.on_stateChanged)
+            self.client.messageSignal.connect(self.on_messageSignal)
+
+            self.client.hostname = "192.168.12.1"
+            self.client.connectToHost()
 
     @QtCore.pyqtSlot(int)
     def on_stateChanged(self, state):
