@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6ae6b3fa-f70f-4c94-ae51-5dbe52eb6553" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/dronekit-python" />
+  </component>
+  <component name="ProjectId" id="1RiuObCFxMdygKKTq92WJxwyC8z" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager" selected="Python.DroneKit_test">
+    <configuration name="DroneKitPX4" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DroneKit" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DroneKitPX4.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="DroneKit_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DroneKit" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DroneKit_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Status" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DroneKit" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Status.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="microgcs" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DroneKit" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dronekit-python/examples/gcs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dronekit-python/examples/gcs/microgcs.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="reboot" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="DroneKit" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dronekit-python/examples/reboot" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dronekit-python/examples/reboot/reboot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.DroneKit_test" />
+      <item itemvalue="Python.DroneKitPX4" />
+      <item itemvalue="Python.microgcs" />
+      <item itemvalue="Python.reboot" />
+      <item itemvalue="Python.Status" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.DroneKit_test" />
+        <item itemvalue="Python.Status" />
+        <item itemvalue="Python.DroneKitPX4" />
+        <item itemvalue="Python.reboot" />
+        <item itemvalue="Python.microgcs" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6ae6b3fa-f70f-4c94-ae51-5dbe52eb6553" name="Default Changelist" comment="" />
+      <created>1570162207000</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1570162207000</updated>
+      <workItem from="1570162212028" duration="1930000" />
+      <workItem from="1570166155864" duration="2224000" />
+      <workItem from="1570549524977" duration="2852000" />
+      <workItem from="1570590129502" duration="372000" />
+      <workItem from="1570612888264" duration="790000" />
+      <workItem from="1572336627488" duration="325000" />
+      <workItem from="1572425408224" duration="18000" />
+      <workItem from="1572425440074" duration="25000" />
+      <workItem from="1572425469280" duration="1101000" />
+      <workItem from="1574313402934" duration="473000" />
+      <workItem from="1580454190116" duration="4051000" />
+      <workItem from="1580466838428" duration="758000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1040" y="190" key="#Deployment" timestamp="1580456137007">
+      <screen x="0" y="23" width="1920" height="1004" />
+    </state>
+    <state x="1040" y="190" key="#Deployment/0.23.1920.1004@0.23.1920.1004" timestamp="1580456137007" />
+    <state x="849" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580454922902">
+      <screen x="0" y="23" width="1920" height="1004" />
+    </state>
+    <state x="849" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.1004@0.23.1920.1004" timestamp="1580454922902" />
+    <state width="918" height="360" key="GridCell.Tab.0.bottom" timestamp="1580636666214">
+      <screen x="0" y="23" width="1920" height="1004" />
+    </state>
+    <state width="918" height="360" key="GridCell.Tab.0.bottom/0.23.1920.1004@0.23.1920.1004" timestamp="1580636666214" />
+    <state width="918" height="360" key="GridCell.Tab.0.center" timestamp="1580636666213">
+      <screen x="0" y="23" width="1920" height="1004" />
+    </state>
+    <state width="918" height="360" key="GridCell.Tab.0.center/0.23.1920.1004@0.23.1920.1004" timestamp="1580636666213" />
+    <state width="918" height="360" key="GridCell.Tab.0.left" timestamp="1580636666213">
+      <screen x="0" y="23" width="1920" height="1004" />
+    </state>
+    <state width="918" height="360" key="GridCell.Tab.0.left/0.23.1920.1004@0.23.1920.1004" timestamp="1580636666213" />
+    <state width="918" height="360" key="GridCell.Tab.0.right" timestamp="1580636666214">
+      <screen x="0" y="23" width="1920" height="1004" />
+    </state>
+    <state width="918" height="360" key="GridCell.Tab.0.right/0.23.1920.1004@0.23.1920.1004" timestamp="1580636666214" />
+    <state x="1347" y="262" key="ftp.server.browser" timestamp="1580456134455">
+      <screen x="0" y="23" width="1920" height="1004" />
+    </state>
+    <state x="1347" y="262" key="ftp.server.browser/0.23.1920.1004@0.23.1920.1004" timestamp="1580456134455" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/DroneKit$GPS.coverage" NAME="GPS Coverage Results" MODIFIED="1580454908822" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DroneKit$DroneKit_test.coverage" NAME="DroneKit_test Coverage Results" MODIFIED="1580466982402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DroneKit$reboot.coverage" NAME="reboot Coverage Results" MODIFIED="1570590148371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dronekit-python/examples/reboot" />
+    <SUITE FILE_PATH="coverage/DroneKit$DroneKitPX4.coverage" NAME="DroneKitPX4 Coverage Results" MODIFIED="1572428048462" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DroneKit$set_attitude_target.coverage" NAME="set_attitude_target Coverage Results" MODIFIED="1570166772113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dronekit-python/examples/set_attitude_target" />
+    <SUITE FILE_PATH="coverage/DroneKit$microgcs.coverage" NAME="microgcs Coverage Results" MODIFIED="1570587019844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dronekit-python/examples/gcs" />
+    <SUITE FILE_PATH="coverage/DroneKit$Status.coverage" NAME="Status Coverage Results" MODIFIED="1580466910678" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
