@@ -10,6 +10,7 @@ import time
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout, QLabel
 from PyQt5.QtCore import QThread, pyqtSignal, QDateTime, QObject
+import PyQt5.QtSvg as QtSvg
 
 from PyQt5.QtCore import QTimer, QPoint, pyqtSignal, QCoreApplication
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QLabel
@@ -128,8 +129,9 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout_3.addWidget(self.label_7)
 
         # uav detail ui
-        self.lblAirspeed = QtWidgets.QLabel(self.centralwidget)
-        font = QtGui.QFont()
+        self.lblAirspeed = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
+        #self.lblAirspeed = QtWidgets.QLabel(self.centralwidget)
+        """font = QtGui.QFont()
         font.setPointSize(48)
         self.lblAirspeed.setFont(font)
         self.lblAirspeed.setText("")
@@ -138,6 +140,7 @@ class Ui_MainWindow(QMainWindow):
         self.lblAirspeed.setAlignment(QtCore.Qt.AlignCenter)
         self.lblAirspeed.setIndent(-1)
         self.lblAirspeed.setObjectName("lblAirspeed")
+        """
         self.verticalLayout_3.addWidget(self.lblAirspeed)
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -598,13 +601,15 @@ class Ui_MainWindow(QMainWindow):
         # self.verticalLayout_8.addWidget(self)
 
     def updateDetail(self, detail):
-        self.lblAirspeed.setText(str(detail['airspeed']))
-        self.lblAttitude.setText(
-            str(detail['attitude_pitch']) + "\n" + str(detail['attitude_yaw']) + "\n" + str(detail['attitude_roll']))
-        self.lblAltitude.setText(str(detail['altitude']))
-        self.lblGroundspeed.setText(str(detail['groundspeed']))
-        self.lblHeading.setText(str(detail["heading"]))
-        self.lblVerticalSpeed.setText(str(detail['verticalSpeed']))
+        """
+         self.lblAirspeed.setText(str(detail['airspeed']))
+         self.lblAttitude.setText(
+             str(detail['attitude_pitch']) + "\n" + str(detail['attitude_yaw']) + "\n" + str(detail['attitude_roll']))
+         self.lblAltitude.setText(str(detail['altitude']))
+         self.lblGroundspeed.setText(str(detail['groundspeed']))
+         self.lblHeading.setText(str(detail["heading"]))
+         self.lblVerticalSpeed.setText(str(detail['verticalSpeed']))
+         """
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
