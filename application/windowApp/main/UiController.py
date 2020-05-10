@@ -11,6 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout, QLabel
 from PyQt5.QtCore import QThread, pyqtSignal, QDateTime, QObject
 import PyQt5.QtSvg as QtSvg
+from PyQt5.QtSvg import QGraphicsSvgItem, QSvgRenderer
 
 from PyQt5.QtCore import QTimer, QPoint, pyqtSignal, QCoreApplication
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QLabel
@@ -129,7 +130,12 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout_3.addWidget(self.label_7)
 
         # uav detail ui
-        self.lblAirspeed = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
+        self.svgAirspeed = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
+        #self.svgAirspeed = QtSvg.QSvgWidget()
+        #self.svgAirspeed.renderer().load('img/altimeter_foreground.svg')
+
+        #self.svgAirspeed.setStyle('fill')
+        #self.lblAirspeed = QGraphicsSvgItem('img/altimeter_foregroung.svg')
         #self.lblAirspeed = QtWidgets.QLabel(self.centralwidget)
         """font = QtGui.QFont()
         font.setPointSize(48)
@@ -141,7 +147,8 @@ class Ui_MainWindow(QMainWindow):
         self.lblAirspeed.setIndent(-1)
         self.lblAirspeed.setObjectName("lblAirspeed")
         """
-        self.verticalLayout_3.addWidget(self.lblAirspeed)
+        self.verticalLayout_3.addWidget(self.svgAirspeed)
+
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -150,7 +157,10 @@ class Ui_MainWindow(QMainWindow):
         self.label_6.setSizePolicy(sizePolicy)
         self.label_6.setObjectName("label_6")
         self.verticalLayout_3.addWidget(self.label_6)
-        self.lblGroundspeed = QtWidgets.QLabel(self.centralwidget)
+
+        #self.lblGroundspeed = QtWidgets.QLabel(self.centralwidget)
+        self.svgGroundspeed = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
+        """
         font = QtGui.QFont()
         font.setPointSize(48)
         self.lblGroundspeed.setFont(font)
@@ -160,7 +170,9 @@ class Ui_MainWindow(QMainWindow):
         self.lblGroundspeed.setAlignment(QtCore.Qt.AlignCenter)
         self.lblGroundspeed.setIndent(-1)
         self.lblGroundspeed.setObjectName("lblGroundspeed")
-        self.verticalLayout_3.addWidget(self.lblGroundspeed)
+        """
+
+        self.verticalLayout_3.addWidget(self.svgGroundspeed)
         self.horizontalLayout_3.addLayout(self.verticalLayout_3)
         self.verticalLayout_2 = QtWidgets.QVBoxLayout()
         self.verticalLayout_2.setObjectName("verticalLayout_2")
@@ -172,8 +184,11 @@ class Ui_MainWindow(QMainWindow):
         self.label_4.setSizePolicy(sizePolicy)
         self.label_4.setObjectName("label_4")
         self.verticalLayout_2.addWidget(self.label_4)
-        self.lblAttitude = QtWidgets.QLabel(self.centralwidget)
-        font = QtGui.QFont()
+
+        self.svgAttitude = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
+        #self.lblAttitude = QtWidgets.QLabel(self.centralwidget)
+
+        """font = QtGui.QFont()
         font.setPointSize(48)
         self.lblAttitude.setFont(font)
         self.lblAttitude.setText("")
@@ -182,7 +197,8 @@ class Ui_MainWindow(QMainWindow):
         self.lblAttitude.setAlignment(QtCore.Qt.AlignCenter)
         self.lblAttitude.setIndent(-1)
         self.lblAttitude.setObjectName("lblAttitude")
-        self.verticalLayout_2.addWidget(self.lblAttitude)
+        """
+        self.verticalLayout_2.addWidget(self.svgAttitude)
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -191,6 +207,9 @@ class Ui_MainWindow(QMainWindow):
         self.label_3.setSizePolicy(sizePolicy)
         self.label_3.setObjectName("label_3")
         self.verticalLayout_2.addWidget(self.label_3)
+
+        self.svgHeading = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
+        """
         self.lblHeading = QtWidgets.QLabel(self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(48)
@@ -201,7 +220,9 @@ class Ui_MainWindow(QMainWindow):
         self.lblHeading.setAlignment(QtCore.Qt.AlignCenter)
         self.lblHeading.setIndent(-1)
         self.lblHeading.setObjectName("lblHeading")
-        self.verticalLayout_2.addWidget(self.lblHeading)
+        """
+
+        self.verticalLayout_2.addWidget(self.svgHeading)
         self.horizontalLayout_3.addLayout(self.verticalLayout_2)
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
@@ -213,6 +234,9 @@ class Ui_MainWindow(QMainWindow):
         self.label_8.setSizePolicy(sizePolicy)
         self.label_8.setObjectName("label_8")
         self.verticalLayout.addWidget(self.label_8)
+
+        self.svgAltitude = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
+        """
         self.lblAltitude = QtWidgets.QLabel(self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(48)
@@ -223,7 +247,8 @@ class Ui_MainWindow(QMainWindow):
         self.lblAltitude.setAlignment(QtCore.Qt.AlignCenter)
         self.lblAltitude.setIndent(-1)
         self.lblAltitude.setObjectName("lblAltitude")
-        self.verticalLayout.addWidget(self.lblAltitude)
+        """
+        self.verticalLayout.addWidget(self.svgAltitude)
         self.label_10 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -232,6 +257,8 @@ class Ui_MainWindow(QMainWindow):
         self.label_10.setSizePolicy(sizePolicy)
         self.label_10.setObjectName("label_10")
         self.verticalLayout.addWidget(self.label_10)
+        self.svgVerticalSpeed = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
+        """
         self.lblVerticalSpeed = QtWidgets.QLabel(self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(48)
@@ -242,7 +269,8 @@ class Ui_MainWindow(QMainWindow):
         self.lblVerticalSpeed.setAlignment(QtCore.Qt.AlignCenter)
         self.lblVerticalSpeed.setIndent(-1)
         self.lblVerticalSpeed.setObjectName("lblVerticalSpeed")
-        self.verticalLayout.addWidget(self.lblVerticalSpeed)
+        """
+        self.verticalLayout.addWidget(self.svgVerticalSpeed)
         # end uav detail ui
 
         self.horizontalLayout_3.addLayout(self.verticalLayout)
