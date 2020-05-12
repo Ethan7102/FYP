@@ -28,6 +28,10 @@ from application.windowApp.main.BackendThread_UAVDetails import BackendThread_UA
 
 from pyqtlet import L, MapWidget
 
+#import tkinter as tk
+#from tkinter import filedialog
+#from tkinter import messagebox
+
 import gi
 from gi.overrides import Gtk
 
@@ -424,31 +428,31 @@ class Ui_MainWindow(QMainWindow):
         self.canvas_hum.update_figure(self.data_hum_time,self.data_hum)
 
     def output(self):
+        #save_text_as = filedialog.asksaveasfile(mode='w',defaultextension='.txt')
+        #time.strftime('%d/%m/%Y')+' '+time.strftime('%H:%M:%S')
+        directory =time.strftime('%d-%m-%Y')+' '+time.strftime('%H-%M-%S')
+        os.mkdir(directory)
+        record = open(directory+"/"+'raw_data.txt','a+')
+        output_temp =""
+        output_hum=""
+        try:
+            if len(self.data_temp)!=0:
+                output_temp= ["%.1f" % number for number in self.data_temp]
+                output_temp=','.join(output_temp)
+            if len(self.data_hum!=0):
+                output_hum = ["%.1f" % number for number in self.data_hum]
+                output_hum=','.join(output_hum)
+        except:
+            pass
+        #print(output_temp)
 
-            #time.strftime('%d/%m/%Y')+' '+time.strftime('%H:%M:%S')
-            directory =time.strftime('%d-%m-%Y')+' '+time.strftime('%H-%M-%S')
-            os.mkdir(directory)
-            record = open(directory+"/"+'raw_data.txt','a+')
-            output_temp =""
-            output_hum=""
-            try:
-                if len(self.data_temp)!=0:
-                    output_temp= ["%.1f" % number for number in self.data_temp]
-                    output_temp=','.join(output_temp)
-                if len(self.data_hum!=0):
-                    output_hum = ["%.1f" % number for number in self.data_hum]
-                    output_hum=','.join(output_hum)
-            except:
-                pass
-            #print(output_temp)
-
-            output = "{\n" \
+        output = "{\n" \
                      "\"Temperature\":{" \
                      "\n\t\"Data\":["+output_temp+"],\n\t\"Unit\":5," \
                     "\n\t\"Humidity\":["+output_hum+"],\n\t\"Unit\":5\n\t}\n}"
-            record.write(output)
-            self.canvas_temp.outputImage(directory+"/"+"Temperature")
-            self.canvas_hum.outputImage(directory+"/"+"Humidity")
+        record.write(output)
+        self.canvas_temp.outputImage(directory+"/"+"Temperature")
+        self.canvas_hum.outputImage(directory+"/"+"Humidity")
 
 
 
