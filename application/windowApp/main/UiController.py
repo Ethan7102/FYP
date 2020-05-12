@@ -190,7 +190,7 @@ class Ui_MainWindow(QMainWindow):
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(self.map)
 
         self.marker = L.marker([22.305711, 114.253426])
-        self.marker.bindPopup('UAV Hare')
+        self.marker.bindPopup('No connection')
         self.map.addLayer(self.marker)
 
         self.count = 0
@@ -525,7 +525,7 @@ class Ui_MainWindow(QMainWindow):
             if self.count % 10 == 0:
                 self.map.setView([detail["location_lat"], detail["location_lon"]], 20)
             self.marker = L.marker([detail["location_lat"], detail["location_lon"]])
-            self.marker.bindPopup('UAV Hare')
+            self.marker.bindPopup('UAV Here')
             self.map.addLayer(self.marker)
 
 
