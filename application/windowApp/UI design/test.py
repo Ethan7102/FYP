@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 import random
 
 from application.windowApp.main.Drone import Drone
-from application.windowApp.main.BackendThread import BackendThread_UAVDetails
+from application.windowApp.main.BackendThread_UAVDetails import BackendThread_UAVDetails
 
 from pyqtlet import L, MapWidget
 

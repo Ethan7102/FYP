@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 import random
 
 from application.windowApp.main.Drone import Drone
-from application.windowApp.main.BackendThread import BackendThread_UAVDetails
+from application.windowApp.main.BackendThread_UAVDetails import BackendThread_UAVDetails
 
 from pyqtlet import L, MapWidget
 
@@ -134,222 +134,20 @@ class Ui_MainWindow(QMainWindow):
 
         # uav detail ui
         self.gridLayout =QtWidgets.QGridLayout()
-        #self.gridLayout.setContentsMargins(-100,-100,-100,-100)
-        #self.gridLayout.setSpacing(-1000)
         self.svgAirspeed = QtSvg.QSvgWidget('img/test.svg')
         self.svgGroundspeed = QtSvg.QSvgWidget('img/test2.svg')
         self.svgAttitude = QtSvg.QSvgWidget('img/test3.svg')
         self.svgHeading = QtSvg.QSvgWidget('img/test4.svg')
         self.svgAltitude = QtSvg.QSvgWidget('img/test5.svg')
         self.svgVerticalSpeed = QtSvg.QSvgWidget('img/test6.svg')
-        self.svgAirspeed.setMaximumSize(1000,1000)
         self.gridLayout.addWidget(self.svgAirspeed,1,1)
         self.gridLayout.addWidget(self.svgGroundspeed, 1, 2)
         self.gridLayout.addWidget(self.svgAttitude, 1, 3)
         self.gridLayout.addWidget(self.svgHeading, 2, 1)
         self.gridLayout.addWidget(self.svgAltitude, 2, 2)
         self.gridLayout.addWidget(self.svgVerticalSpeed, 2, 3)
-        #self.gridLayout.setSpacing(0)
-        #self.gridLayout.setContentsMargins(0,0,0,0)
         self.verticalLayout_10.addLayout(self.gridLayout)
-        """
-        self.svgAirspeed = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
-        self.svgAirspeed.setSizePolicy(sizePolicy)
-        """
-        #self.svgAirspeed = QtSvg.QSvgWidget()
-        #self.svgAirspeed.renderer().load('img/altimeter_foreground.svg')
 
-        #self.svgAirspeed.setStyle('fill')
-        #self.lblAirspeed = QGraphicsSvgItem('img/altimeter_foregroung.svg')
-        #self.lblAirspeed = QtWidgets.QLabel(self.centralwidget)
-        """font = QtGui.QFont()
-        font.setPointSize(48)
-        self.lblAirspeed.setFont(font)
-        self.lblAirspeed.setText("")
-        self.lblAirspeed.setLineWidth(1)
-        self.lblAirspeed.setTextFormat(QtCore.Qt.AutoText)
-        self.lblAirspeed.setAlignment(QtCore.Qt.AlignCenter)
-        self.lblAirspeed.setIndent(-1)
-        self.lblAirspeed.setObjectName("lblAirspeed")
-        """
-        #self.verticalLayout_3.addWidget(self.svgAirspeed)
-        """
-        self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
-        self.label_6.setSizePolicy(sizePolicy)
-        self.label_6.setObjectName("label_6")
-        self.verticalLayout_3.addWidget(self.label_6)
-        """
-        #self.lblGroundspeed = QtWidgets.QLabel(self.centralwidget)
-        """
-        self.svgGroundspeed = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
-
-        self.svgGroundspeed.setSizePolicy(sizePolicy)
-        """
-        """
-        font = QtGui.QFont()
-        font.setPointSize(48)
-        self.lblGroundspeed.setFont(font)
-        self.lblGroundspeed.setText("")
-        self.lblGroundspeed.setLineWidth(1)
-        self.lblGroundspeed.setTextFormat(QtCore.Qt.AutoText)
-        self.lblGroundspeed.setAlignment(QtCore.Qt.AlignCenter)
-        self.lblGroundspeed.setIndent(-1)
-        self.lblGroundspeed.setObjectName("lblGroundspeed")
-        """
-        """
-        self.verticalLayout_3.addWidget(self.svgGroundspeed)
-        self.horizontalLayout_3.addLayout(self.verticalLayout_3)
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        """
-        """
-        self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-        self.label_4.setSizePolicy(sizePolicy)
-        self.label_4.setObjectName("label_4")
-        self.verticalLayout_2.addWidget(self.label_4)
-        """
-
-        #self.svgAttitude = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
-        #self.svgAttitude = QtWidgets.QLabel(self.centralwidget)
-        """
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
-        self.svgAttitude.setSizePolicy(sizePolicy)
-        """
-        """font = QtGui.QFont()
-        font.setPointSize(48)
-        self.lblAttitude.setFont(font)
-        self.lblAttitude.setText("")
-        self.lblAttitude.setLineWidth(1)
-        self.lblAttitude.setTextFormat(QtCore.Qt.AutoText)
-        self.lblAttitude.setAlignment(QtCore.Qt.AlignCenter)
-        self.lblAttitude.setIndent(-1)
-        self.lblAttitude.setObjectName("lblAttitude")
-        """
-        #self.verticalLayout_2.addWidget(self.svgAttitude)
-        """
-        self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy)
-        self.label_3.setObjectName("label_3")
-        self.verticalLayout_2.addWidget(self.label_3)
-        """
-
-        #self.svgHeading = QtWidgets.QLabel(self.centralwidget)
-
-        """self.svgHeading = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
-        self.svgHeading.setSizePolicy(sizePolicy)
-        """
-
-        """
-        self.lblHeading = QtWidgets.QLabel(self.centralwidget)
-        font = QtGui.QFont()
-        font.setPointSize(48)
-        self.lblHeading.setFont(font)
-        self.lblHeading.setText("")
-        self.lblHeading.setLineWidth(1)
-        self.lblHeading.setTextFormat(QtCore.Qt.AutoText)
-        self.lblHeading.setAlignment(QtCore.Qt.AlignCenter)
-        self.lblHeading.setIndent(-1)
-        self.lblHeading.setObjectName("lblHeading")
-        """
-        """
-        self.verticalLayout_2.addWidget(self.svgHeading)
-        self.horizontalLayout_3.addLayout(self.verticalLayout_2)
-        self.verticalLayout = QtWidgets.QVBoxLayout()
-        self.verticalLayout.setObjectName("verticalLayout")
-        """
-        """
-        self.label_8 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
-        self.label_8.setSizePolicy(sizePolicy)
-        self.label_8.setObjectName("label_8")
-        self.verticalLayout.addWidget(self.label_8)
-        """
-        #self.svgAltitude = QtWidgets.QLabel(self.centralwidget)
-        """
-        self.svgAltitude = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
-        self.svgAltitude.setSizePolicy(sizePolicy)
-        """
-        """
-        self.lblAltitude = QtWidgets.QLabel(self.centralwidget)
-        font = QtGui.QFont()
-        font.setPointSize(48)
-        self.lblAltitude.setFont(font)
-        self.lblAltitude.setText("")
-        self.lblAltitude.setLineWidth(1)
-        self.lblAltitude.setTextFormat(QtCore.Qt.AutoText)
-        self.lblAltitude.setAlignment(QtCore.Qt.AlignCenter)
-        self.lblAltitude.setIndent(-1)
-        self.lblAltitude.setObjectName("lblAltitude")
-        """
-        #self.verticalLayout.addWidget(self.svgAltitude)
-        """
-        self.label_10 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_10.sizePolicy().hasHeightForWidth())
-        self.label_10.setSizePolicy(sizePolicy)
-        self.label_10.setObjectName("label_10")
-        self.verticalLayout.addWidget(self.label_10)
-        """
-        #self.svgVerticalSpeed = QtWidgets.QLabel(self.centralwidget)
-        """
-        self.svgVerticalSpeed = QtSvg.QSvgWidget('img/altimeter_foreground.svg')
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
-        self.svgVerticalSpeed.setSizePolicy(sizePolicy)
-        """
-        """
-        self.lblVerticalSpeed = QtWidgets.QLabel(self.centralwidget)
-        font = QtGui.QFont()
-        font.setPointSize(48)
-        self.lblVerticalSpeed.setFont(font)
-        self.lblVerticalSpeed.setLineWidth(1)
-        self.lblVerticalSpeed.setText("")
-        self.lblVerticalSpeed.setTextFormat(QtCore.Qt.AutoText)
-        self.lblVerticalSpeed.setAlignment(QtCore.Qt.AlignCenter)
-        self.lblVerticalSpeed.setIndent(-1)
-        self.lblVerticalSpeed.setObjectName("lblVerticalSpeed")
-        """
-        #self.verticalLayout.addWidget(self.svgVerticalSpeed)
-        #self.horizontalLayout_3.addLayout(self.verticalLayout)
-        #self.verticalLayout_10.addLayout(self.horizontalLayout_3)
         # end uav detail ui
 
         self.horizontalLayout.addLayout(self.verticalLayout_10)
@@ -382,18 +180,30 @@ class Ui_MainWindow(QMainWindow):
         self.verticalLayout_9.addWidget(self.graphicsView_3)
         """
 
+
         # Map
         self.mapWidget = MapWidget()
         self.verticalLayout_9.addWidget(self.mapWidget)
-
-        # Working with the maps with pyqtlet
         self.map = L.map(self.mapWidget)
+
+        self.map.setView([22.305711, 114.253426], 20)
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(self.map)
+
+        self.marker = L.marker([22.305711, 114.253426])
+        self.marker.bindPopup('UAV Hare')
+        self.map.addLayer(self.marker)
+
+        self.count = 0
+        """
+        # Working with the maps with pyqtlet
+        
         self.map.setView([22.310409, 114.257598], 20)
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(self.map)
 
-        self.marker = L.marker([22.310409, 114.257598])
-        self.marker.bindPopup('UAV Hare')
-        self.map.addLayer(self.marker)
+        #self.marker = L.marker([22.310409, 114.257598])
+        #self.marker.bindPopup('UAV Hare')
+        #self.map.addLayer(self.marker)
+        """
 
         self.horizontalLayout_2.addLayout(self.verticalLayout_9)
         self.verticalLayout_7 = QtWidgets.QVBoxLayout()
@@ -705,15 +515,30 @@ class Ui_MainWindow(QMainWindow):
         # self.verticalLayout_8.addWidget(self)
 
     def updateDetail(self, detail):
+
+        # Working with the maps with pyqtlet
+        if(detail["location_lat"]!=""):
+            self.map.removeLayer(self.marker)
+            if self.count==0:
+                self.map.setView([detail["location_lat"], detail["location_lon"]],20)
+            self.count+=1
+            if self.count % 10 == 0:
+                self.map.setView([detail["location_lat"], detail["location_lon"]], 20)
+            self.marker = L.marker([detail["location_lat"], detail["location_lon"]])
+            self.marker.bindPopup('UAV Hare')
+            self.map.addLayer(self.marker)
+
+
+
         """
-         self.lblAirspeed.setText(str(detail['airspeed']))
-         self.lblAttitude.setText(
+        self.lblAirspeed.setText(str(detail['airspeed']))
+        self.lblAttitude.setText(
              str(detail['attitude_pitch']) + "\n" + str(detail['attitude_yaw']) + "\n" + str(detail['attitude_roll']))
-         self.lblAltitude.setText(str(detail['altitude']))
-         self.lblGroundspeed.setText(str(detail['groundspeed']))
-         self.lblHeading.setText(str(detail["heading"]))
-         self.lblVerticalSpeed.setText(str(detail['verticalSpeed']))
-         """
+        self.lblAltitude.setText(str(detail['altitude']))
+        self.lblGroundspeed.setText(str(detail['groundspeed']))
+        self.lblHeading.setText(str(detail["heading"]))
+        self.lblVerticalSpeed.setText(str(detail['verticalSpeed']))
+        """
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
