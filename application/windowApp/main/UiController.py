@@ -20,8 +20,8 @@ from application.windowApp.main.BackendThread_UAVDetails import BackendThread_UA
 from pyqtlet import L, MapWidget
 
 import tkinter as tk
-#from tkinter import filedialog
-#from tkinter import messagebox
+from tkinter import filedialog
+from tkinter import messagebox
 
 import gi
 from gi.overrides import Gtk
@@ -384,6 +384,8 @@ class Ui_MainWindow(QMainWindow):
         if state == MqttClient.Connected:
             print(state)
             self.client.subscribe("/IoTSensor/DHT22")
+        else:
+            print("empty")
 
     @QtCore.pyqtSlot(str)
     def on_messageSignal(self, msg):
@@ -392,6 +394,7 @@ class Ui_MainWindow(QMainWindow):
             val = val.replace("Temperature=", "")
             val = val.replace("Humidity=", "")
             val = val.split(" ")
+            print(msg)
             self.storeData(self.data_temp,val[0].replace("C",""),self.data_temp_time)
             self.storeData(self.data_hum,val[2].replace("%",""),self.data_hum_time)
             # self.label_5.setText(val)
@@ -418,7 +421,7 @@ class Ui_MainWindow(QMainWindow):
         self.canvas_hum.update_figure(self.data_hum_time,self.data_hum)
 
     def output(self):
-        #save_text_as = filedialog.asksaveasfile(mode='w',defaultextension='.txt')
+        save_text_as = filedialog.asksaveasfile(mode='w',defaultextension='.txt')
         #time.strftime('%d/%m/%Y')+' '+time.strftime('%H:%M:%S')
         directory =time.strftime('%d-%m-%Y')+' '+time.strftime('%H-%M-%S')
         os.mkdir(directory)
