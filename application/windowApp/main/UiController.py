@@ -8,27 +8,18 @@
 import os
 import time
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout, QLabel
-from PyQt5.QtCore import QThread, pyqtSignal, QDateTime, QObject
+from PyQt5.QtCore import QThread
 import PyQt5.QtSvg as QtSvg
-from PyQt5.QtSvg import QGraphicsSvgItem, QSvgRenderer
 
-from PyQt5.QtCore import QTimer, QPoint, pyqtSignal, QCoreApplication
-from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QLabel
-from PyQt5.QtWidgets import QWidget, QAction, QVBoxLayout, QHBoxLayout
-from PyQt5.QtGui import QFont, QPainter, QImage, QTextCursor
-
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-import matplotlib.pyplot as plt
-import random
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QWidget
 
 from application.windowApp.main.Drone import Drone
 from application.windowApp.main.BackendThread_UAVDetails import BackendThread_UAVDetails
 
 from pyqtlet import L, MapWidget
 
-#import tkinter as tk
+import tkinter as tk
 #from tkinter import filedialog
 #from tkinter import messagebox
 
@@ -37,7 +28,7 @@ from gi.overrides import Gtk
 
 gi.require_version('Gst', '1.0')
 gi.require_version('GstVideo', '1.0')
-from gi.repository import Gst, GObject, GstVideo
+from gi.repository import Gst, GObject
 
 GObject.threads_init()
 Gst.init(None)
@@ -415,7 +406,6 @@ class Ui_MainWindow(QMainWindow):
             print("error: Not is number")
 
     def storeData(self,target,data,time):
-        from decimal import Decimal
         target.append(float(data))
         if (len(time) != 0):
             time.append(time[-1] + 5)

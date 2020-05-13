@@ -6,38 +6,16 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-import os
-import time
 from PyQt5 import QtCore, QtGui, QtWidgets, QtSvg
-from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout, QLabel
-from PyQt5.QtCore import QThread, pyqtSignal, QDateTime, QObject
-
-from PyQt5.QtCore import QTimer, QPoint, pyqtSignal, QCoreApplication, QSize
-from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QLabel
-from PyQt5.QtWidgets import QWidget, QAction, QVBoxLayout, QHBoxLayout
-from PyQt5.QtGui import QFont, QPainter, QImage, QTextCursor, QPixmap
-
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-import matplotlib.pyplot as plt
-import random
-
-from application.windowApp.main.Drone import Drone
-from application.windowApp.main.BackendThread_UAVDetails import BackendThread_UAVDetails
-
-from pyqtlet import L, MapWidget
 
 import gi
-from gi.overrides import Gtk
 
 gi.require_version('Gst', '1.0')
 gi.require_version('GstVideo', '1.0')
-from gi.repository import Gst, GObject, GstVideo
+from gi.repository import Gst, GObject
 
 GObject.threads_init()
 Gst.init(None)
-from application.windowApp.main.updateData import MqttClient
-from application.windowApp.main.PlotCanvas import PlotCanvas
 
 
 class Ui_MainWindow(object):
