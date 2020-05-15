@@ -458,7 +458,7 @@ class Ui_MainWindow(QMainWindow):
         directory =time.strftime('%d-%m-%Y')+' '+time.strftime('%H-%M-%S')
         path = path + "/" + directory
         #print(path)
-        
+
         os.mkdir(path)
         record = open(path+"/"+'raw_data.txt','a+')
         output_temp =""
