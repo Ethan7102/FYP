@@ -11,8 +11,9 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QThread
 import PyQt5.QtSvg as QtSvg
+from PyQt5.QtGui import QPixmap
 
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QDialog, QMessageBox
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox, QHBoxLayout, QLabel
 from PyQt5.QtWidgets import QWidget
 
 from application.windowApp.main.Drone import Drone
@@ -32,6 +33,7 @@ Gst.init(None)
 from application.windowApp.main.updateData import MqttClient
 from application.windowApp.main.PlotCanvas import PlotCanvas
 
+import airspeed
 
 class Ui_MainWindow(QMainWindow):
     def setupUi(self, MainWindow):
@@ -124,20 +126,50 @@ class Ui_MainWindow(QMainWindow):
         self.label_7.setObjectName("label_7")
         self.verticalLayout_3.addWidget(self.label_7)
 
+        filter = airspeed.Filter()
+
+        pixmap = QPixmap(os.path.join('img/airspeed_markings.svg'))
+        pixmap= pixmap.scaled(300,300)
+        label = QLabel()
+        label.setPixmap(pixmap)
+        label.installEventFilter(filter)
+
+        label2 = QLabel()
+        label2.setPixmap(pixmap)
+        label2.installEventFilter(filter)
+
+        label3 = QLabel()
+        label3.setPixmap(pixmap)
+        label3.installEventFilter(filter)
+
+        label4 = QLabel()
+        label4.setPixmap(pixmap)
+        label4.installEventFilter(filter)
+
+        label5 = QLabel()
+        label5.setPixmap(pixmap)
+        label5.installEventFilter(filter)
+
+        label6 = QLabel()
+        label6.setPixmap(pixmap)
+        label6.installEventFilter(filter)
+
+
+
         # uav detail ui
         self.gridLayout =QtWidgets.QGridLayout()
-        self.svgAirspeed = QtSvg.QSvgWidget('img/test.svg')
-        self.svgGroundspeed = QtSvg.QSvgWidget('img/test2.svg')
-        self.svgAttitude = QtSvg.QSvgWidget('img/test3.svg')
-        self.svgHeading = QtSvg.QSvgWidget('img/test4.svg')
-        self.svgAltitude = QtSvg.QSvgWidget('img/test5.svg')
-        self.svgVerticalSpeed = QtSvg.QSvgWidget('img/test6.svg')
-        self.gridLayout.addWidget(self.svgAirspeed,1,1)
-        self.gridLayout.addWidget(self.svgGroundspeed, 1, 2)
-        self.gridLayout.addWidget(self.svgAttitude, 1, 3)
-        self.gridLayout.addWidget(self.svgHeading, 2, 1)
-        self.gridLayout.addWidget(self.svgAltitude, 2, 2)
-        self.gridLayout.addWidget(self.svgVerticalSpeed, 2, 3)
+        #self.svgAirspeed = QtSvg.QSvgWidget('img/test.svg')
+        #self.svgGroundspeed = QtSvg.QSvgWidget('img/test2.svg')
+        #self.svgAttitude = QtSvg.QSvgWidget('img/test3.svg')
+        #self.svgHeading = QtSvg.QSvgWidget('img/test4.svg')
+        #self.svgAltitude = QtSvg.QSvgWidget('img/test5.svg')
+        #self.svgVerticalSpeed = QtSvg.QSvgWidget('img/test6.svg')
+        self.gridLayout.addWidget(label,1,1)
+        self.gridLayout.addWidget(label2, 1, 2)
+        self.gridLayout.addWidget(label3, 1, 3)
+        self.gridLayout.addWidget(label4, 2, 1)
+        self.gridLayout.addWidget(label5, 2, 2)
+        self.gridLayout.addWidget(label6, 2, 3)
         self.verticalLayout_10.addLayout(self.gridLayout)
 
         # end uav detail ui
@@ -608,3 +640,7 @@ class Ui_MainWindow(QMainWindow):
         self.actionDisconnect.setDisabled(True)
         self.backend.exist = False
         self.quit()
+
+
+
+
