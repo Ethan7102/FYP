@@ -7,21 +7,18 @@
 # WARNING! All changes made in this file will be lost!
 import os
 import time
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QThread
 import PyQt5.QtSvg as QtSvg
 
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QDialog, QMessageBox
 from PyQt5.QtWidgets import QWidget
 
 from application.windowApp.main.Drone import Drone
 from application.windowApp.main.BackendThread_UAVDetails import BackendThread_UAVDetails
 
 from pyqtlet import L, MapWidget
-
-import tkinter as tk
-from tkinter import filedialog
-from tkinter import messagebox
 
 import gi
 from gi.overrides import Gtk
@@ -313,11 +310,13 @@ class Ui_MainWindow(QMainWindow):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        #new mission
         self.actionNew_Mission = QtWidgets.QAction(MainWindow)
         self.actionNew_Mission.setObjectName("actionNew_Mission")
+        self.actionNew_Mission.triggered.connect(self.newMission)
         self.actionView_Mission = QtWidgets.QAction(MainWindow)
         self.actionView_Mission.setObjectName("actionView_Mission")
-        #output JSON
+        #save as
         self.actionSave = QtWidgets.QAction(MainWindow)
         self.actionSave.setObjectName("actionSave")
         self.actionSave.triggered.connect(self.output)
@@ -379,6 +378,7 @@ class Ui_MainWindow(QMainWindow):
             self.client.hostname = "192.168.12.1"
             self.client.connectToHost()
 
+
     @QtCore.pyqtSlot(int)
     def on_stateChanged(self, state):
         if state == MqttClient.Connected:
@@ -421,11 +421,14 @@ class Ui_MainWindow(QMainWindow):
         self.canvas_hum.update_figure(self.data_hum_time,self.data_hum)
 
     def output(self):
-        save_text_as = filedialog.asksaveasfile(mode='w',defaultextension='.txt')
-        #time.strftime('%d/%m/%Y')+' '+time.strftime('%H:%M:%S')
+        #file_path = mdd.makeDirectory()
+        path = QFileDialog.getExistingDirectory(self, 'Choose Directory')
         directory =time.strftime('%d-%m-%Y')+' '+time.strftime('%H-%M-%S')
-        os.mkdir(directory)
-        record = open(directory+"/"+'raw_data.txt','a+')
+        path = path + "/" + directory
+        #print(path)
+
+        os.mkdir(path)
+        record = open(path+"/"+'raw_data.txt','a+')
         output_temp =""
         output_hum=""
         try:
@@ -444,10 +447,19 @@ class Ui_MainWindow(QMainWindow):
                      "\n\t\"Data\":["+output_temp+"],\n\t\"Unit\":5," \
                     "\n\t\"Humidity\":["+output_hum+"],\n\t\"Unit\":5\n\t}\n}"
         record.write(output)
-        self.canvas_temp.outputImage(directory+"/"+"Temperature")
-        self.canvas_hum.outputImage(directory+"/"+"Humidity")
+        self.canvas_temp.outputImage(path+"/"+"Temperature")
+        self.canvas_hum.outputImage(path+"/"+"Humidity")
 
 
+    def newMission(self):
+        msgBox = QMessageBox()
+        msgBox.setText("Do you want to create a new mission now? If yes, then the current mission will be closed.")
+        msgBox.setStandardButtons(QMessageBox.Cancel | QMessageBox.Ok)
+        option = msgBox.exec_()
+        if option == QMessageBox.Ok:
+            #os.execl(sys.executable, 'python', __file__, *sys.argv[1:])
+            os.execl(sys.executable, sys.executable, *sys.argv)
+            #os.execl(sys.executable, '"{}"'.format(sys.executable), *sys.argv)
 
     def Video_pipeline(self):
         self.pipeline = Gst.Pipeline()
@@ -515,6 +527,7 @@ class Ui_MainWindow(QMainWindow):
 
         # Working with the maps with pyqtlet
         if(detail["location_lat"]!=""):
+            #print(str(detail["location_lat"])+","+str(detail["location_lon"]))
             self.map.removeLayer(self.marker)
             if self.count==0:
                 self.map.setView([detail["location_lat"], detail["location_lon"]],20)
@@ -555,7 +568,7 @@ class Ui_MainWindow(QMainWindow):
         self.menuConnection.setTitle(_translate("MainWindow", "Connection"))
         self.actionNew_Mission.setText(_translate("MainWindow", "New Mission"))
         self.actionView_Mission.setText(_translate("MainWindow", "View Mission"))
-        self.actionSave.setText(_translate("MainWindow", "Output Result"))
+        self.actionSave.setText(_translate("MainWindow", "Save As"))
         self.actionClose.setText(_translate("MainWindow", "Quit"))
         self.actionConnect.setText(_translate("MainWindow", "Connect"))
         self.actionDisconnect.setText(_translate("MainWindow", "Disconnect"))
@@ -577,6 +590,7 @@ class Ui_MainWindow(QMainWindow):
         self.actionConnect.setDisabled(True)
         self.actionDisconnect.setDisabled(False)
         # print(*self.detail.items(),sep='\n')
+
         """
         print(self.detail["airSpeed"])
         print(self.detail["attltude"])
