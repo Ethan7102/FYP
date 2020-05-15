@@ -319,7 +319,7 @@ class Ui_MainWindow(QMainWindow):
         #save as
         self.actionSave = QtWidgets.QAction(MainWindow)
         self.actionSave.setObjectName("actionSave")
-        self.actionSave.triggered.connect(self.output)
+        self.actionSave.triggered.connect(self.saveAs)
         # quit
         self.actionClose = QtWidgets.QAction(MainWindow)
         self.actionClose.setObjectName("actionClose")
@@ -420,13 +420,13 @@ class Ui_MainWindow(QMainWindow):
         self.canvas_temp.update_figure(self.data_temp_time,self.data_temp)
         self.canvas_hum.update_figure(self.data_hum_time,self.data_hum)
 
-    def output(self):
+    def saveAs(self):
         #file_path = mdd.makeDirectory()
         path = QFileDialog.getExistingDirectory(self, 'Choose Directory')
         directory =time.strftime('%d-%m-%Y')+' '+time.strftime('%H-%M-%S')
         path = path + "/" + directory
         #print(path)
-
+        
         os.mkdir(path)
         record = open(path+"/"+'raw_data.txt','a+')
         output_temp =""
