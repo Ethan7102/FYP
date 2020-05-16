@@ -134,6 +134,7 @@ class Monitor(QMainWindow):
 
         self.alt = qfi_ALT.qfi_ALT(self)
         self.alt.resize(240, 240)
+
         self.alt.reinit()
         self.gridLayout.addWidget(self.alt, 0, 1)
 

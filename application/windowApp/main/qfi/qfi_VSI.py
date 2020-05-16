@@ -18,7 +18,7 @@ class qfi_VSI (QGraphicsView):
 
     def __init__(self,winParent):
         QGraphicsView.__init__(self)
-
+        self.setFixedSize(240,240)
         self.winParent=winParent
 
         self.viewUpdate.connect(self.update)
