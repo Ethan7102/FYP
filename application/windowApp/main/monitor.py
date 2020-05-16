@@ -72,6 +72,8 @@ class Monitor(QMainWindow):
 
         # creat Simple Window
         self.container = QWidget(self)
+        print(str(self.width()),str(self.height()))
+        self.container.setFixedSize(854,480)
         self.container.setWindowTitle('Test1')
 
         # container.connect('destroy', self.quit)
