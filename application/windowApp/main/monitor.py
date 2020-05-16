@@ -44,6 +44,7 @@ class Monitor(QMainWindow):
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
+        
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.verticalLayout_8 = QtWidgets.QVBoxLayout()
