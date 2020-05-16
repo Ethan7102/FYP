@@ -4,8 +4,8 @@ import time
 import sys
 
 
-class VehicleStatus(QObject):
-    updateQFI = pyqtSignal(object)
+class VehicleLocation(QObject):
+    updateMap = pyqtSignal(object)
     exist = False
 
     def run(self):
@@ -30,9 +30,8 @@ class VehicleStatus(QObject):
             else:
                 detail = {"airspeed": "", "attitude_pitch": "", "attitude_yaw": "", "attitude_roll": "", "altitude": "",
                           "groundspeed": "", "heading": "", "verticalSpeed": "", "location_lat": "", "location_lon": ""}
-
-            self.updateQFI.emit(detail)
-            time.sleep(0.1)
+            self.updateMap.emit(detail)
+            time.sleep(1)
 
     def setVehicle(self, vehicle):
         self.vehicle = vehicle

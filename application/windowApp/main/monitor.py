@@ -10,6 +10,7 @@ from PyQt5.QtWidgets import QFileDialog, QMessageBox, QApplication, QMainWindow,
 
 from application.windowApp.main.drone import Drone
 from application.windowApp.main.vehicleStatus import VehicleStatus
+from application.windowApp.main.vehicleLocation import VehicleLocation
 
 from pyqtlet import L, MapWidget
 
@@ -379,13 +380,21 @@ class Monitor(QMainWindow):
         self.menubar.setNativeMenuBar(False)  # False for current window, True for parent window
 
         # update detail
-        self.backend = VehicleStatus()
-        self.backend.update_detail.connect(self.updateDetail)
-        self.thread = QThread()
-        self.backend.moveToThread(self.thread)
+        self.updateQFI_thread = VehicleStatus()
+        self.updateQFI_thread.updateQFI.connect(self.updateQFI)
+        self.updateMap_thread = VehicleLocation()
+        self.updateMap_thread.updateMap.connect(self.updateMap)
+
+        self.thread1 = QThread()
+        self.thread2 = QThread()
+        self.updateQFI_thread.moveToThread(self.thread1)
+        self.updateMap_thread.moveToThread(self.thread2)
+
         # start thread
-        self.thread.started.connect(self.backend.run)
-        self.thread.start()
+        self.thread1.started.connect(self.updateQFI_thread.run)
+        self.thread1.start()
+        self.thread2.started.connect(self.updateMap_thread.run)
+        self.thread2.start()
 
         """
         #data collect
@@ -550,8 +559,23 @@ class Monitor(QMainWindow):
         # self.pipeline_A.set_state(Gst.State.PLAYING)
         # self.showMaximized()
         # self.verticalLayout_8.addWidget(self)
+    def updateQFI(self, detail):
+        if(detail["airspeed"] != ""):
+            self.adi.setRoll(detail["attitude_roll"])
+            self.adi.setPitch(detail["attitude_pitch"])
+            self.alt.setAltitude(detail["altitude"])
+            self.si.setSpeed(detail["airspeed"])
+            self.hsi.setHeading(detail["heading"])
+            self.vsi.setClimbRate(detail["verticalSpeed"])
 
-    def updateDetail(self, detail):
+            self.adi.viewUpdate.emit()
+            self.alt.viewUpdate.emit()
+            self.si.viewUpdate.emit()
+            self.hsi.viewUpdate.emit()
+            self.vsi.viewUpdate.emit()
+            print('QFI')
+
+    def updateMap(self, detail):
 
         # Working with the maps with pyqtlet
         if (detail["location_lat"] != ""):
@@ -565,19 +589,8 @@ class Monitor(QMainWindow):
             self.marker = L.marker([detail["location_lat"], detail["location_lon"]])
             self.marker.bindPopup('UAV Here')
             self.map.addLayer(self.marker)
+            print("Map")
 
-            """self.adi.setRoll(detail["attitude_roll"])
-            self.adi.setPitch(detail["attitude_pitch"])
-            self.alt.setAltitude(detail["altitude"])
-            self.si.setSpeed(detail["airspeed"])
-            self.hsi.setHeading(detail["heading"])
-            self.vsi.setClimbRate(detail["verticalSpeed"])
-
-            self.adi.viewUpdate.emit()
-            self.alt.viewUpdate.emit()
-            self.si.viewUpdate.emit()
-            self.hsi.viewUpdate.emit()
-            self.vsi.viewUpdate.emit()"""
 
 
     def retranslateUi(self, MainWindow):
@@ -629,7 +642,8 @@ class Monitor(QMainWindow):
         self.label_4.setText("Attitude" + ": \n" + str(self.detail["attltude"]).replace(",", "\n"))
         self.label_3.setText("Heading" + ": " + str(self.detail["heading"]))
         """
-        self.backend.setVehicle(self.vehicle)
+        self.updateMap_thread.setVehicle(self.vehicle)
+        self.updateQFI_thread.setVehicle(self.vehicle)
         self.start()
 
         t2 = ThreadGUI(self.gridLayout)
@@ -641,7 +655,8 @@ class Monitor(QMainWindow):
         self.drone.disconnectDrone()
         self.actionConnect.setDisabled(False)
         self.actionDisconnect.setDisabled(True)
-        self.backend.exist = False
+        self.updateMap_thread.exist = False
+        self.updateQFI_thread.exist = False
         self.quit(self.container)
 
 
