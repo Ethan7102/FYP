@@ -4,7 +4,7 @@ import time
 import sys
 
 
-class BackendThread_UAVDetails(QObject):
+class VehicleStatus(QObject):
     update_detail = pyqtSignal(object)
     exist = False
 

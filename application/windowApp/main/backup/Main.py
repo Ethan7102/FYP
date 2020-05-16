@@ -1,11 +1,11 @@
 import sys
-import UiController
+from MainWindow import MainWindow
 import matplotlib.pyplot as plt
 from PyQt5.QtWidgets import QApplication, QMainWindow
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     MainWindow = QMainWindow()
-    ui = UiController.Ui_MainWindow()
+    ui = MainWindow.MainWindow()
     ui.setupUi(MainWindow)
     #ui.start()
     MainWindow.show()

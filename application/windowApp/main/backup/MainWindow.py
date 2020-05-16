@@ -16,8 +16,8 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox, QHBoxLayout, QLabel, QLayout
 from PyQt5.QtWidgets import QWidget
 
-from application.windowApp.main.Drone import Drone
-from application.windowApp.main.BackendThread_UAVDetails import BackendThread_UAVDetails
+from application.windowApp.main.drone import Drone
+from application.windowApp.main.vehicleStatus import BackendThread_UAVDetails
 
 from pyqtlet import L, MapWidget
 
@@ -30,14 +30,14 @@ from gi.repository import Gst, GObject, GstVideo
 
 GObject.threads_init()
 Gst.init(None)
-from application.windowApp.main.updateData import MqttClient
-from application.windowApp.main.PlotCanvas import PlotCanvas
+from application.windowApp.main.mqttClient import MqttClient
+from application.windowApp.main.plotCanvas import PlotCanvas
 
 from threadGUI import ThreadGUI
 from qfi import qfi_ADI, qfi_ALT, qfi_SI, qfi_HSI, qfi_VSI, qfi_TC
 import math
 
-class Ui_MainWindow(QMainWindow):
+class MainWindow(QMainWindow):
     def setupUi(self, MainWindow):
         self.drone = None
         MainWindow.setObjectName("MainWindow")
@@ -163,7 +163,6 @@ class Ui_MainWindow(QMainWindow):
         self.gridLayout.addWidget(self.tc, 1, 2)
 
         self.setLayout(self.gridLayout)
-        #self.gridLayout.setSizeConstraint(QLayout.setMaximunSize())
         self.verticalLayout_10.addLayout(self.gridLayout)
 
         # end uav detail ui
