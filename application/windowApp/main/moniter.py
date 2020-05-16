@@ -1,20 +1,12 @@
 # -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'ui_newMission.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
+import math
+import matplotlib.pyplot as plt
 import os
 import time
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QThread
-import PyQt5.QtSvg as QtSvg
-from PyQt5.QtGui import QPixmap
-
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox, QHBoxLayout, QLabel, QLayout
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QFileDialog, QMessageBox, QApplication, QMainWindow, QWidget
 
 from application.windowApp.main.drone import Drone
 from application.windowApp.main.vehicleStatus import VehicleStatus
@@ -30,16 +22,13 @@ from gi.repository import Gst, GObject, GstVideo
 
 GObject.threads_init()
 Gst.init(None)
+
 from application.windowApp.main.mqttClient import MqttClient
 from application.windowApp.main.plotCanvas import PlotCanvas
 
 from threadGUI import ThreadGUI
 from qfi import qfi_ADI, qfi_ALT, qfi_SI, qfi_HSI, qfi_VSI, qfi_TC
-import math
 
-import sys
-import matplotlib.pyplot as plt
-from PyQt5.QtWidgets import QApplication, QMainWindow
 
 class Moniter(QMainWindow):
     def setupUi(self, MainWindow):
@@ -633,11 +622,12 @@ class Moniter(QMainWindow):
         self.backend.exist = False
         self.quit(self.container)
 
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     MainWindow = QMainWindow()
     ui = Moniter()
     ui.setupUi(MainWindow)
-    #ui.start()
+    # ui.start()
     MainWindow.show()
     sys.exit(app.exec_())
