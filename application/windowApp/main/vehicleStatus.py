@@ -29,7 +29,7 @@ class VehicleStatus(QObject):
                 detail = {"airspeed": "", "attitude_pitch": "", "attitude_yaw": "", "attitude_roll": "", "altitude": "",
                           "groundspeed": "", "heading": "", "verticalSpeed": ""}
 
-            print(detail)
+            #print(detail)
             self.updateQFI.emit(detail)
             
             time.sleep(0.2)

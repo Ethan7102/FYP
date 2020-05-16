@@ -7,8 +7,10 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QThread
 from PyQt5.QtWidgets import QFileDialog, QMessageBox, QApplication, QMainWindow, QWidget
+import paho.mqtt.client as mqtt
 
 from application.windowApp.main.drone import Drone
+from application.windowApp.main.mqttRun import MqttRun
 from application.windowApp.main.vehicleStatus import VehicleStatus
 from application.windowApp.main.vehicleLocation import VehicleLocation
 
@@ -55,12 +57,12 @@ class Monitor(QMainWindow):
         #self.horizontalLayout.setObjectName("horizontalLayout")
 
 
-
+        """
         self.verticalLayout_8 = QtWidgets.QVBoxLayout()
         self.verticalLayout_8.setStretch(1,1)
         self.verticalLayout_8.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
-
+        """
 
         # creat Simple Window
         self.container = QWidget(self)
@@ -82,7 +84,7 @@ class Monitor(QMainWindow):
         self.bus.connect('message::error', self.on_error)
         self.bus.connect('message::eos', self.on_eos)
         self.bus.connect('sync-message::element', self.on_sync_message)
-        self.verticalLayout_8.addWidget(self.container)
+        #self.verticalLayout_8.addWidget(self.container)
         """
         self.horizontalLayout.addLayout(self.verticalLayout_8)
         self.verticalLayout_10 = QtWidgets.QVBoxLayout()
@@ -159,8 +161,8 @@ class Monitor(QMainWindow):
 
 
         # end uav detail ui
-        self.gridLayout_1.addLayout(self.verticalLayout_8,0,0)
-        #self.gridLayout_1.addWidget(self.container,0,0)
+        #self.gridLayout_1.addLayout(self.verticalLayout_8,0,0)
+        self.gridLayout_1.addWidget(self.container,0,0)
         self.gridLayout_1.addLayout(self.gridLayout,0,1)
         #self.horizontalLayout.addLayout(self.verticalLayout_10)
         #self.verticalLayout_6.addLayout(self.horizontalLayout)
@@ -291,6 +293,13 @@ class Monitor(QMainWindow):
         self.canvas_hum.init_plot("Humidity", "Humidity(%)", "Time(s)")
         self.canvas_hum.setMinimumSize(self.canvas_hum.size())
         self.verticalLayout_graphs.addWidget((self.canvas_hum))
+        # 3 PM2.5
+        self.data_pm25 = []
+        self.data_pm25_time = []
+        self.canvas_pm25 = PlotCanvas(self, width=1, height=4)
+        self.canvas_pm25.init_plot("PM2.5", "µg/m³", "Time(s)")
+        self.canvas_pm25.setMinimumSize(self.canvas_pm25.size())
+        self.verticalLayout_graphs.addWidget(self.canvas_pm25)
 
         """
         self.figure_temp = plt.figure(figsize=(1, 2.5))
@@ -406,36 +415,53 @@ class Monitor(QMainWindow):
         print("hi")
         """
 
+        # start thread
+
+        self.thread1.started.connect(self.updateQFI_thread.run)
+        self.thread1.start()
+        self.thread2.started.connect(self.updateMap_thread.run)
+        self.thread2.start()
+
+        #if self.drone is not None:
 
 
-        if self.drone is not None:
-
-
-            self.client = MqttClient(self)
-            self.client.stateChanged.connect(self.on_stateChanged)
-            self.client.messageSignal.connect(self.on_messageSignal)
-
-            self.client.hostname = "192.168.12.1"
-            self.client.connectToHost()
 
     @QtCore.pyqtSlot(int)
-    def on_stateChanged(self, state):
-        if state == MqttClient.Connected:
-            print(state)
-            self.client.subscribe("/IoTSensor/DHT22")
-        else:
-            print("empty")
+    def on_connect(client,userdata,rc):
+        #if state == MqttClient.Connected:
+            toptics = [("/IoTSensor/DHT22",1),("/IoTSensor/SDS011",1)]
+            for toptic in toptics:
+                client.subscribe(toptic)
+
+        #else:
+            #print("empty")
 
     @QtCore.pyqtSlot(str)
-    def on_messageSignal(self, msg):
+    def on_message(self,client,userdata,msg):
         try:
+            print(msg)
             val = msg
+            for s in val:
+                print(s)
+            type = val.split(" ")[1].split("=")[0]
+            if(type == "Temperature"):
+                val = val.replace("Time=", "")
+                val = val.replace("Temperature=", "")
+                val = val.replace("Humidity=", "")
+                val = val.split(" ")
+                print(val[0])
+                print(val[1])
+                print(val[2])
+                self.storeData(self.data_temp, val[1].replace("C", ""), val[0])
+                self.storeData(self.data_hum, val[2].replace("%", ""), val[0])
+            """
             val = val.replace("Temperature=", "")
             val = val.replace("Humidity=", "")
             val = val.split(" ")
             print(msg)
             self.storeData(self.data_temp, val[0].replace("C", ""), self.data_temp_time)
             self.storeData(self.data_hum, val[2].replace("%", ""), self.data_hum_time)
+            """
             # self.label_5.setText(val)
             """
             for x in self.data_temp:
@@ -450,9 +476,9 @@ class Monitor(QMainWindow):
     def storeData(self, target, data, time):
         target.append(float(data))
         if (len(time) != 0):
-            time.append(time[-1] + 5)
+            time.append(time[-1] + 10)
         else:
-            time.append(5)
+            time.append(10)
 
     def draw(self):
         # print("draw")
@@ -576,7 +602,7 @@ class Monitor(QMainWindow):
             self.si.viewUpdate.emit()
             self.hsi.viewUpdate.emit()
             self.vsi.viewUpdate.emit()
-            print('QFI')
+            #print('QFI')
 
     def updateMap(self, detail):
 
@@ -592,7 +618,7 @@ class Monitor(QMainWindow):
             self.marker = L.marker([detail["location_lat"], detail["location_lon"]])
             self.marker.bindPopup('UAV Here')
             self.map.addLayer(self.marker)
-            print("Map")
+            #print("Map")
 
 
 
@@ -645,12 +671,28 @@ class Monitor(QMainWindow):
         self.label_4.setText("Attitude" + ": \n" + str(self.detail["attltude"]).replace(",", "\n"))
         self.label_3.setText("Heading" + ": " + str(self.detail["heading"]))
         """
-        # start thread
 
-        self.thread1.started.connect(self.updateQFI_thread.run)
-        self.thread1.start()
-        self.thread2.started.connect(self.updateMap_thread.run)
-        self.thread2.start()
+
+        #MQtt start
+        """
+        self.client = mqtt.Client()
+
+        self.client.on_connect = self.on_connect
+        self.client.on_message=self.on_message
+        self.client.connect("192.168.12.1", 1883,60)
+        """
+        self.mqttRun = MqttRun()
+        self.thread3 = QThread()
+        self.mqttRun.moveToThread(self.thread3)
+        self.thread3.started.connect(self.mqttRun.run)
+        self.thread3.start()
+        #self.client.loop_forever()
+        #self.client = MqttClient(self)
+        #self.client.stateChanged.connect(self.on_stateChanged)
+        #self.client.messageSignal.connect(self.on_messageSignal)
+        #self.client.hostname = "192.168.12.1"
+        #self.client.connectToHost()
+
 
         self.updateMap_thread.setVehicle(self.vehicle)
         self.updateQFI_thread.setVehicle(self.vehicle)
