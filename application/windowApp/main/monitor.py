@@ -404,13 +404,14 @@ class Monitor(QMainWindow):
         def on_dataCollected(self,msg):
         print("hi")
         """
+        # start thread
+        self.thread1.started.connect(self.updateQFI_thread.run)
+        self.thread1.start()
+        self.thread2.started.connect(self.updateMap_thread.run)
+        self.thread2.start()
 
         if self.drone is not None:
-            # start thread
-            self.thread1.started.connect(self.updateQFI_thread.run)
-            self.thread1.start()
-            self.thread2.started.connect(self.updateMap_thread.run)
-            self.thread2.start()
+
 
             self.client = MqttClient(self)
             self.client.stateChanged.connect(self.on_stateChanged)
