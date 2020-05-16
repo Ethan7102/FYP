@@ -1,8 +1,0 @@
-{
-"Temperature":{
-	"Data":[],
-	"Unit":5,
-	"Humidity":[],
-	"Unit":5
-	}
-}
