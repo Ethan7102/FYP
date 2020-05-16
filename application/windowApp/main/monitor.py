@@ -564,8 +564,8 @@ class Monitor(QMainWindow):
 
     def updateQFI(self, detail):
         if(detail["airspeed"] != ""):
-            self.adi.setRoll(detail["attitude_roll"])
-            self.adi.setPitch(detail["attitude_pitch"])
+            self.adi.setRoll(math.degrees(detail["attitude_roll"]))
+            self.adi.setPitch(math.degrees(detail["attitude_pitch"]))
             self.alt.setAltitude(detail["altitude"])
             self.si.setSpeed(detail["airspeed"])
             self.hsi.setHeading(detail["heading"])
