@@ -43,37 +43,23 @@ class Monitor(QMainWindow):
         MainWindow.setSizePolicy(sizePolicy)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.centralwidget)
+
+        self.gridLayout_1 = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout_1.setObjectName("gridLayout_1")
+
+        self.verticalLayout_6 = QtWidgets.QVBoxLayout()
         self.verticalLayout_6.setObjectName("verticalLayout_6")
+
 
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
+
+
 
         self.verticalLayout_8 = QtWidgets.QVBoxLayout()
         self.verticalLayout_8.setStretch(1,1)
         self.verticalLayout_8.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
-        """
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
-        self.verticalLayout_8.addWidget(self.label)
-        """
-        """
-        self.graphicsView = QtWidgets.QGraphicsView(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(1)
-        sizePolicy.setVerticalStretch(5)
-        sizePolicy.setHeightForWidth(self.graphicsView.sizePolicy().hasHeightForWidth())
-        self.graphicsView.setSizePolicy(sizePolicy)
-        self.graphicsView.setObjectName("graphicsView")
-        self.verticalLayout_8.addWidget(self.graphicsView)
-        """
 
         # creat Simple Window
         self.container = QWidget(self)
@@ -96,7 +82,7 @@ class Monitor(QMainWindow):
         self.bus.connect('message::error', self.on_error)
         self.bus.connect('message::eos', self.on_eos)
         self.bus.connect('sync-message::element', self.on_sync_message)
-        self.verticalLayout_8.addWidget(self.container)
+        #self.verticalLayout_8.addWidget(self.container)
 
         self.horizontalLayout.addLayout(self.verticalLayout_8)
         self.verticalLayout_10 = QtWidgets.QVBoxLayout()
@@ -167,10 +153,13 @@ class Monitor(QMainWindow):
         self.gridLayout.addWidget(self.tc, 1, 2)
 
         self.setLayout(self.gridLayout)
-        self.verticalLayout_10.addLayout(self.gridLayout)
+        #self.verticalLayout_10.addLayout(self.gridLayout)
+
 
         # end uav detail ui
 
+        self.gridLayout_1.addWidget(self.container,0,0)
+        self.gridLayout_1.addLayout(self.gridLayout,0,1)
         self.horizontalLayout.addLayout(self.verticalLayout_10)
         self.verticalLayout_6.addLayout(self.horizontalLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
@@ -205,7 +194,8 @@ class Monitor(QMainWindow):
 
         # Map
         self.mapWidget = MapWidget()
-        self.verticalLayout_9.addWidget(self.mapWidget)
+        self.gridLayout_1.addWidget(self.mapWidget,1,0)
+        #self.verticalLayout_9.addWidget(self.mapWidget)
         self.map = L.map(self.mapWidget)
 
         self.map.setView([22.305711, 114.253426], 20)
@@ -323,7 +313,8 @@ class Monitor(QMainWindow):
         self.verticalLayout_graphs.addWidget(self.canvas_temp)
         """
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        self.verticalLayout_7.addWidget(self.scrollArea)
+        #self.verticalLayout_7.addWidget(self.scrollArea)
+        self.gridLayout_1.addWidget(self.scrollArea,1,1)
 
         self.horizontalLayout_2.addLayout(self.verticalLayout_7)
         self.verticalLayout_6.addLayout(self.horizontalLayout_2)
@@ -391,10 +382,10 @@ class Monitor(QMainWindow):
         self.updateMap_thread.moveToThread(self.thread2)
 
         # start thread
-        self.thread1.started.connect(self.updateQFI_thread.run)
+        """self.thread1.started.connect(self.updateQFI_thread.run)
         self.thread1.start()
         self.thread2.started.connect(self.updateMap_thread.run)
-        self.thread2.start()
+        self.thread2.start()"""
 
         """
         #data collect
