@@ -31,7 +31,7 @@ class VehicleStatus(QObject):
 
             print(detail)
             self.updateQFI.emit(detail)
-            time.sleep(0.05)
+            time.sleep(0.1)
 
     def setVehicle(self, vehicle):
         self.vehicle = vehicle
