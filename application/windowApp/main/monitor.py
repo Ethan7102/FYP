@@ -556,7 +556,7 @@ class Monitor(QMainWindow):
             self.marker.bindPopup('UAV Here')
             self.map.addLayer(self.marker)
 
-            self.adi.setRoll(detail["attitude_roll"])
+            """self.adi.setRoll(detail["attitude_roll"])
             self.adi.setPitch(detail["attitude_pitch"])
             self.alt.setAltitude(detail["altitude"])
             self.si.setSpeed(detail["airspeed"])
@@ -567,7 +567,7 @@ class Monitor(QMainWindow):
             self.alt.viewUpdate.emit()
             self.si.viewUpdate.emit()
             self.hsi.viewUpdate.emit()
-            self.vsi.viewUpdate.emit()
+            self.vsi.viewUpdate.emit()"""
 
 
     def retranslateUi(self, MainWindow):
