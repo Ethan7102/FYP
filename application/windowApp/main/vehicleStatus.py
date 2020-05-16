@@ -17,15 +17,17 @@ class VehicleStatus(QObject):
                 attitude_pitch = "pitch:" + format(float(attitude[1].split(',')[0]), '0.3f')
                 attitude_yaw = "yaw:" + format(float(attitude[2].split(',')[0]), '0.3f')
                 attitude_roll = "roll:" + format(float(attitude[3].split(',')[0]), '0.3f')
-                detail = {"airspeed": self.vehicle.airspeed, "attitude_pitch": attitude_pitch,
-                          "attitude_yaw": attitude_yaw, "attitude_roll": attitude_roll,
+                detail = {"airspeed": self.vehicle.airspeed,
+                          "attitude_pitch": attitude_pitch,
+                          "attitude_yaw": attitude_yaw,
+                          "attitude_roll": attitude_roll,
                           "altitude": self.vehicle.location.global_relative_frame.alt,
-                          "groundspeed": format(float(self.vehicle.groundspeed),'0.3f'),
+                          "groundspeed": format(float(self.vehicle.groundspeed), '0.3f'),
                           "heading": self.vehicle.heading,
                           "verticalSpeed": self.vehicle.velocity,
                           "location_lat": self.vehicle.location.global_frame.lat,
                           "location_lon": self.vehicle.location.global_frame.lon}
-                #print(detail["location_lon"])
+                # print(detail["location_lon"])
             else:
                 detail = {"airspeed": "", "attitude_pitch": "", "attitude_yaw": "", "attitude_roll": "", "altitude": "",
                           "groundspeed": "", "heading": "", "verticalSpeed": "", "location_lat": "", "location_lon": ""}

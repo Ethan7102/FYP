@@ -554,15 +554,19 @@ class Monitor(QMainWindow):
             self.marker.bindPopup('UAV Here')
             self.map.addLayer(self.marker)
 
-        """
-        self.lblAirspeed.setText(str(detail['airspeed']))
-        self.lblAttitude.setText(
-             str(detail['attitude_pitch']) + "\n" + str(detail['attitude_yaw']) + "\n" + str(detail['attitude_roll']))
-        self.lblAltitude.setText(str(detail['altitude']))
-        self.lblGroundspeed.setText(str(detail['groundspeed']))
-        self.lblHeading.setText(str(detail["heading"]))
-        self.lblVerticalSpeed.setText(str(detail['verticalSpeed']))
-        """
+            self.adi.setRoll(detail["attitude_roll"])
+            self.adi.setPitch(detail["attitude_pitch"])
+            self.alt.setAltitude(detail["altitude"])
+            self.si.setSpeed(detail["airspeed"])
+            self.hsi.setHeading(detail["heading"])
+            self.vsi.setClimbRate(detail["verticalSpeed"])
+
+            self.adi.viewUpdate.emit()
+            self.alt.viewUpdate.emit()
+            self.si.viewUpdate.emit()
+            self.hsi.viewUpdate.emit()
+            self.vsi.viewUpdate.emit()
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -615,6 +619,11 @@ class Monitor(QMainWindow):
         """
         self.backend.setVehicle(self.vehicle)
         self.start()
+
+        t2 = ThreadGUI(self.gridLayout)
+        t2.daemon = True
+        t2.start()
+
 
     def disconnect(self):
         self.drone.disconnectDrone()
