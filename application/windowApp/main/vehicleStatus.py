@@ -14,9 +14,9 @@ class VehicleStatus(QObject):
                 # split attitude
                 attitude = str(self.vehicle.attitude).split(':')
                 attitude = attitude[1].split('=')
-                attitude_pitch =float(attitude[1].split(',')[0])
-                attitude_yaw =float(attitude[2].split(',')[0])
-                attitude_roll =float(attitude[3].split(',')[0])
+                attitude_pitch = float(attitude[1].split(',')[0])
+                attitude_yaw = float(attitude[2].split(',')[0])
+                attitude_roll = float(attitude[3].split(',')[0])
                 detail = {"airspeed": self.vehicle.airspeed,
                           "attitude_pitch": attitude_pitch,
                           "attitude_yaw": attitude_yaw,
@@ -24,15 +24,14 @@ class VehicleStatus(QObject):
                           "altitude": self.vehicle.location.global_relative_frame.alt,
                           "groundspeed": format(float(self.vehicle.groundspeed), '0.3f'),
                           "heading": self.vehicle.heading,
-                          "verticalSpeed": self.vehicle.velocity[2],
-                          "location_lat": self.vehicle.location.global_frame.lat,
-                          "location_lon": self.vehicle.location.global_frame.lon}
+                          "verticalSpeed": self.vehicle.velocity[2]}
             else:
                 detail = {"airspeed": "", "attitude_pitch": "", "attitude_yaw": "", "attitude_roll": "", "altitude": "",
-                          "groundspeed": "", "heading": "", "verticalSpeed": "", "location_lat": "", "location_lon": ""}
+                          "groundspeed": "", "heading": "", "verticalSpeed": ""}
 
+            print(detail)
             self.updateQFI.emit(detail)
-            time.sleep(0.1)
+            time.sleep(0.05)
 
     def setVehicle(self, vehicle):
         self.vehicle = vehicle
