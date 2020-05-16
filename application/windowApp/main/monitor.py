@@ -44,13 +44,15 @@ class Monitor(QMainWindow):
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
-        
+
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
+
         self.verticalLayout_8 = QtWidgets.QVBoxLayout()
         self.verticalLayout_8.setStretch(1,1)
         self.verticalLayout_8.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
+        """
         self.label = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -60,6 +62,7 @@ class Monitor(QMainWindow):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.verticalLayout_8.addWidget(self.label)
+        """
         """
         self.graphicsView = QtWidgets.QGraphicsView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -100,7 +103,7 @@ class Monitor(QMainWindow):
         self.verticalLayout_10.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
 
         self.verticalLayout_10.setObjectName("verticalLayout_10")
-
+        """
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -114,6 +117,7 @@ class Monitor(QMainWindow):
         self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setObjectName("label_5")
         self.verticalLayout_10.addWidget(self.label_5)
+        """
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
@@ -172,6 +176,7 @@ class Monitor(QMainWindow):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.verticalLayout_9 = QtWidgets.QVBoxLayout()
         self.verticalLayout_9.setObjectName("verticalLayout_9")
+        """
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -185,6 +190,7 @@ class Monitor(QMainWindow):
         self.label_9.setAlignment(QtCore.Qt.AlignCenter)
         self.label_9.setObjectName("label_9")
         self.verticalLayout_9.addWidget(self.label_9)
+        """
         """
         self.graphicsView_3 = QtWidgets.QGraphicsView(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -223,6 +229,7 @@ class Monitor(QMainWindow):
         self.horizontalLayout_2.addLayout(self.verticalLayout_9)
         self.verticalLayout_7 = QtWidgets.QVBoxLayout()
         self.verticalLayout_7.setObjectName("verticalLayout_7")
+        """
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -232,10 +239,12 @@ class Monitor(QMainWindow):
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.verticalLayout_7.addWidget(self.label_2)
+        """
+        """
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setObjectName("pushButton")
         self.verticalLayout_7.addWidget(self.pushButton)
-
+        """
         self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -574,17 +583,17 @@ class Monitor(QMainWindow):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Automated Data Collecting System"))
-        self.label.setText(_translate("MainWindow", "Streaming"))
-        self.label_5.setText(_translate("MainWindow", "UAV Details"))
+        #self.label.setText(_translate("MainWindow", "Streaming"))
+        #self.label_5.setText(_translate("MainWindow", "UAV Details"))
         # self.label_7.setText(_translate("MainWindow", "Airspeed"))
         # self.label_6.setText(_translate("MainWindow", "Groundspeed"))
         # self.label_4.setText(_translate("MainWindow", "Attitude"))
         # self.label_3.setText(_translate("MainWindow", "Heading"))
         # self.label_8.setText(_translate("MainWindow", "Altitude"))
         # self.label_10.setText(_translate("MainWindow", "Vertical Speed"))
-        self.label_9.setText(_translate("MainWindow", "Map"))
-        self.label_2.setText(_translate("MainWindow", "Data Collection"))
-        self.pushButton.setText(_translate("MainWindow", "Start"))
+        #self.label_9.setText(_translate("MainWindow", "Map"))
+        #self.label_2.setText(_translate("MainWindow", "Data Collection"))
+        #self.pushButton.setText(_translate("MainWindow", "Start"))
         self.menuMission.setTitle(_translate("MainWindow", "Mission"))
         self.menuConnection.setTitle(_translate("MainWindow", "Connection"))
         self.actionNew_Mission.setText(_translate("MainWindow", "New Mission"))
