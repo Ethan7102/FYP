@@ -633,12 +633,4 @@ class Ui_MainWindow(QMainWindow):
         self.actionConnect.setDisabled(False)
         self.actionDisconnect.setDisabled(True)
         self.backend.exist = False
-<<<<<<< HEAD
         self.quit(self.container)
-=======
-        self.quit()
-
-
-
-
->>>>>>> 7182524607a699901d59c50f69a0feeb0b4c26f3
