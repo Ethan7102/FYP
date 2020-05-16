@@ -550,6 +550,7 @@ class Monitor(QMainWindow):
         # self.pipeline_A.set_state(Gst.State.PLAYING)
         # self.showMaximized()
         # self.verticalLayout_8.addWidget(self)
+
     def updateQFI(self, detail):
         if(detail["airspeed"] != ""):
             self.adi.setRoll(detail["attitude_roll"])
@@ -637,6 +638,7 @@ class Monitor(QMainWindow):
         self.updateQFI_thread.setVehicle(self.vehicle)
         self.start()
 
+        # Animation thread
         t2 = ThreadGUI(self.gridLayout)
         t2.daemon = True
         t2.start()
