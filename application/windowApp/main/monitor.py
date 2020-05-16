@@ -55,12 +55,12 @@ class Monitor(QMainWindow):
         #self.horizontalLayout.setObjectName("horizontalLayout")
 
 
-        """
+
         self.verticalLayout_8 = QtWidgets.QVBoxLayout()
         self.verticalLayout_8.setStretch(1,1)
         self.verticalLayout_8.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
-        """
+
 
         # creat Simple Window
         self.container = QWidget(self)
@@ -82,7 +82,7 @@ class Monitor(QMainWindow):
         self.bus.connect('message::error', self.on_error)
         self.bus.connect('message::eos', self.on_eos)
         self.bus.connect('sync-message::element', self.on_sync_message)
-        #self.verticalLayout_8.addWidget(self.container)
+        self.verticalLayout_8.addWidget(self.container)
         """
         self.horizontalLayout.addLayout(self.verticalLayout_8)
         self.verticalLayout_10 = QtWidgets.QVBoxLayout()
@@ -159,8 +159,8 @@ class Monitor(QMainWindow):
 
 
         # end uav detail ui
-
-        self.gridLayout_1.addWidget(self.container,0,0)
+        self.gridLayout_1.addLayout(self.verticalLayout_8,0,0)
+        #self.gridLayout_1.addWidget(self.container,0,0)
         self.gridLayout_1.addLayout(self.gridLayout,0,1)
         #self.horizontalLayout.addLayout(self.verticalLayout_10)
         #self.verticalLayout_6.addLayout(self.horizontalLayout)
@@ -386,6 +386,7 @@ class Monitor(QMainWindow):
         self.updateMap_thread = VehicleLocation()
         self.updateMap_thread.updateMap.connect(self.updateMap)
 
+
         self.thread1 = QThread()
         self.thread2 = QThread()
         self.updateQFI_thread.moveToThread(self.thread1)
@@ -404,11 +405,8 @@ class Monitor(QMainWindow):
         def on_dataCollected(self,msg):
         print("hi")
         """
-        # start thread
-        self.thread1.started.connect(self.updateQFI_thread.run)
-        self.thread1.start()
-        self.thread2.started.connect(self.updateMap_thread.run)
-        self.thread2.start()
+
+
 
         if self.drone is not None:
 
@@ -647,6 +645,13 @@ class Monitor(QMainWindow):
         self.label_4.setText("Attitude" + ": \n" + str(self.detail["attltude"]).replace(",", "\n"))
         self.label_3.setText("Heading" + ": " + str(self.detail["heading"]))
         """
+        # start thread
+
+        self.thread1.started.connect(self.updateQFI_thread.run)
+        self.thread1.start()
+        self.thread2.started.connect(self.updateMap_thread.run)
+        self.thread2.start()
+
         self.updateMap_thread.setVehicle(self.vehicle)
         self.updateQFI_thread.setVehicle(self.vehicle)
         self.start()

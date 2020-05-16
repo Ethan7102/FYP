@@ -71,7 +71,7 @@ try:
         else:
             print("Failed to retrieve data from humidity sensor")
 
-        time.sleep(20)
+        time.sleep(10)
 
 except KeyboardInterrupt:
     print ('exiting')
