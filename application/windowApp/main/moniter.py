@@ -58,6 +58,8 @@ class Moniter(QMainWindow):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.verticalLayout_8 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_8.setStretch(1,1)
+        self.verticalLayout_8.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.label = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -102,6 +104,7 @@ class Moniter(QMainWindow):
 
         self.horizontalLayout.addLayout(self.verticalLayout_8)
         self.verticalLayout_10 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_10.setStretch(1, 1)
         self.verticalLayout_10.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
 
         self.verticalLayout_10.setObjectName("verticalLayout_10")
