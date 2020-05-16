@@ -47,22 +47,24 @@ class Monitor(QMainWindow):
         self.gridLayout_1 = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout_1.setObjectName("gridLayout_1")
 
-        self.verticalLayout_6 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_6.setObjectName("verticalLayout_6")
+        #self.verticalLayout_6 = QtWidgets.QVBoxLayout()
+        #self.verticalLayout_6.setObjectName("verticalLayout_6")
 
 
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
+        #self.horizontalLayout = QtWidgets.QHBoxLayout()
+        #self.horizontalLayout.setObjectName("horizontalLayout")
 
 
-
+        """
         self.verticalLayout_8 = QtWidgets.QVBoxLayout()
         self.verticalLayout_8.setStretch(1,1)
         self.verticalLayout_8.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
+        """
 
         # creat Simple Window
         self.container = QWidget(self)
+        self.container.setSizePolicy(sizePolicy)
         print(str(self.width()),str(self.height()))
         self.container.setFixedSize(854,480)
         self.container.setWindowTitle('Test1')
@@ -83,13 +85,14 @@ class Monitor(QMainWindow):
         self.bus.connect('message::eos', self.on_eos)
         self.bus.connect('sync-message::element', self.on_sync_message)
         #self.verticalLayout_8.addWidget(self.container)
-
+        """
         self.horizontalLayout.addLayout(self.verticalLayout_8)
         self.verticalLayout_10 = QtWidgets.QVBoxLayout()
         self.verticalLayout_10.setStretch(1, 1)
         self.verticalLayout_10.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
 
         self.verticalLayout_10.setObjectName("verticalLayout_10")
+        """
         """
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -105,6 +108,7 @@ class Monitor(QMainWindow):
         self.label_5.setObjectName("label_5")
         self.verticalLayout_10.addWidget(self.label_5)
         """
+        """
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
@@ -117,7 +121,7 @@ class Monitor(QMainWindow):
         self.label_7.setSizePolicy(sizePolicy)
         self.label_7.setObjectName("label_7")
         self.verticalLayout_3.addWidget(self.label_7)
-
+        """
         # uav detail ui
         self.gridLayout = QtWidgets.QGridLayout()
 
@@ -160,12 +164,12 @@ class Monitor(QMainWindow):
 
         self.gridLayout_1.addWidget(self.container,0,0)
         self.gridLayout_1.addLayout(self.gridLayout,0,1)
-        self.horizontalLayout.addLayout(self.verticalLayout_10)
-        self.verticalLayout_6.addLayout(self.horizontalLayout)
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.verticalLayout_9 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_9.setObjectName("verticalLayout_9")
+        #self.horizontalLayout.addLayout(self.verticalLayout_10)
+        #self.verticalLayout_6.addLayout(self.horizontalLayout)
+        #self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        #self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        #self.verticalLayout_9 = QtWidgets.QVBoxLayout()
+        #self.verticalLayout_9.setObjectName("verticalLayout_9")
         """
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -194,6 +198,11 @@ class Monitor(QMainWindow):
 
         # Map
         self.mapWidget = MapWidget()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(1)
+        sizePolicy.setVerticalStretch(1)
+        sizePolicy.setHeightForWidth(self.mapWidget.sizePolicy().hasHeightForWidth())
+        self.mapWidget.setSizePolicy(sizePolicy)
         self.gridLayout_1.addWidget(self.mapWidget,1,0)
         #self.verticalLayout_9.addWidget(self.mapWidget)
         self.map = L.map(self.mapWidget)
@@ -217,9 +226,9 @@ class Monitor(QMainWindow):
         #self.map.addLayer(self.marker)
         """
 
-        self.horizontalLayout_2.addLayout(self.verticalLayout_9)
-        self.verticalLayout_7 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_7.setObjectName("verticalLayout_7")
+        #self.horizontalLayout_2.addLayout(self.verticalLayout_9)
+        #self.verticalLayout_7 = QtWidgets.QVBoxLayout()
+        #self.verticalLayout_7.setObjectName("verticalLayout_7")
         """
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -316,9 +325,9 @@ class Monitor(QMainWindow):
         #self.verticalLayout_7.addWidget(self.scrollArea)
         self.gridLayout_1.addWidget(self.scrollArea,1,1)
 
-        self.horizontalLayout_2.addLayout(self.verticalLayout_7)
-        self.verticalLayout_6.addLayout(self.horizontalLayout_2)
-        MainWindow.setCentralWidget(self.centralwidget)
+        #self.horizontalLayout_2.addLayout(self.verticalLayout_7)
+        #self.verticalLayout_6.addLayout(self.horizontalLayout_2)
+
 
         # Menu
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -381,12 +390,8 @@ class Monitor(QMainWindow):
         self.updateQFI_thread.moveToThread(self.thread1)
         self.updateMap_thread.moveToThread(self.thread2)
 
-        # start thread
-        """self.thread1.started.connect(self.updateQFI_thread.run)
-        self.thread1.start()
-        self.thread2.started.connect(self.updateMap_thread.run)
-        self.thread2.start()"""
 
+        MainWindow.setCentralWidget(self.centralwidget)
         """
         #data collect
         from application.windowApp.main.test import MqttClient
@@ -395,11 +400,17 @@ class Monitor(QMainWindow):
         self.client.hostname="navio.local"
         self.client.connectToHost()
 
-    def on_dataCollected(self,msg):
+        def on_dataCollected(self,msg):
         print("hi")
         """
 
         if self.drone is not None:
+            # start thread
+            self.thread1.started.connect(self.updateQFI_thread.run)
+            self.thread1.start()
+            self.thread2.started.connect(self.updateMap_thread.run)
+            self.thread2.start()
+
             self.client = MqttClient(self)
             self.client.stateChanged.connect(self.on_stateChanged)
             self.client.messageSignal.connect(self.on_messageSignal)
