@@ -66,7 +66,7 @@ try:
                                                                          time.strftime('%H:%M:%S'), temperature,
                                                                          humidity))
                 # Send messages to the Broker
-                client.publish("/IoTSensor/DHT22","Temperature={0:0.1f}C  Humidity={1:0.1f}%".format(temperature, humidity))
+                client.publish("/IoTSensor/DHT22","Time={0} Temperature={1:0.1f}C Humidity={2:0.1f}%".format(time.strftime('%H:%M:%S'),temperature, humidity))
 
         else:
             print("Failed to retrieve data from humidity sensor")
