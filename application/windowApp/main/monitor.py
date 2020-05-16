@@ -30,7 +30,7 @@ from threadGUI import ThreadGUI
 from qfi import qfi_ADI, qfi_ALT, qfi_SI, qfi_HSI, qfi_VSI, qfi_TC
 
 
-class Moniter(QMainWindow):
+class Monitor(QMainWindow):
     def setupUi(self, MainWindow):
         self.drone = None
         MainWindow.setObjectName("MainWindow")
@@ -626,7 +626,7 @@ class Moniter(QMainWindow):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     MainWindow = QMainWindow()
-    ui = Moniter()
+    ui = Monitor()
     ui.setupUi(MainWindow)
     # ui.start()
     MainWindow.show()
