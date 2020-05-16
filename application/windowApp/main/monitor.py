@@ -64,15 +64,13 @@ class Monitor(QMainWindow):
 
         # creat Simple Window
         self.container = QWidget(self)
-        self.container.setSizePolicy(sizePolicy)
-        print(str(self.width()),str(self.height()))
         self.container.setFixedSize(854,480)
         self.container.setWindowTitle('Test1')
 
         # container.connect('destroy', self.quit)
         self.setCentralWidget(self.container)
         self.winId = self.container.winId()
-        self.resize(480, 320)
+        #self.resize(480, 320)
 
         # Create GStreamer pipeline
         self.videoPipeline()
@@ -246,16 +244,18 @@ class Monitor(QMainWindow):
         self.verticalLayout_7.addWidget(self.pushButton)
         """
         self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
+        """
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.scrollArea.sizePolicy().hasHeightForWidth())
+        """
         #self.scrollArea.setSizePolicy(sizePolicy)
         self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
-        self.scrollArea.setBaseSize(2000,1000)
+        #self.scrollArea.setBaseSize(2000,1000)
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 849, 1024))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
