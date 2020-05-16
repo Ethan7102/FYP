@@ -25,7 +25,7 @@ class VehicleStatus(QObject):
                           "altitude": self.vehicle.location.global_relative_frame.alt,
                           "groundspeed": format(float(self.vehicle.groundspeed), '0.3f'),
                           "heading": self.vehicle.heading,
-                          "verticalSpeed": self.vehicle.velocity,
+                          "verticalSpeed": self.vehicle.velocity[2],
                           "location_lat": self.vehicle.location.global_frame.lat,
                           "location_lon": self.vehicle.location.global_frame.lon}
                 print(detail["verticalSpeed"])
