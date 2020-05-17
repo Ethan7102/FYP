@@ -40,7 +40,8 @@ Software
 ```
 
 ## Installing
-### Raspberry Pi Configuration
+### UAV Side Configuration
+#### Raspberry Pi Configuration
 Navio requires a preconfigured Raspbian to run. Emlid provide a unified SD card image for Raspberry Pi.
 
 Follow the instruction to configure your Raspberry Pi
@@ -98,6 +99,12 @@ PASSPHRASE=ChangeMe
 USE_PSK=0
 ```
 
+To generate this .conf file at /etc
+
+```
+create_ap -n --ieee80211n --ht_capab '[HT40+]' wlan0 Navio ChangeMe --mkconfig /etc/create_ap.conf
+```
+
 To run this configuration with:
 
 ```
@@ -115,7 +122,7 @@ Start on boot:
 ```
 systemctl enable create_ap
 ```
-### UAV Configuration
+
 #### ArduPilot Configuration
 We run ArduPilot on Raspberry Pi with Navio. The autopilot's code works directly on Raspberry Pi.
 
@@ -168,6 +175,9 @@ raspivid -t 999999 -w 1080 -h 720 -fps 25 -hf -b 2000000 -o - | \gst-launch-1.0 
 The Streaming delay
 
 ![image](https://raw.githubusercontent.com/Ethan7102/FYP/master/Streaming%20delay.png?token=ADHQL2SIB3HRSBFBK6CYEKS6YD7ZI)
+
+
+### UAV Side Configuration
 
 ## Built With
 
