@@ -5,12 +5,13 @@ import time
 import paho.mqtt.client as mqtt
 from sds011 import SDS011
 
-#Define SDS011
+# Define SDS011
 sensor = SDS011("/dev/ttyUSB0", use_query_mode=True)
+
 
 # Define event callbacks
 def on_connect(mosq, obj, flags, rc):
-    print ('on_connect:: Connected with result code ' + str(rc))
+    print('on_connect:: Connected with result code ' + str(rc))
     print('rc: ' + str(rc))
 
 
@@ -53,14 +54,15 @@ if __name__ == "__main__":
             sensor.sleep(sleep=False)
             for t in range(15):
                 values = sensor.query()
-                if values is not None and len(values) == 2:
+                if values is not None and len(values) == 2 and values[0] != 0:
                     print("PM2.5: ", values[0], ", PM10: ", values[1])
                     record.write('{0}, {1}, {2:0.1f}C, {3:0.1f}%\r\n'.format(time.strftime('%d/%m/%Y'),
-                                                                             time.strftime('%H:%M:%S'),  values[0],
+                                                                             time.strftime('%H:%M:%S'), values[0],
                                                                              values[1]))
                     # Send messages to the Broker
                     client.publish("/IoTSensor/SDS011",
-                                   "Time={0} PM25={1:0.1f} PM10={2:0.1f}".format(time.strftime('%H:%M:%S'),values[0], values[1]))
+                                   "Time={0} PM25={1:0.1f} PM10={2:0.1f}".format(time.strftime('%H:%M:%S'), values[0],
+                                                                                 values[1]))
                     time.sleep(2)
 
             print("Going to sleep for 1 min...")

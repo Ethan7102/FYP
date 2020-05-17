@@ -1,4 +1,4 @@
-# FYP - Automated Data Collecting System for Environment Using UAV and Smartphone
+# FYP - Automated Data Collecting System for Environment Using UAVs and Smartphones
 
 One Paragraph of project description goes here
 
@@ -72,7 +72,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Siu Chi Wang** - *Initial work* - [wing199901](https://github.com/wing199901)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
