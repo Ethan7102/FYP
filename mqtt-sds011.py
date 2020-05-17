@@ -60,7 +60,7 @@ if __name__ == "__main__":
                                                                              values[1]))
                     # Send messages to the Broker
                     client.publish("/IoTSensor/SDS011",
-                                   "Time={0} PM25={1:0.1f}µg/m³  PM10={2:0.1f}µg/m³".format(time.strftime('%H:%M:%S'),values[0], values[1]))
+                                   "Time={0} PM25={1:0.1f} PM10={2:0.1f}".format(time.strftime('%H:%M:%S'),values[0], values[1]))
                     time.sleep(2)
 
             print("Going to sleep for 1 min...")
