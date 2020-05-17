@@ -296,7 +296,14 @@ sudo reboot
 
 ### Laptop Side Configuration
 
-Just a normal laptop is good enough.
+#### Install Packages
+“Requirements files” are files containing a list of items to be installed using pip install like so:
+
+``` 
+pip3 install -r requirements.txt
+```
+
+You can find the requirements.txt in the root directory.
 
 ## How to run the system
 
@@ -330,7 +337,7 @@ python3 monitor.py
 
 2\. Press the New Mission button to start a new missions
 
-```
+``` 
 It will clear all the data from previous mission, please save before you start a new mission.
 ```
 
