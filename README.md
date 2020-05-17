@@ -19,7 +19,7 @@ Hardware
 
 ``` 
 
-1\. a Raspberry Pi 3B\+
+1\. a Raspberry Pi 3B+
 2\. a Raspberry Pi Camera Module
 3\. a Navio2 Autopilot HAT
 4\. a high power wireless USB adapter\(Alfa AWUS036NHA\)
@@ -28,7 +28,6 @@ Hardware
 7\. a laptop
 8\. a Smartphone
 9\. DHT22 sensor
-
 10. SDS011 sensor
 
 ```
@@ -37,7 +36,7 @@ Software
 
 ``` 
 
-1\. Python3\(3\.8\) 
+1\. Python3(3.8) 
 2\. QGroundControl
 3\. Mission Planner
 4\. Terminal
