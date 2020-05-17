@@ -43,24 +43,8 @@ class Monitor(QMainWindow):
         MainWindow.setSizePolicy(sizePolicy)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-
         self.gridLayout_1 = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout_1.setObjectName("gridLayout_1")
-
-        #self.verticalLayout_6 = QtWidgets.QVBoxLayout()
-        #self.verticalLayout_6.setObjectName("verticalLayout_6")
-
-
-        #self.horizontalLayout = QtWidgets.QHBoxLayout()
-        #self.horizontalLayout.setObjectName("horizontalLayout")
-
-
-        """
-        self.verticalLayout_8 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_8.setStretch(1,1)
-        self.verticalLayout_8.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
-        self.verticalLayout_8.setObjectName("verticalLayout_8")
-        """
 
         # creat Simple Window
         self.container = QWidget(self)
@@ -82,44 +66,7 @@ class Monitor(QMainWindow):
         self.bus.connect('message::error', self.on_error)
         self.bus.connect('message::eos', self.on_eos)
         self.bus.connect('sync-message::element', self.on_sync_message)
-        #self.verticalLayout_8.addWidget(self.container)
-        """
-        self.horizontalLayout.addLayout(self.verticalLayout_8)
-        self.verticalLayout_10 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_10.setStretch(1, 1)
-        self.verticalLayout_10.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
 
-        self.verticalLayout_10.setObjectName("verticalLayout_10")
-        """
-        """
-        self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
-        self.label_5.setSizePolicy(sizePolicy)
-        font = QtGui.QFont()
-        font.setBold(False)
-        font.setWeight(50)
-        self.label_5.setFont(font)
-        self.label_5.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_5.setObjectName("label_5")
-        self.verticalLayout_10.addWidget(self.label_5)
-        """
-        """
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.label_7 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
-        self.label_7.setSizePolicy(sizePolicy)
-        self.label_7.setObjectName("label_7")
-        self.verticalLayout_3.addWidget(self.label_7)
-        """
         # uav detail ui
         self.gridLayout = QtWidgets.QGridLayout()
 
@@ -152,47 +99,14 @@ class Monitor(QMainWindow):
         self.tc = qfi_TC.qfi_TC(self)
         self.tc.resize(240, 240)
         self.tc.reinit()
-        #self.gridLayout.addWidget(self.tc, 1, 2)
 
         self.setLayout(self.gridLayout)
-        #self.verticalLayout_10.addLayout(self.gridLayout)
-
 
         # end uav detail ui
-        #self.gridLayout_1.addLayout(self.verticalLayout_8,0,0)
+
+
         self.gridLayout_1.addWidget(self.container,0,0)
         self.gridLayout_1.addLayout(self.gridLayout,0,1)
-        #self.horizontalLayout.addLayout(self.verticalLayout_10)
-        #self.verticalLayout_6.addLayout(self.horizontalLayout)
-        #self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
-        #self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        #self.verticalLayout_9 = QtWidgets.QVBoxLayout()
-        #self.verticalLayout_9.setObjectName("verticalLayout_9")
-        """
-        self.label_9 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
-        self.label_9.setSizePolicy(sizePolicy)
-        font = QtGui.QFont()
-        font.setBold(False)
-        font.setWeight(50)
-        self.label_9.setFont(font)
-        self.label_9.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_9.setObjectName("label_9")
-        self.verticalLayout_9.addWidget(self.label_9)
-        """
-        """
-        self.graphicsView_3 = QtWidgets.QGraphicsView(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(1)
-        sizePolicy.setVerticalStretch(5)
-        sizePolicy.setHeightForWidth(self.graphicsView_3.sizePolicy().hasHeightForWidth())
-        self.graphicsView_3.setSizePolicy(sizePolicy)
-        self.graphicsView_3.setObjectName("graphicsView_3")
-        self.verticalLayout_9.addWidget(self.graphicsView_3)
-        """
 
         # Map
         self.mapWidget = MapWidget()
@@ -202,7 +116,6 @@ class Monitor(QMainWindow):
         sizePolicy.setHeightForWidth(self.mapWidget.sizePolicy().hasHeightForWidth())
         self.mapWidget.setSizePolicy(sizePolicy)
         self.gridLayout_1.addWidget(self.mapWidget,1,0)
-        #self.verticalLayout_9.addWidget(self.mapWidget)
         self.map = L.map(self.mapWidget)
 
         self.map.setView([22.305711, 114.253426], 20)
@@ -211,72 +124,21 @@ class Monitor(QMainWindow):
         self.marker = L.marker([22.305711, 114.253426])
         self.marker.bindPopup('No connection')
         self.map.addLayer(self.marker)
-
         self.count = 0
-        """
-        # Working with the maps with pyqtlet
 
-        self.map.setView([22.310409, 114.257598], 20)
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(self.map)
-
-        #self.marker = L.marker([22.310409, 114.257598])
-        #self.marker.bindPopup('UAV Hare')
-        #self.map.addLayer(self.marker)
-        """
-
-        #self.horizontalLayout_2.addLayout(self.verticalLayout_9)
-        #self.verticalLayout_7 = QtWidgets.QVBoxLayout()
-        #self.verticalLayout_7.setObjectName("verticalLayout_7")
-        """
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy)
-        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_2.setObjectName("label_2")
-        self.verticalLayout_7.addWidget(self.label_2)
-        """
-        """
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setObjectName("pushButton")
-        self.verticalLayout_7.addWidget(self.pushButton)
-        """
+        #build scrollArea which is placed the graphs
         self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
-        """
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.scrollArea.sizePolicy().hasHeightForWidth())
-        """
-        #self.scrollArea.setSizePolicy(sizePolicy)
         self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
-        #self.scrollArea.setBaseSize(2000,1000)
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 849, 1024))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-
-        # store graphs
-
         self.verticalLayout_graphs = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_graphs.setObjectName("verticalLayout_graphs")
 
-        """
-        self.graphicsView_2 = QtWidgets.QGraphicsView(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(1)
-        sizePolicy.setVerticalStretch(5)
-        sizePolicy.setHeightForWidth(self.graphicsView_2.sizePolicy().hasHeightForWidth())
-        self.graphicsView_2.setSizePolicy(sizePolicy)
-        self.graphicsView_2.setObjectName("graphicsView_2")
-        self.verticalLayout_7.addWidget(self.graphicsView_2)
-        """
-
-        # draw graph
+        # draw graphs
         # 1 PM2.5
         self.data_pm25 = []
         self.data_pm25_time = []
@@ -311,12 +173,7 @@ class Monitor(QMainWindow):
         self.verticalLayout_graphs.addWidget((self.canvas_hum))
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        #self.verticalLayout_7.addWidget(self.scrollArea)
         self.gridLayout_1.addWidget(self.scrollArea,1,1)
-
-        #self.horizontalLayout_2.addLayout(self.verticalLayout_7)
-        #self.verticalLayout_6.addLayout(self.horizontalLayout_2)
-
 
         # Menu
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -330,29 +187,34 @@ class Monitor(QMainWindow):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+
         # new mission
         self.actionNew_Mission = QtWidgets.QAction(MainWindow)
         self.actionNew_Mission.setObjectName("actionNew_Mission")
         self.actionNew_Mission.triggered.connect(self.newMission)
         self.actionView_Mission = QtWidgets.QAction(MainWindow)
         self.actionView_Mission.setObjectName("actionView_Mission")
+
         # save as
         self.actionSave = QtWidgets.QAction(MainWindow)
         self.actionSave.setObjectName("actionSave")
         self.actionSave.triggered.connect(self.saveAs)
+
         # quit
         self.actionClose = QtWidgets.QAction(MainWindow)
         self.actionClose.setObjectName("actionClose")
         self.actionClose.triggered.connect(QApplication.quit)
+
         # connect
         self.actionConnect = QtWidgets.QAction(MainWindow)
         self.actionConnect.setObjectName("actionConnect")
-
         self.actionConnect.triggered.connect(self.connect)
 
+        #disconnect
         self.actionDisconnect = QtWidgets.QAction(MainWindow)
         self.actionDisconnect.setObjectName("actionDisconnect")
         self.actionDisconnect.triggered.connect(self.disconnect)
+
         self.menuMission.addAction(self.actionNew_Mission)
         self.menuMission.addAction(self.actionSave)
         self.menuMission.addAction(self.actionClose)
@@ -360,6 +222,7 @@ class Monitor(QMainWindow):
         self.menuConnection.addAction(self.actionDisconnect)
         self.menubar.addAction(self.menuMission.menuAction())
         self.menubar.addAction(self.menuConnection.menuAction())
+
         # menu button setting
         self.actionConnect.setDisabled(False)
         self.actionDisconnect.setDisabled(True)
@@ -374,44 +237,20 @@ class Monitor(QMainWindow):
         self.updateMap_thread = VehicleLocation()
         self.updateMap_thread.updateMap.connect(self.updateMap)
 
-
+        #build thread
         self.thread1 = QThread()
         self.thread2 = QThread()
         self.updateQFI_thread.moveToThread(self.thread1)
         self.updateMap_thread.moveToThread(self.thread2)
 
-
-        MainWindow.setCentralWidget(self.centralwidget)
-        """
-        #data collect
-        from application.windowApp.main.test import MqttClient
-        self.client = MqttClient(self)
-        self.client.messageSignal.connect(self.on_dataCollected)
-        self.client.hostname="navio.local"
-        self.client.connectToHost()
-
-        def on_dataCollected(self,msg):
-        print("hi")
-        """
-
         # start thread
-
         self.thread1.started.connect(self.updateQFI_thread.run)
         self.thread1.start()
         self.thread2.started.connect(self.updateMap_thread.run)
         self.thread2.start()
 
-        """
-        self.client = mqtt.Client()
-        self.client.on_connect = self.on_connect
-        self.client.on_message = self.on_message
-        """
+        MainWindow.setCentralWidget(self.centralwidget)
 
-
-
-
-        #client.loop_forever()
-        #if self.drone is not None:
 
     @QtCore.pyqtSlot(int)
     def on_stateChanged(self, state):
@@ -456,8 +295,6 @@ class Monitor(QMainWindow):
         if (len(target_time) != 0):
             lTime = datetime.strptime(target_collectTime[-1], '%H:%M:%S') #lastest collect time
             timeDiff = dTime-lTime
-            #print(target_collectTime[-1],sTime)
-            #print(timeDiff.seconds)
             target_time.append(target_time[-1] + int(str(timeDiff.seconds)))
             target_collectTime.append(sTime)
         else:
@@ -473,11 +310,9 @@ class Monitor(QMainWindow):
         self.canvas_hum.update_figure(self.data_hum_time, self.data_hum)
 
     def saveAs(self):
-        # file_path = mdd.makeDirectory()
         path = QFileDialog.getExistingDirectory(self, 'Choose Directory')
         directory = time.strftime('%d-%m-%Y') + ' ' + time.strftime('%H-%M-%S')
 
-        # print(path)
         if path != "":
             path = path + "/" + directory
             os.mkdir(path)
@@ -546,25 +381,16 @@ class Monitor(QMainWindow):
         self.tcpsrc.set_property("port", 5000)
 
         self.gdepay = Gst.ElementFactory.make('gdpdepay', 'gdepay')
-
         self.rdepay = Gst.ElementFactory.make('rtph264depay', 'rdepay')
-
         self.avdec = Gst.ElementFactory.make('avdec_h264', 'avdec')
-
         self.vidconvert = Gst.ElementFactory.make('videoconvert', 'vidconvert')
-
         self.asink = Gst.ElementFactory.make('autovideosink', 'asink')
         self.asink.set_property('sync', False)
-        # self.asink.set_property('emit-signals', True)
-        # self.set_property('drop', True)
 
         self.pipeline.add(self.tcpsrc)
         self.pipeline.add(self.gdepay)
-
         self.pipeline.add(self.avdec)
-
         self.pipeline.add(self.rdepay)
-
         self.pipeline.add(self.vidconvert)
         self.pipeline.add(self.asink)
 
@@ -581,7 +407,6 @@ class Monitor(QMainWindow):
 
     def quit(self, container):
         self.pipeline.set_state(Gst.State.NULL)
-        # self.pipeline_A.set_state(Gst.State.NULL)
         Gtk.main_quit()
 
     def on_eos(self, bus, msg):
@@ -597,9 +422,6 @@ class Monitor(QMainWindow):
 
     def start(self):
         self.pipeline.set_state(Gst.State.PLAYING)
-        # self.pipeline_A.set_state(Gst.State.PLAYING)
-        # self.showMaximized()
-        # self.verticalLayout_8.addWidget(self)
 
     def updateQFI(self, detail):
         if(detail["airspeed"] != ""):
@@ -615,13 +437,11 @@ class Monitor(QMainWindow):
             self.si.viewUpdate.emit()
             self.hsi.viewUpdate.emit()
             self.vsi.viewUpdate.emit()
-            #print('QFI')
 
     def updateMap(self, detail):
 
         # Working with the maps with pyqtlet
         if (detail["location_lat"] != ""):
-            # print(str(detail["location_lat"])+","+str(detail["location_lon"]))
             self.map.removeLayer(self.marker)
             if self.count == 0:
                 self.map.setView([detail["location_lat"], detail["location_lon"]], 20)
@@ -631,24 +451,12 @@ class Monitor(QMainWindow):
             self.marker = L.marker([detail["location_lat"], detail["location_lon"]])
             self.marker.bindPopup('UAV Here')
             self.map.addLayer(self.marker)
-            #print("Map")
 
 
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Automated Data Collecting System"))
-        #self.label.setText(_translate("MainWindow", "Streaming"))
-        #self.label_5.setText(_translate("MainWindow", "UAV Details"))
-        # self.label_7.setText(_translate("MainWindow", "Airspeed"))
-        # self.label_6.setText(_translate("MainWindow", "Groundspeed"))
-        # self.label_4.setText(_translate("MainWindow", "Attitude"))
-        # self.label_3.setText(_translate("MainWindow", "Heading"))
-        # self.label_8.setText(_translate("MainWindow", "Altitude"))
-        # self.label_10.setText(_translate("MainWindow", "Vertical Speed"))
-        #self.label_9.setText(_translate("MainWindow", "Map"))
-        #self.label_2.setText(_translate("MainWindow", "Data Collection"))
-        #self.pushButton.setText(_translate("MainWindow", "Start"))
         self.menuMission.setTitle(_translate("MainWindow", "Mission"))
         self.menuConnection.setTitle(_translate("MainWindow", "Connection"))
         self.actionNew_Mission.setText(_translate("MainWindow", "New Mission"))
@@ -658,21 +466,8 @@ class Monitor(QMainWindow):
         self.actionConnect.setText(_translate("MainWindow", "Connect"))
         self.actionDisconnect.setText(_translate("MainWindow", "Disconnect"))
 
-    """
-        def plot(self):
-        data = [random.random() for i in range(10)]
-        self.figure.clear()
-        plt.suptitle("Temperature (C)")
-        ax = self.figure.add_subplot(111)
-        ax.plot(data, '*-')
-        self.canvas.draw()
-    """
-
     def connect(self):
-        # self.drone = Drone('tcp:127.0.0.1:5760')
         self.drone = Drone('udp:0.0.0.0:14550')
-        #print("connect")
-        #print(self.drone.isconnect)
         if self.drone.isconnect == True:
             self.vehicle = self.drone.getDrone()
             self.actionConnect.setDisabled(True)
@@ -726,6 +521,5 @@ if __name__ == '__main__':
     MainWindow = QMainWindow()
     ui = Monitor()
     ui.setupUi(MainWindow)
-    # ui.start()
     MainWindow.show()
     sys.exit(app.exec_())

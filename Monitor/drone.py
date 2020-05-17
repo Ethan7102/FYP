@@ -1,4 +1,4 @@
-import dronekit_sitl
+
 from PyQt5.QtWidgets import QMessageBox
 from dronekit import connect, VehicleMode
 class Drone:
@@ -26,4 +26,3 @@ class Drone:
         if self.isconnect == True:
             self.drone.close()
         #self.sitl.stop()
-        #print("Completed")
