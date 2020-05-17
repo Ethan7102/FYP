@@ -19,7 +19,7 @@ from gi.overrides import Gtk
 
 gi.require_version('Gst', '1.0')
 gi.require_version('GstVideo', '1.0')
-from gi.repository import Gst, GObject
+from gi.repository import Gst, GObject, GstVideo
 
 GObject.threads_init()
 Gst.init(None)
