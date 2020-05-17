@@ -302,15 +302,43 @@ Just a normal laptop is good enough.
 
 1\. Boot the Raspberry Pi
 
-2\. run monitor\.py on your laptop
+2\. Connect the Wi-Fi form your raspberry Pi AP
+
+3\. run monitor.py on your laptop
 
 ``` 
 python3 monitor.py
 ```
 
-3\. Press Connect in the navigation bar from the monitor APP\.
+4\. Press Connection in the navigation bar from the monitor APP
 
-4. 
+## How to save date 
+
+1\. Press the Mission button on the Navigation bar
+
+2\. Press the Save As button to select the path that you want to save
+
+## How to disconnect the UAV
+
+1\. Press the Connection button on the Navigation bar
+
+2\. Press the Disconnect button to disconnect the UAV
+
+## How to clear the old mission
+
+1\. Press the Mission button on the Navigation bar
+
+2\. Press the New Mission button to start a new missions
+
+```
+It will clear all the data from previous mission, please save before you start a new mission.
+```
+
+## How to quit the application
+
+1\. Press the Mission button on the Navigation bar
+
+2\. Press the quit button 
 
 ## Built With
 
