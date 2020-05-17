@@ -3,6 +3,7 @@ import math
 import matplotlib.pyplot as plt
 import os
 import time
+from datetime import datetime
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QThread
@@ -144,17 +145,17 @@ class Monitor(QMainWindow):
         self.si = qfi_SI.qfi_SI(self)
         self.si.resize(240, 240)
         self.si.reinit()
-        self.gridLayout.addWidget(self.si, 1, 0)
+        self.gridLayout.addWidget(self.si, 1, 0,1,2,alignment=QtCore.Qt.AlignCenter)
 
         self.vsi = qfi_VSI.qfi_VSI(self)
         self.vsi.resize(240, 240)
         self.vsi.reinit()
-        self.gridLayout.addWidget(self.vsi, 1, 1)
+        self.gridLayout.addWidget(self.vsi, 1, 1,1,2,alignment=QtCore.Qt.AlignCenter)
 
         self.tc = qfi_TC.qfi_TC(self)
         self.tc.resize(240, 240)
         self.tc.reinit()
-        self.gridLayout.addWidget(self.tc, 1, 2)
+        #self.gridLayout.addWidget(self.tc, 1, 2)
 
         self.setLayout(self.gridLayout)
         #self.verticalLayout_10.addLayout(self.gridLayout)
@@ -282,6 +283,7 @@ class Monitor(QMainWindow):
         # 1 temperature
         self.data_temp = []
         self.data_temp_time = []
+        self.data_temp_collectTime = []
         self.canvas_temp = PlotCanvas(self, width=1, height=4)
         self.canvas_temp.init_plot("Temperature", "Temperature(C)", "Time(s)")
         self.canvas_temp.setMinimumSize(self.canvas_temp.size())
@@ -289,6 +291,7 @@ class Monitor(QMainWindow):
         # 2 humidity
         self.data_hum = []
         self.data_hum_time = []
+        self.data_hum_collectTime = []
         self.canvas_hum = PlotCanvas(self, width=1, height=4)
         self.canvas_hum.init_plot("Humidity", "Humidity(%)", "Time(s)")
         self.canvas_hum.setMinimumSize(self.canvas_hum.size())
@@ -296,10 +299,19 @@ class Monitor(QMainWindow):
         # 3 PM2.5
         self.data_pm25 = []
         self.data_pm25_time = []
+        self.data_pm25_collectTime = []
         self.canvas_pm25 = PlotCanvas(self, width=1, height=4)
         self.canvas_pm25.init_plot("PM2.5", "µg/m³", "Time(s)")
         self.canvas_pm25.setMinimumSize(self.canvas_pm25.size())
         self.verticalLayout_graphs.addWidget(self.canvas_pm25)
+        # 4 PM10
+        self.data_pm10 = []
+        self.data_pm10_time = []
+        self.data_pm10_collectTime = []
+        self.canvas_pm10 = PlotCanvas(self, width=1, height=4)
+        self.canvas_pm10.init_plot("PM10", "µg/m³", "Time(s)")
+        self.canvas_pm10.setMinimumSize(self.canvas_pm10.size())
+        self.verticalLayout_graphs.addWidget(self.canvas_pm10)
 
         """
         self.figure_temp = plt.figure(figsize=(1, 2.5))
@@ -428,38 +440,73 @@ class Monitor(QMainWindow):
         self.client.on_message = self.on_message
         """
 
-        self.client = MqttClient(self)
-        self.client.stateChanged.connect(self.on_connect)
-        self.client.messageSignal.connect(self.on_message)
-        self.client.hostname = "192.168.12.1"
-        self.client.connectToHost()
+
 
 
         #client.loop_forever()
         #if self.drone is not None:
 
-    """def on_connect(client, userdata, flags, rc):
-        print("Connected with result code " + str(rc))
-        client.subscribe([("/IoTSensor/DHT22", 0), ("/IoTSensor/SDS011", 2)])"""
-
-    def on_message(self,client, userdata, msg):
-        print(msg.topic + " " + ":" + str(msg.payload))
-
-
-
-
     @QtCore.pyqtSlot(int)
-    def on_connect(client,userdata):
-        #if state == MqttClient.Connected:
-        #client.subscribe([("/IoTSensor/DHT22", 0), ("/IoTSensor/SDS011", 2)])
-            toptics = [("/IoTSensor/DHT22",0),("/IoTSensor/SDS011",2)]
-            for toptic in toptics:
+    def on_stateChanged(self, state):
+        if state == MqttClient.Connected:
+            print(state)
+            self.client.subscribe([("/IoTSensor/DHT22",0),("/IoTSensor/SDS011",1)])
 
-                client.subscribe(toptic)
+    @QtCore.pyqtSlot(str)
+    def on_messageSignal(self, msg):
+        val = msg
+        print(val)
+        type = val.split(" ")[1].split("=")[0]
+        if type == "Temperature":
+            val = val.replace("Time=", "")
+            val = val.replace("Temperature=", "")
+            val = val.replace("Humidity=", "")
+            val = val.split(" ")
+            sTime = val[0] #String format
+            dTime = datetime.strptime(sTime, '%H:%M:%S') #Time format
+            temp = val[1].replace("C", "")
+            hum = val[2].replace("%", "")
+            self.storeData(self.data_temp,temp,self.data_temp_time,self.data_temp_collectTime,sTime,dTime)
+            self.storeData(self.data_hum,hum, self.data_hum_time, self.data_hum_collectTime, sTime, dTime)
+        elif type == "PM25":
+            val = val.replace("Time=", "")
+            val = val.replace("PM25=", "")
+            val = val.replace("PM10=", "")
+            val = val.split(" ")
+            #print(val[0])
+            #print(val[1])
+            #print(val[2])
+            sTime = val[0] #String format
+            dTime = datetime.strptime(sTime, '%H:%M:%S') #Time format
+            pm25 = val[1]
+            pm10 = val[2]
+            self.storeData(self.data_pm25,pm25,self.data_pm25_time,self.data_pm25_collectTime,sTime,dTime)
+            self.storeData(self.data_pm10,pm10,self.data_pm10_time,self.data_pm10_collectTime,sTime,dTime)
+        self.draw()
 
 
-        #else:
-            #print("empty")
+    def storeData(self, target, data,target_time,target_collectTime, sTime,dTime):
+        print(data)
+        target.append(float(data))
+
+        if (len(target_time) != 0):
+            lTime = datetime.strptime(target_collectTime[-1], '%H:%M:%S') #lastest collect time
+            timeDiff = dTime-lTime
+            #print(target_collectTime[-1],sTime)
+            #print(timeDiff.seconds)
+            target_time.append(target_time[-1] + int(str(timeDiff.seconds)))
+            target_collectTime.append(sTime)
+        else:
+            print('first')
+            target_time.append(0)
+            target_collectTime.append(sTime)
+
+    def draw(self):
+        # print("draw")
+        self.canvas_pm25.update_figure(self.data_pm25_time,self.data_pm25)
+        self.canvas_pm10.update_figure(self.data_pm10_time, self.data_pm10)
+        self.canvas_temp.update_figure(self.data_temp_time, self.data_temp)
+        self.canvas_hum.update_figure(self.data_hum_time, self.data_hum)
 
     """"@QtCore.pyqtSlot(str)
     def on_message(self,client,userdata,msg):
@@ -498,17 +545,7 @@ class Monitor(QMainWindow):
         #except ValueError:
             #print("error: Not is number")
 
-    def storeData(self, target, data, time):
-        target.append(float(data))
-        if (len(time) != 0):
-            time.append(time[-1] + 10)
-        else:
-            time.append(10)
 
-    def draw(self):
-        # print("draw")
-        self.canvas_temp.update_figure(self.data_temp_time, self.data_temp)
-        self.canvas_hum.update_figure(self.data_hum_time, self.data_hum)
 
     def saveAs(self):
         # file_path = mdd.makeDirectory()
@@ -683,60 +720,31 @@ class Monitor(QMainWindow):
     def connect(self):
         # self.drone = Drone('tcp:127.0.0.1:5760')
         self.drone = Drone('udp:0.0.0.0:14550')
-        self.vehicle = self.drone.getDrone()
-        self.actionConnect.setDisabled(True)
-        self.actionDisconnect.setDisabled(False)
-        # print(*self.detail.items(),sep='\n')
+        #print("connect")
+        #print(self.drone.isconnect)
+        if self.drone.isconnect == True:
+            self.vehicle = self.drone.getDrone()
+            self.actionConnect.setDisabled(True)
+            self.actionDisconnect.setDisabled(False)
 
-        """
-        print(self.detail["airSpeed"])
-        print(self.detail["attltude"])
-        print(self.detail["heading"])
-        self.label_7.setText("Airspeed" + ": " + str(self.detail["airSpeed"]))
-        self.label_4.setText("Attitude" + ": \n" + str(self.detail["attltude"]).replace(",", "\n"))
-        self.label_3.setText("Heading" + ": " + str(self.detail["heading"]))
-        """
+            #MQtt start
+            self.client = MqttClient(self)
+            self.client.stateChanged.connect(self.on_stateChanged)
+            self.client.messageSignal.connect(self.on_messageSignal)
+            self.client.hostname = "192.168.12.1"
+            self.client.connectToHost()
 
+            #start Map and QFI
+            self.updateMap_thread.setVehicle(self.vehicle)
+            self.updateQFI_thread.setVehicle(self.vehicle)
+            self.start()
 
-        #MQtt start
-        """
-        self.client = mqtt.Client()
-
-        self.client.on_connect = self.on_connect
-        self.client.on_message=self.on_message
-        self.client.connect("192.168.12.1", 1883,60)
-        """
-
-        #self.client.loop_forever()
-        """
-        self.client = MqttClient(self)
-        self.client.stateChanged.connect(self.client.on_stateChanged)
-        self.client.messageSignal.connect(self.client.on_messageSignal)
-        self.client.hostname = "192.168.12.1"
-        self.client.connectToHost()
-        """
-        """
-        self.mqttRun = MqttRun()
-        self.thread3 = QThread()
-        self.mqttRun.moveToThread(self.thread3)
-        self.thread3.started.connect(self.mqttRun.run())
-        self.thread3.start()
-        print("ok")
-        """
-        """
-        self.client.connect("192.168.12.1", 1883, 60)
-        self.client.loop_start()
-        """
-
-
-        self.updateMap_thread.setVehicle(self.vehicle)
-        self.updateQFI_thread.setVehicle(self.vehicle)
-        self.start()
-
-        # Animation thread
-        t2 = ThreadGUI(self.gridLayout)
-        t2.daemon = True
-        t2.start()
+            # Animation thread
+            t2 = ThreadGUI(self.gridLayout)
+            t2.daemon = True
+            t2.start()
+        else:
+            self.disconnect()
 
 
     def disconnect(self):
@@ -746,6 +754,20 @@ class Monitor(QMainWindow):
         self.updateMap_thread.exist = False
         self.updateQFI_thread.exist = False
         self.quit(self.container)
+
+        self.adi.setRoll(0)
+        self.adi.setPitch(0)
+        self.alt.setAltitude(0)
+        self.si.setSpeed(0)
+        self.hsi.setHeading(0)
+        self.vsi.setClimbRate(0)
+
+        self.adi.viewUpdate.emit()
+        self.alt.viewUpdate.emit()
+        self.si.viewUpdate.emit()
+        self.hsi.viewUpdate.emit()
+        self.vsi.viewUpdate.emit()
+
 
 
 if __name__ == '__main__':
