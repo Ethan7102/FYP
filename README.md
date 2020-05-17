@@ -4,10 +4,10 @@ IVE(LWL), Software Engineering, Final Year Project
 
 ## Collaborators
 
-* **Siu Chi Wang** - *Initial work* - [wing199901](https://github.com/wing199901)
-* **Siu Chi Wang** - *Initial work* - [wing199901](https://github.com/wing199901)
-* **Siu Chi Wang** - *Initial work* - [wing199901](https://github.com/wing199901)
-* **Siu Chi Wang** - *Initial work* - [wing199901](https://github.com/wing199901)
+* **Siu Chi Wang** - *Streaming, IoT, UAV, README* - [wing199901](https://github.com/wing199901)
+* **Wong Ming Yuen** - *Initial work, GUI, Charts & Graphs* - [Ethan7102](https://github.com/Ethan7102)
+* **Kwok Tsz Lung** - *???* - [BirdyKwok](https://github.com/BirdyKwok)
+* **CHau Yat Sum** - *???* - [NathMon](https://github.com/NathMon)
 
 ## Getting Started
 
@@ -28,6 +28,7 @@ Hardware
 7\. a laptop
 8\. a Smartphone
 9\. DHT22 sensor
+
 10. SDS011 sensor
 
 ```
@@ -129,6 +130,14 @@ Start on boot:
 
 ``` 
 systemctl enable create_ap
+```
+
+##### Increase the transmission power 
+
+It is a way to make your UAV more stable. But please check your country law is allow high power transmission.
+
+``` 
+https://forum.backbox.org/howtos/alfa-awus036nha-2w-(33-dbm)-configuration/
 ```
 
 #### ArduPilot Configuration
@@ -291,18 +300,27 @@ We package up the Python Code in to a executable application.
 
 ## Built With
 
-* [DroneKit Python](https://github.com/dronekit/dronekit-python) - The drone api used
+* [DroneKit Python](https://github.com/dronekit/dronekit-python) - The drone API used
 * [QGroundControl](http://qgroundcontrol.com) - The ground control station used on smartphone
-* [Navio2](https://emlid.com/navio/) - Autopilot HAT for Raspberry Pi Powered by ArduPilot and ROS used
-* [create_ap](https://github.com/oblique/create_ap) - 
+* [create_ap](https://github.com/oblique/create_ap) - The Access Point API used
+* [GStreamer](https://gstreamer.freedesktop.org) - The media-handling component used
+* [PyQt](https://riverbankcomputing.com/software/pyqt/intro) - The GUI framework used 
+* [Eclipse Paho](https://www.eclipse.org/paho/) - The MQTT API used
 * [GStreamer](https://gstreamer.freedesktop.org) - 
+* [GStreamer](https://gstreamer.freedesktop.org) - 
+* [GStreamer](https://gstreamer.freedesktop.org) - 
+* [GStreamer](https://gstreamer.freedesktop.org) - 
+* [GStreamer](https://gstreamer.freedesktop.org) - 
+* [GStreamer](https://gstreamer.freedesktop.org) - 
+
+
+
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/Ethan7102/FYP/raw/master/LICENSE) file for details
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Hhttps://forum.backbox.org/howtos/alfa-awus036nha-2w-(33-dbm)-configuration/
+* 
