@@ -3,26 +3,27 @@ import paho.mqtt.client as mqtt
 
 
 class MqttRun(QObject):
+
+
     def run(self):
         self.client = mqtt.Client()
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
         self.client.connect("192.168.12.1", 1883, 60)
-
         self.client.loop_forever()
-
-
 
     def on_connect(client, userdata, rc):
         # if state == MqttClient.Connected:
-        toptics = [("/IoTSensor/DHT22", 1), ("/IoTSensor/SDS011", 1)]
-        for toptic in toptics:
-            client.subscribe(toptic)
+        print("connected")
+        toptics = [("/IoTSensor/DHT22", 0), ("/IoTSensor/SDS011", 2)]
+        client.subscribe(toptics)
 
     # else:
     # print("empty")
 
     def on_message(client, userdata, msg):
+        print("sended")
+        print(msg)
         try:
             print(msg)
             """

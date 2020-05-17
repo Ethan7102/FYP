@@ -426,6 +426,8 @@ class Monitor(QMainWindow):
 
 
 
+
+
     @QtCore.pyqtSlot(int)
     def on_connect(client,userdata,rc):
         #if state == MqttClient.Connected:
@@ -681,18 +683,21 @@ class Monitor(QMainWindow):
         self.client.on_message=self.on_message
         self.client.connect("192.168.12.1", 1883,60)
         """
+
+        #self.client.loop_forever()
+        """
+        self.client = MqttClient(self)
+        self.client.stateChanged.connect(self.client.on_stateChanged)
+        self.client.messageSignal.connect(self.client.on_messageSignal)
+        self.client.hostname = "192.168.12.1"
+        self.client.connectToHost()
+        """
         self.mqttRun = MqttRun()
         self.thread3 = QThread()
         self.mqttRun.moveToThread(self.thread3)
-        self.thread3.started.connect(self.mqttRun.run)
+        self.thread3.started.connect(self.mqttRun.run())
         self.thread3.start()
-        #self.client.loop_forever()
-        #self.client = MqttClient(self)
-        #self.client.stateChanged.connect(self.on_stateChanged)
-        #self.client.messageSignal.connect(self.on_messageSignal)
-        #self.client.hostname = "192.168.12.1"
-        #self.client.connectToHost()
-
+        print("ok")
 
         self.updateMap_thread.setVehicle(self.vehicle)
         self.updateQFI_thread.setVehicle(self.vehicle)
