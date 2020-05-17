@@ -155,6 +155,18 @@ It is connected through a USB-Serial-Converter.
 ![image](https://aqicn.org/air/images/sensors/sds011-large.png)
 
 #### Copy Python file to Raspberry Pi
+You can find two Python files in /Sensor folder at this GitHub repository, named mqtt-dht22.py and mqtt-sds011.py
+
+##### Making mqtt-dht22.py start up at boot
+Create unit file using command as shown below:
+```
+sudo nano /lib/systemd/system/dht22.service
+```
+
+
+```
+
+```
 
 ### Video Streaming
 Run an update
@@ -174,10 +186,11 @@ raspivid -t 999999 -w 1080 -h 720 -fps 25 -hf -b 2000000 -o - | \gst-launch-1.0 
 
 The Streaming delay
 
-![image](https://raw.githubusercontent.com/Ethan7102/FYP/master/Streaming%20delay.png?token=ADHQL2SIB3HRSBFBK6CYEKS6YD7ZI)
+![image](https://github.com/Ethan7102/FYP/raw/master/Streaming%20delay.png)
 
 
-### UAV Side Configuration
+### Laptop Side Configuration
+We package up the Python Code in to a executable application.
 
 ## Built With
 
