@@ -125,7 +125,7 @@ Navigate to Initial Setup - Mandatory Hardware - Compass
 * Rotate your drone around all axis
 * Wait for calibration to complete (the process ends with a message similar to one on the picture attached below)
 
-https://docs.emlid.com/navio2/ardupilot/img/compass-onboard-calibration.png
+![image](https://docs.emlid.com/navio2/ardupilot/img/compass-onboard-calibration.png)
 
 ## Built With
 
