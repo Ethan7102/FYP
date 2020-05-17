@@ -306,15 +306,10 @@ We package up the Python Code in to a executable application.
 * [GStreamer](https://gstreamer.freedesktop.org) - The media-handling component used
 * [PyQt](https://riverbankcomputing.com/software/pyqt/intro) - The GUI framework used 
 * [Eclipse Paho](https://www.eclipse.org/paho/) - The MQTT API used
-* [GStreamer](https://gstreamer.freedesktop.org) - 
-* [GStreamer](https://gstreamer.freedesktop.org) - 
-* [GStreamer](https://gstreamer.freedesktop.org) - 
-* [GStreamer](https://gstreamer.freedesktop.org) - 
-* [GStreamer](https://gstreamer.freedesktop.org) - 
-* [GStreamer](https://gstreamer.freedesktop.org) - 
-
-
-
+* [PyGObject](https://pygobject.readthedocs.io/en/latest/index.html) - It provides bindings for GObject based libraries such as GTK, GStreamer.
+* [pyqtlet](https://github.com/skylarkdrones/pyqtlet) - The map wraooer used
+* [Matplotlib](https://matplotlib.org) - The library for creating graphics and charts used
+* [QFlightInstruments](https://github.com/JdeRobot/ThirdParty/tree/master/qflightinstruments) - The flight instrument used
 
 ## License
 
@@ -322,5 +317,5 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 ## Acknowledgments
 
-* Hhttps://forum.backbox.org/howtos/alfa-awus036nha-2w-(33-dbm)-configuration/
+* 
 * 
