@@ -517,7 +517,16 @@ class Monitor(QMainWindow):
                      "\"Temperature\":{" \
                      "\n\t\"Data\":[" + output_temp + "],\n\t\"Unit\":C," \
                      "\n\t\"CollectedTime\":["+output_temp_collectTime+"]\n\t}"\
-                     "\n\"Humidity\":[" + output_hum + "],\n\t\"Unit\":5\n\t}\n}"
+                     "\n\"Humidity\":{"\
+                     "\n\t\"Data\":[" + output_hum + "],\n\t\"Unit\":%,"\
+                     "\n\t\"CollectedTime\":["+output_hum_collectTime+"]\n\t}" \
+                     "\"PM2.5\":{" \
+                     "\n\t\"Data\":[" + output_pm25 + "],\n\t\"Unit\":µg/m³," \
+                     "\n\t\"CollectedTime\":[" + output_pm25_collectTime + "]\n\t}" \
+                     "\"PM10\":{" \
+                     "\n\t\"Data\":[" + output_pm10 + "],\n\t\"Unit\":µg/m³," \
+                     "\n\t\"CollectedTime\":[" + output_pm10_collectTime + "]\n\t}" \
+                     "\n}"
             record.write(output)
             self.canvas_temp.outputImage(path + "/" + "Temperature")
             self.canvas_hum.outputImage(path + "/" + "Humidity")
