@@ -178,6 +178,7 @@ The Streaming delay
 
 
 ### Laptop Side Configuration
+We package up the Python Code in to a executable application.
 
 ## Built With
 
