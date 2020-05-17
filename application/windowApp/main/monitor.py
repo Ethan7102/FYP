@@ -443,9 +443,6 @@ class Monitor(QMainWindow):
             val = val.replace("PM25=", "")
             val = val.replace("PM10=", "")
             val = val.split(" ")
-            #print(val[0])
-            #print(val[1])
-            #print(val[2])
             sTime = val[0] #String format
             dTime = datetime.strptime(sTime, '%H:%M:%S') #Time format
             pm25 = val[1]
@@ -490,6 +487,12 @@ class Monitor(QMainWindow):
             record = open(path + "/" + 'raw_data.txt', 'a+')
             output_temp = ""
             output_hum = ""
+            output_pm25 = ""
+            output_pm10 = ""
+            output_temp_collectTime = ""
+            output_hum_collectTime = ""
+            output_pm25_collectTime = ""
+            output_pm10_collectTime = ""
             try:
                 if len(self.data_temp) != 0:
                     output_temp = ["%.1f" % number for number in self.data_temp]
