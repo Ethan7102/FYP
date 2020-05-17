@@ -296,7 +296,21 @@ sudo reboot
 
 ### Laptop Side Configuration
 
-We package up the Python Code in to a executable application.
+Just a normal laptop is good enough.
+
+## How to run the system
+
+1\. Boot the Raspberry Pi
+
+2\. run monitor\.py on your laptop
+
+``` 
+python3 monitor.py
+```
+
+3\. Press Connect in the navigation bar from the monitor APP\.
+
+4. 
 
 ## Built With
 
