@@ -1,6 +1,13 @@
 # FYP - Automated Data Collecting System for Environment Using UAVs and Smartphones
 
-One Paragraph of project description goes here
+IVE(LWL), Software Engineering, Final Year Project
+
+## Collaborators
+
+* **Siu Chi Wang** - *Initial work* - [wing199901](https://github.com/wing199901)
+* **Siu Chi Wang** - *Initial work* - [wing199901](https://github.com/wing199901)
+* **Siu Chi Wang** - *Initial work* - [wing199901](https://github.com/wing199901)
+* **Siu Chi Wang** - *Initial work* - [wing199901](https://github.com/wing199901)
 
 ## Getting Started
 
@@ -8,30 +15,48 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Hardware
 
 ```
-Give examples
+1. a Raspberry Pi 3B+
+2. a Navio2 Autopilot HAT
+3. a high power wireless USB adapter
+4. a DIY quadcopter
+5. a 4s battery
+6. a laptop
+7. a Smartphone
+8. DHT22 sensor
+9. SDS011 sensor
 ```
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+Software
 
 ```
-Give the example
+1. Python3 
+2. QGroundControl
+3. Terminal
 ```
 
-And repeat
+## Installing
+### Raspberry Pi Configuration
+Navio requires a preconfigured Raspbian to run. Emlid provide a unified SD card image for Raspberry Pi.
+
+Follow the instruction to configure your Raspberry Pi
+(https://docs.emlid.com/navio2/common/ardupilot/configuring-raspberry-pi/)
+
+#### Configure Access Point(AP)
+We choose to use create_ap to create an access point, because it provides a simple way to do thing easier.
 
 ```
-until finished
+git clone https://github.com/oblique/create_ap
+cd create_ap
+make install
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Test
+```
 
+```
 ## Running the tests
 
 Explain how to run the automated tests for this system
@@ -61,14 +86,9 @@ Add additional notes about how to deploy this on a live system
 * [DroneKit Python](https://github.com/dronekit/dronekit-python) - The drone api used
 * [QGroundControl](http://qgroundcontrol.com) - The ground control station used on smartphone
 * [Navio2](https://emlid.com/navio/) - Autopilot HAT for Raspberry Pi Powered by ArduPilot and ROS used
+* [create_ap](https://github.com/oblique/create_ap) - 
 
 
-## Authors
-
-* **Siu Chi Wang** - *Initial work* - [wing199901](https://github.com/wing199901)
-* **Siu Chi Wang** - *Initial work* - [wing199901](https://github.com/wing199901)
-* **Siu Chi Wang** - *Initial work* - [wing199901](https://github.com/wing199901)
-* **Siu Chi Wang** - *Initial work* - [wing199901](https://github.com/wing199901)
 
 ## License
 
