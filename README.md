@@ -157,16 +157,41 @@ It is connected through a USB-Serial-Converter.
 #### Copy Python file to Raspberry Pi
 You can find two Python files in /Sensor folder at this GitHub repository, named mqtt-dht22.py and mqtt-sds011.py
 
-##### Making mqtt-dht22.py start up at boot
+##### Making mqtt-dht22.py startup at boot
 Create unit file using command as shown below:
 ```
 sudo nano /lib/systemd/system/dht22.service
 ```
 
-
+Add in the following text:
 ```
+[Unit]
+ Description=DHT22 MQTT Publish
+ After=multi-user.target
 
+ [Service]
+ Type=idle
+ ExecStart=/usr/bin/python3 /home/pi/mqtt-dht22.py
+
+ [Install]
+ WantedBy=multi-user.target
 ```
+The permission on the unit file needs to be set to 644 :
+```
+sudo chmod 644 /lib/systemd/system/dht22.service
+```
+Now the unit file has been defined we can tell systemd to start it during the boot sequence :
+```
+sudo systemctl daemon-reload
+sudo systemctl enable dht22.service
+```
+Reboot the Pi and your custom service should run:
+```
+sudo reboot
+```
+##### Making mqtt-sds011.py startup at boot
+Repeat the upon steps, remember to replace 'dht22' to sds011.
+
 
 ### Video Streaming
 Run an update
@@ -183,8 +208,42 @@ Start the streaming
 ```
 raspivid -t 999999 -w 1080 -h 720 -fps 25 -hf -b 2000000 -o - | \gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 \! gdppay ! tcpserversink host=192.168.12.1 port=5000
 ```
+You can find the code in /Video\ Streaming
+#### Make the Streaming startup at boot
+Create unit file using command as shown below:
+```
+sudo nano /lib/systemd/system/streaming.service
+```
 
-The Streaming delay
+Add in the following text:
+```
+[Unit]
+ Description=Video Streaming Service
+ After=multi-user.target
+
+ [Service]
+ Type=idle
+ ExecStart=/usr/bin /home/pi/video-streaming.sh 
+
+ [Install]
+ WantedBy=multi-user.target
+```
+The permission on the unit file needs to be set to 644 :
+```
+sudo chmod 644 /lib/systemd/system/streaming.service
+```
+Now the unit file has been defined we can tell systemd to start it during the boot sequence :
+```
+sudo systemctl daemon-reload
+sudo systemctl enable streaming.service
+```
+Reboot the Pi and your custom service should run:
+```
+sudo reboot
+```
+
+
+#### The Streaming delay
 
 ![image](https://github.com/Ethan7102/FYP/raw/master/Streaming%20delay.png)
 
