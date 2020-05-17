@@ -313,36 +313,6 @@ class Monitor(QMainWindow):
         self.canvas_hum.setMinimumSize(self.canvas_hum.size())
         self.verticalLayout_graphs.addWidget((self.canvas_hum))
 
-        """
-        self.figure_temp = plt.figure(figsize=(1, 2.5))
-        self.axes = self.figure_temp.add_subplot(111)
-#        FigureCanvas.__init__(self,self.figure_temp)
-        FigureCanvas.updateGeometry(self)
-#        self.init_plot()
-        self.canvas_temp = FigureCanvas(self.figure_temp)
-        self.canvas_temp.setMinimumSize(self.canvas_temp.size())
-        # fig = plt.gcf()
-        # fig.set_size_inches(5, 5)
-        # self.toolbar = NavigationToolbar(self.canvas, self)
-        plt.suptitle("Temperature")
-
-        # test temperature
-        data = [random.random() for i in range(10)]
-        self.figure.clear()
-        plt.suptitle("Temperature (C)")
-        y = (25.2, 25.3, 25.4, 25.7, 25.6, 25.3, 25.4, 25.6, 25.6, 25.7)
-        x = (5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
-        ax = self.figure.add_subplot(111)
-        ax.plot(x, y)
-        self.canvas.draw()
-
-        # self.button = QPushButton('Plot')
-        # self.button.clicked.connect(self.plot)
-        # layout = QVBoxLayout()
-        # self.verticalLayout_7.addWidget(self.toolbar)
-        # self.verticalLayout_7.addWidget(self.canvas)
-        self.verticalLayout_graphs.addWidget(self.canvas_temp)
-        """
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         #self.verticalLayout_7.addWidget(self.scrollArea)
         self.gridLayout_1.addWidget(self.scrollArea,1,1)
@@ -508,45 +478,6 @@ class Monitor(QMainWindow):
         self.canvas_temp.update_figure(self.data_temp_time, self.data_temp)
         self.canvas_hum.update_figure(self.data_hum_time, self.data_hum)
 
-    """"@QtCore.pyqtSlot(str)
-    def on_message(self,client,userdata,msg):
-        try:
-            print(msg)
-            val = msg
-            for s in val:
-                print(s)
-            type = val.split(" ")[1].split("=")[0]
-            if(type == "Temperature"):
-                val = val.replace("Time=", "")
-                val = val.replace("Temperature=", "")
-                val = val.replace("Humidity=", "")
-                val = val.split(" ")
-                print(val[0])
-                print(val[1])
-                print(val[2])
-                self.storeData(self.data_temp, val[1].replace("C", ""), val[0])
-                self.storeData(self.data_hum, val[2].replace("%", ""), val[0])"""
-    """
-            val = val.replace("Temperature=", "")
-            val = val.replace("Humidity=", "")
-            val = val.split(" ")
-            print(msg)
-            self.storeData(self.data_temp, val[0].replace("C", ""), self.data_temp_time)
-            self.storeData(self.data_hum, val[2].replace("%", ""), self.data_hum_time)
-            """
-            # self.label_5.setText(val)
-    """
-            for x in self.data_temp:
-                print(x)
-            for x in self.data_temp_time:
-                print(x)
-            """
-            #self.draw()
-        #except ValueError:
-            #print("error: Not is number")
-
-
-
     def saveAs(self):
         # file_path = mdd.makeDirectory()
         path = QFileDialog.getExistingDirectory(self, 'Choose Directory')
@@ -563,20 +494,35 @@ class Monitor(QMainWindow):
                 if len(self.data_temp) != 0:
                     output_temp = ["%.1f" % number for number in self.data_temp]
                     output_temp = ','.join(output_temp)
+                    output_temp_collectTime = ','.join(self.data_temp_collectTime)
                 if len(self.data_hum != 0):
                     output_hum = ["%.1f" % number for number in self.data_hum]
                     output_hum = ','.join(output_hum)
+                    output_hum_collectTime = ','.join(self.data_hum_collectTime)
+                if len(self.data_pm25 != 0):
+                    output_pm25 = ["%.1f" % number for number in self.data_pm25]
+                    output_pm25 = ','.join(output_pm25)
+                    output_pm25_collectTime = ','.join(self.data_pm25_collectTime)
+                if len(self.data_pm10 != 0):
+                    output_pm10 = ["%.1f" % number for number in self.data_pm10]
+                    output_pm10 = ','.join(output_pm10)
+                    output_pm10_collectTime = ','.join(self.data_pm10_collectTime)
+
+
             except:
                 pass
             # print(output_temp)
 
             output = "{\n" \
                      "\"Temperature\":{" \
-                     "\n\t\"Data\":[" + output_temp + "],\n\t\"Unit\":5," \
-                                                      "\n\t\"Humidity\":[" + output_hum + "],\n\t\"Unit\":5\n\t}\n}"
+                     "\n\t\"Data\":[" + output_temp + "],\n\t\"Unit\":C," \
+                     "\n\t\"CollectedTime\":["+output_temp_collectTime+"]\n\t}"\
+                     "\n\"Humidity\":[" + output_hum + "],\n\t\"Unit\":5\n\t}\n}"
             record.write(output)
             self.canvas_temp.outputImage(path + "/" + "Temperature")
             self.canvas_hum.outputImage(path + "/" + "Humidity")
+            self.canvas_pm25.outputImage(path + "/" + "PM2.5")
+            self.canvas_pm10.outputImage(path + "/" + "PM10")
 
     def newMission(self):
         msgBox = QMessageBox()
