@@ -50,11 +50,12 @@ if __name__ == "__main__":
     sensor.sleep(sleep=False)
 
     try:
+        i = 0
         while True:
             sensor.sleep(sleep=False)
-            for t in range(15):
+            for t in range(20):
                 values = sensor.query()
-                if values is not None and len(values) == 2 and values[0] != 0:
+                if values is not None and len(values) == 2 and values[0] != 0 and i > 4:
                     print("PM2.5: ", values[0], ", PM10: ", values[1])
                     record.write('{0}, {1}, {2:0.1f}C, {3:0.1f}%\r\n'.format(time.strftime('%d/%m/%Y'),
                                                                              time.strftime('%H:%M:%S'), values[0],
@@ -65,9 +66,12 @@ if __name__ == "__main__":
                                                                                  values[1]))
                     time.sleep(2)
 
+                i += 1
+
             print("Going to sleep for 1 min...")
             sensor.sleep()
             time.sleep(60)
+
 
     except KeyboardInterrupt:
         print('exiting')
