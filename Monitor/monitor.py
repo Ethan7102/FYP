@@ -440,9 +440,6 @@ class Monitor(QMainWindow):
             val = val.replace("PM25=", "")
             val = val.replace("PM10=", "")
             val = val.split(" ")
-            #print(val[0])
-            #print(val[1])
-            #print(val[2])
             sTime = val[0] #String format
             dTime = datetime.strptime(sTime, '%H:%M:%S') #Time format
             pm25 = val[1]
@@ -493,7 +490,7 @@ class Monitor(QMainWindow):
             output_hum_collectTime = ""
             output_pm25_collectTime = ""
             output_pm10_collectTime = ""
-            #try:
+
             if len(self.data_temp) != 0:
                 output_temp = ["%.1f" % number for number in self.data_temp]
                 output_temp = ','.join(output_temp)
@@ -511,11 +508,6 @@ class Monitor(QMainWindow):
                 output_pm10 = ','.join(output_pm10)
                 output_pm10_collectTime = ','.join(self.data_pm10_collectTime)
 
-
-
-            #except:
-                #pass
-            # print(output_temp)
 
             output = "{\n" \
                      "\"Temperature\":{" \

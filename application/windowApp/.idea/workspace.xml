@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="277e13c2-bb84-474e-8755-2772adaad5aa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/main/Drone.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/Main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/UiController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI design/ui_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI design/ui_main.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Wbme0JvdsrDIWnNMJYQgWCIl5R" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test" />
+      <recent name="$PROJECT_DIR$/UI design" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/main" />
+      <recent name="$PROJECT_DIR$/test" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="windowApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="showTestList" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="windowApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/showTestList.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="showUi" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="windowApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UI design/showUi.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testList" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="windowApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/testList.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testUi" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="windowApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UI design" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UI design/testUi.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.showUi" />
+        <item itemvalue="Python.testUi" />
+        <item itemvalue="Python.showTestList" />
+        <item itemvalue="Python.testList" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="277e13c2-bb84-474e-8755-2772adaad5aa" name="Default Changelist" comment="" />
+      <created>1579426759882</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1579426759882</updated>
+      <workItem from="1579426761037" duration="387000" />
+      <workItem from="1579427156799" duration="11000" />
+      <workItem from="1579501981965" duration="10256000" />
+      <workItem from="1579836487666" duration="4398000" />
+      <workItem from="1580455254627" duration="170000" />
+      <workItem from="1580457497292" duration="1621000" />
+      <workItem from="1580634411904" duration="7496000" />
+      <workItem from="1580898425527" duration="113000" />
+      <workItem from="1581903822202" duration="3316000" />
+      <workItem from="1581926911620" duration="10634000" />
+      <workItem from="1582092321593" duration="2177000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="944" y="205" key="#Notifications" timestamp="1579427094053">
+      <screen x="0" y="23" width="1792" height="1030" />
+    </state>
+    <state x="944" y="205" key="#Notifications/0.23.1792.1030@0.23.1792.1030" timestamp="1579427094053" />
+    <state x="864" y="441" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582090909868">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="605" y="344" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1792.1026@0.23.1792.1026" timestamp="1579507164401" />
+    <state x="864" y="441" key="#com.intellij.fileTypes.FileTypeChooser/0.23.2560.1337@0.23.2560.1337" timestamp="1582090909868" />
+    <state x="589" y="163" key="#test4" timestamp="1579563574577">
+      <screen x="0" y="23" width="1792" height="1026" />
+    </state>
+    <state x="589" y="163" key="#test4/0.23.1792.1026@0.23.1792.1026" timestamp="1579563574577" />
+    <state width="619" height="378" key="GridCell.Tab.0.bottom" timestamp="1582094504137">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="875" height="276" key="GridCell.Tab.0.bottom/0.23.1792.1022@0.23.1792.1022" timestamp="1580897496090" />
+    <state width="875" height="276" key="GridCell.Tab.0.bottom/0.23.1792.1024@0.23.1792.1024" timestamp="1580660095955" />
+    <state width="427" height="276" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1580639329867" />
+    <state width="875" height="344" key="GridCell.Tab.0.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1580562848292" />
+    <state width="427" height="281" key="GridCell.Tab.0.bottom/0.23.1792.1030@0.23.1792.1030" timestamp="1579427148007" />
+    <state width="619" height="378" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1582094504137" />
+    <state width="619" height="378" key="GridCell.Tab.0.center" timestamp="1582094504137">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="875" height="276" key="GridCell.Tab.0.center/0.23.1792.1022@0.23.1792.1022" timestamp="1580897496090" />
+    <state width="875" height="276" key="GridCell.Tab.0.center/0.23.1792.1024@0.23.1792.1024" timestamp="1580660095955" />
+    <state width="427" height="276" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1580639329867" />
+    <state width="875" height="344" key="GridCell.Tab.0.center/0.23.1792.1028@0.23.1792.1028" timestamp="1580562848291" />
+    <state width="427" height="281" key="GridCell.Tab.0.center/0.23.1792.1030@0.23.1792.1030" timestamp="1579427148007" />
+    <state width="619" height="378" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1582094504137" />
+    <state width="619" height="378" key="GridCell.Tab.0.left" timestamp="1582094504137">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="875" height="276" key="GridCell.Tab.0.left/0.23.1792.1022@0.23.1792.1022" timestamp="1580897496090" />
+    <state width="875" height="276" key="GridCell.Tab.0.left/0.23.1792.1024@0.23.1792.1024" timestamp="1580660095954" />
+    <state width="427" height="276" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1580639329866" />
+    <state width="875" height="344" key="GridCell.Tab.0.left/0.23.1792.1028@0.23.1792.1028" timestamp="1580562848291" />
+    <state width="427" height="281" key="GridCell.Tab.0.left/0.23.1792.1030@0.23.1792.1030" timestamp="1579427148007" />
+    <state width="619" height="378" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1582094504137" />
+    <state width="619" height="378" key="GridCell.Tab.0.right" timestamp="1582094504137">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state width="875" height="276" key="GridCell.Tab.0.right/0.23.1792.1022@0.23.1792.1022" timestamp="1580897496090" />
+    <state width="875" height="276" key="GridCell.Tab.0.right/0.23.1792.1024@0.23.1792.1024" timestamp="1580660095955" />
+    <state width="427" height="276" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1580639329867" />
+    <state width="875" height="344" key="GridCell.Tab.0.right/0.23.1792.1028@0.23.1792.1028" timestamp="1580562848291" />
+    <state width="427" height="281" key="GridCell.Tab.0.right/0.23.1792.1030@0.23.1792.1030" timestamp="1579427148007" />
+    <state width="619" height="378" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1582094504137" />
+    <state width="875" height="344" key="GridCell.Tab.1.bottom" timestamp="1580562848292">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state width="875" height="344" key="GridCell.Tab.1.bottom/0.23.1792.1024@0.23.1792.1024" timestamp="1580458972131" />
+    <state width="875" height="344" key="GridCell.Tab.1.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1580562848292" />
+    <state width="875" height="344" key="GridCell.Tab.1.center" timestamp="1580562848292">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state width="875" height="344" key="GridCell.Tab.1.center/0.23.1792.1024@0.23.1792.1024" timestamp="1580458972131" />
+    <state width="875" height="344" key="GridCell.Tab.1.center/0.23.1792.1028@0.23.1792.1028" timestamp="1580562848292" />
+    <state width="875" height="344" key="GridCell.Tab.1.left" timestamp="1580562848292">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state width="875" height="344" key="GridCell.Tab.1.left/0.23.1792.1024@0.23.1792.1024" timestamp="1580458972131" />
+    <state width="875" height="344" key="GridCell.Tab.1.left/0.23.1792.1028@0.23.1792.1028" timestamp="1580562848292" />
+    <state width="875" height="344" key="GridCell.Tab.1.right" timestamp="1580562848292">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state width="875" height="344" key="GridCell.Tab.1.right/0.23.1792.1024@0.23.1792.1024" timestamp="1580458972131" />
+    <state width="875" height="344" key="GridCell.Tab.1.right/0.23.1792.1028@0.23.1792.1028" timestamp="1580562848292" />
+    <state x="310" y="409" key="RollbackChangesDialog" timestamp="1582094474753">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="310" y="409" key="RollbackChangesDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1582094474753" />
+    <state x="397" y="173" key="SettingsEditor" timestamp="1579836587698">
+      <screen x="0" y="23" width="1792" height="1026" />
+    </state>
+    <state x="397" y="173" key="SettingsEditor/0.23.1792.1026@0.23.1792.1026" timestamp="1579836587698" />
+    <state x="1426" y="474" key="com.intellij.ide.util.TipDialog" timestamp="1581926994809">
+      <screen x="0" y="23" width="2560" height="1337" />
+    </state>
+    <state x="998" y="368" key="com.intellij.ide.util.TipDialog/0.23.1792.1022@0.23.1792.1022" timestamp="1580634425598" />
+    <state x="998" y="368" key="com.intellij.ide.util.TipDialog/0.23.1792.1024@0.23.1792.1024" timestamp="1580457498504" />
+    <state x="998" y="369" key="com.intellij.ide.util.TipDialog/0.23.1792.1026@0.23.1792.1026" timestamp="1579836487992" />
+    <state x="1426" y="474" key="com.intellij.ide.util.TipDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1581926994809" />
+    <state width="600" height="424" key="javadoc.popup" timestamp="1580646325988">
+      <screen x="0" y="23" width="1792" height="1024" />
+    </state>
+    <state width="600" height="424" key="javadoc.popup/0.23.1792.1024@0.23.1792.1024" timestamp="1580646325988" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/windowApp$testDraw.coverage" NAME="testDraw Coverage Results" MODIFIED="1580459023748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/windowApp$showUi.coverage" NAME="showUi Coverage Results" MODIFIED="1582090027733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/windowApp$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1579519996484" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/windowApp$drawGraph.coverage" NAME="drawGraph Coverage Results" MODIFIED="1580027158581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UI design" />
+    <SUITE FILE_PATH="coverage/windowApp$ui_main.coverage" NAME="ui_main Coverage Results" MODIFIED="1580458978135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UI design" />
+    <SUITE FILE_PATH="coverage/windowApp$test4.coverage" NAME="test4 Coverage Results" MODIFIED="1579564507483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/windowApp$ui_newMission.coverage" NAME="ui_newMission Coverage Results" MODIFIED="1580030733142" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UI design" />
+    <SUITE FILE_PATH="coverage/windowApp$showTestList.coverage" NAME="showTestList Coverage Results" MODIFIED="1580639503186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/windowApp$testUi.coverage" NAME="testUi Coverage Results" MODIFIED="1581930271602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UI design" />
+    <SUITE FILE_PATH="coverage/windowApp$test6.coverage" NAME="test6 Coverage Results" MODIFIED="1580030292008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/windowApp$test3.coverage" NAME="test3 Coverage Results" MODIFIED="1579507994293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/windowApp$testList.coverage" NAME="testList Coverage Results" MODIFIED="1580638876855" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/windowApp$main.coverage" NAME="main Coverage Results" MODIFIED="1582094227530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/main" />
+    <SUITE FILE_PATH="coverage/windowApp$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1579509350229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/windowApp$test5.coverage" NAME="test5 Coverage Results" MODIFIED="1579565214703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+  </component>
+</project>
