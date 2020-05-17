@@ -334,6 +334,8 @@ python3 monitor.py
 It will clear all the data from previous mission, please save before you start a new mission.
 ```
 
+![image](https://github.com/Ethan7102/FYP/raw/master/FYP_document/Final%20Report/rec/readme1.png)
+
 ## How to quit the application
 
 1\. Press the Mission button on the Navigation bar
