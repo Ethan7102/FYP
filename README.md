@@ -309,7 +309,7 @@ You can find the requirements.txt in the root directory.
 
 1\. Boot the Raspberry Pi
 
-2\. Connect the Wi-Fi form your raspberry Pi AP
+2\. Connect the Wi-Fi from your raspberry Pi AP
 
 3\. run monitor.py on your laptop
 
@@ -319,7 +319,7 @@ python3 monitor.py
 
 4\. Press Connection in the navigation bar from the monitor APP
 
-## How to save date 
+## How to save date
 
 1\. Press the Mission button on the Navigation bar
 
