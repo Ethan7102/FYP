@@ -19,14 +19,15 @@ Hardware
 
 ```
 1. a Raspberry Pi 3B+
-2. a Navio2 Autopilot HAT
-3. a high power wireless USB adapter(Alfa AWUS036NHA)
-4. a DIY quadcopter
-5. a 4s battery
-6. a laptop
-7. a Smartphone
-8. DHT22 sensor
-9. SDS011 sensor
+2. a Raspberry Pi Camera Module
+3. a Navio2 Autopilot HAT
+4. a high power wireless USB adapter(Alfa AWUS036NHA)
+5. a DIY quadcopter
+6. a 4s battery
+7. a laptop
+8. a Smartphone
+9. DHT22 sensor
+10. SDS011 sensor
 ```
 
 Software
@@ -44,6 +45,10 @@ Navio requires a preconfigured Raspbian to run. Emlid provide a unified SD card 
 
 Follow the instruction to configure your Raspberry Pi
 (https://docs.emlid.com/navio2/common/ardupilot/configuring-raspberry-pi/)
+
+```
+If you want to use SSH to remote access your Raspberry Pi, placing a file named 'ssh' into the boot partition.
+```
 
 #### Configure Access Point(AP)
 We choose to use create_ap to create an access point, because it provides a simple way to do thing easier.
@@ -127,6 +132,38 @@ In this project, we choose two sensors that install on the UAV and transmit the 
 
 #### DHT22 temperature-humidity sensor
 The DHT22 is a basic, low-cost digital temperature and humidity sensor. It uses a capacitive humidity sensor and a thermistor to measure the surrounding air, and spits out a digital signal on the data pin
+
+![image](https://5.imimg.com/data5/DV/AL/GJ/SELLER-6366772/dht22-digital-temperature-and-humidity-sensor-module-500x500.jpg)
+
+* We use the GPIO17_DF13 as the data pin
+* Pin 2 for 5V
+* Pin 6 for ground
+
+![image](https://docs.emlid.com/navio2/dev/img/pinout.png)
+
+#### SDS011 Air Quality Sensor
+The SDS 011 Sensor is a quite recent Air Quality Sensor developed by Nova Fitness, a spin-off from the university of Jinan (in Shandong). 
+It is connected through a USB-Serial-Converter.
+
+![image](https://aqicn.org/air/images/sensors/sds011-large.png)
+
+#### Copy Python file to Raspberry Pi
+
+### Video Streaming
+Run an update
+```
+apt-get update
+```
+
+Install gstreamer
+```
+apt-get install gstreamer1.0
+```
+
+Test the streaming
+```
+raspivid -t 999999 -w 1080 -h 720 -fps 25 -hf -b 2000000 -o - | \gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 \! gdppay ! tcpserversink host=192.168.12.1 port=5000
+```
 
 ## Built With
 
