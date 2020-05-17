@@ -1,5 +1,5 @@
 import sys
-import test
+from other import test
 from PyQt5 import QtWidgets
 Ui_MainWindow = test.Ui_MainWindow
 

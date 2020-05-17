@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from re import L
-from gstreamcam import main as gst
+from other.gstreamcam import main as gst
 import sys
 import subprocess
 
