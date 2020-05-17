@@ -22,7 +22,7 @@ Hardware
 1\. a Raspberry Pi 3B+
 2\. a Raspberry Pi Camera Module
 3\. a Navio2 Autopilot HAT
-4\. a high power wireless USB adapter\(Alfa AWUS036NHA\)
+4\. a high power wireless USB adapter(Alfa AWUS036NHA)
 5\. a DIY quadcopter
 6\. a 4s battery
 7\. a laptop
