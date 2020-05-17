@@ -422,23 +422,46 @@ class Monitor(QMainWindow):
         self.thread2.started.connect(self.updateMap_thread.run)
         self.thread2.start()
 
+        """
+        self.client = mqtt.Client()
+        self.client.on_connect = self.on_connect
+        self.client.on_message = self.on_message
+        """
+
+        self.client = MqttClient(self)
+        self.client.stateChanged.connect(self.on_connect)
+        self.client.messageSignal.connect(self.on_message)
+        self.client.hostname = "192.168.12.1"
+        self.client.connectToHost()
+
+
+        #client.loop_forever()
         #if self.drone is not None:
 
+    """def on_connect(client, userdata, flags, rc):
+        print("Connected with result code " + str(rc))
+        client.subscribe([("/IoTSensor/DHT22", 0), ("/IoTSensor/SDS011", 2)])"""
+
+    def on_message(self,client, userdata, msg):
+        print(msg.topic + " " + ":" + str(msg.payload))
 
 
 
 
     @QtCore.pyqtSlot(int)
-    def on_connect(client,userdata,rc):
+    def on_connect(client,userdata):
         #if state == MqttClient.Connected:
-            toptics = [("/IoTSensor/DHT22",1),("/IoTSensor/SDS011",1)]
+        #client.subscribe([("/IoTSensor/DHT22", 0), ("/IoTSensor/SDS011", 2)])
+            toptics = [("/IoTSensor/DHT22",0),("/IoTSensor/SDS011",2)]
             for toptic in toptics:
+
                 client.subscribe(toptic)
+
 
         #else:
             #print("empty")
 
-    @QtCore.pyqtSlot(str)
+    """"@QtCore.pyqtSlot(str)
     def on_message(self,client,userdata,msg):
         try:
             print(msg)
@@ -455,8 +478,8 @@ class Monitor(QMainWindow):
                 print(val[1])
                 print(val[2])
                 self.storeData(self.data_temp, val[1].replace("C", ""), val[0])
-                self.storeData(self.data_hum, val[2].replace("%", ""), val[0])
-            """
+                self.storeData(self.data_hum, val[2].replace("%", ""), val[0])"""
+    """
             val = val.replace("Temperature=", "")
             val = val.replace("Humidity=", "")
             val = val.split(" ")
@@ -465,15 +488,15 @@ class Monitor(QMainWindow):
             self.storeData(self.data_hum, val[2].replace("%", ""), self.data_hum_time)
             """
             # self.label_5.setText(val)
-            """
+    """
             for x in self.data_temp:
                 print(x)
             for x in self.data_temp_time:
                 print(x)
             """
-            self.draw()
-        except ValueError:
-            print("error: Not is number")
+            #self.draw()
+        #except ValueError:
+            #print("error: Not is number")
 
     def storeData(self, target, data, time):
         target.append(float(data))
@@ -692,12 +715,19 @@ class Monitor(QMainWindow):
         self.client.hostname = "192.168.12.1"
         self.client.connectToHost()
         """
+        """
         self.mqttRun = MqttRun()
         self.thread3 = QThread()
         self.mqttRun.moveToThread(self.thread3)
         self.thread3.started.connect(self.mqttRun.run())
         self.thread3.start()
         print("ok")
+        """
+        """
+        self.client.connect("192.168.12.1", 1883, 60)
+        self.client.loop_start()
+        """
+
 
         self.updateMap_thread.setVehicle(self.vehicle)
         self.updateQFI_thread.setVehicle(self.vehicle)
