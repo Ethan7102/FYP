@@ -118,14 +118,15 @@ You can follow the instructions with the Navio2 docs(https://docs.emlid.com/navi
 
 #### Onboard calibration
 Here we use Mission Planner to calibrate the onboard sensors.
-Navigate to Initial Setup - Mandatory Hardware - Compass
 
-* If you use two compasses tick Use this compass in Compass #2 tab
-* Click on Start button in Onboard Mag Calibration tab
-* Rotate your drone around all axis
-* Wait for calibration to complete (the process ends with a message similar to one on the picture attached below)
+Follow the instruction to calibrate the onboard sensors
+(https://docs.emlid.com/navio2/ardupilot/tips/)
 
-![image](https://docs.emlid.com/navio2/ardupilot/img/compass-onboard-calibration.png)
+### Sensors
+In this project, we choose two sensors that install on the UAV and transmit the climate date to laptop
+
+#### DHT22 temperature-humidity sensor
+The DHT22 is a basic, low-cost digital temperature and humidity sensor. It uses a capacitive humidity sensor and a thermistor to measure the surrounding air, and spits out a digital signal on the data pin
 
 ## Built With
 
