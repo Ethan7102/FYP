@@ -147,6 +147,24 @@ It is connected through a USB-Serial-Converter.
 
 ![image](https://aqicn.org/air/images/sensors/sds011-large.png)
 
+#### Copy Python file to Raspberry Pi
+
+### Video Streaming
+Run an update
+```
+apt-get update
+```
+
+Install gstreamer
+```
+apt-get install gstreamer1.0
+```
+
+Test the streaming
+```
+raspivid -t 999999 -w 1080 -h 720 -fps 25 -hf -b 2000000 -o - | \gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 \! gdppay ! tcpserversink host=192.168.12.1 port=5000
+```
+
 ## Built With
 
 * [DroneKit Python](https://github.com/dronekit/dronekit-python) - The drone api used
