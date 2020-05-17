@@ -166,12 +166,3 @@ class Widget(QtWidgets.QWidget):
             print(val)
             self.lcd_number.setText(val)
 
-"""
-if __name__ == '__main__':
-    import sys
-
-    app = QtWidgets.QApplication(sys.argv)
-    w = Widget()
-    w.show()
-    sys.exit(app.exec_())
-"""
