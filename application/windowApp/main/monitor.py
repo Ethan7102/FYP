@@ -280,23 +280,7 @@ class Monitor(QMainWindow):
         """
 
         # draw graph
-        # 1 temperature
-        self.data_temp = []
-        self.data_temp_time = []
-        self.data_temp_collectTime = []
-        self.canvas_temp = PlotCanvas(self, width=1, height=4)
-        self.canvas_temp.init_plot("Temperature", "Temperature(C)", "Time(s)")
-        self.canvas_temp.setMinimumSize(self.canvas_temp.size())
-        self.verticalLayout_graphs.addWidget((self.canvas_temp))
-        # 2 humidity
-        self.data_hum = []
-        self.data_hum_time = []
-        self.data_hum_collectTime = []
-        self.canvas_hum = PlotCanvas(self, width=1, height=4)
-        self.canvas_hum.init_plot("Humidity", "Humidity(%)", "Time(s)")
-        self.canvas_hum.setMinimumSize(self.canvas_hum.size())
-        self.verticalLayout_graphs.addWidget((self.canvas_hum))
-        # 3 PM2.5
+        # 1 PM2.5
         self.data_pm25 = []
         self.data_pm25_time = []
         self.data_pm25_collectTime = []
@@ -304,7 +288,7 @@ class Monitor(QMainWindow):
         self.canvas_pm25.init_plot("PM2.5", "µg/m³", "Time(s)")
         self.canvas_pm25.setMinimumSize(self.canvas_pm25.size())
         self.verticalLayout_graphs.addWidget(self.canvas_pm25)
-        # 4 PM10
+        # 2 PM10
         self.data_pm10 = []
         self.data_pm10_time = []
         self.data_pm10_collectTime = []
@@ -312,6 +296,22 @@ class Monitor(QMainWindow):
         self.canvas_pm10.init_plot("PM10", "µg/m³", "Time(s)")
         self.canvas_pm10.setMinimumSize(self.canvas_pm10.size())
         self.verticalLayout_graphs.addWidget(self.canvas_pm10)
+        # 3 temperature
+        self.data_temp = []
+        self.data_temp_time = []
+        self.data_temp_collectTime = []
+        self.canvas_temp = PlotCanvas(self, width=1, height=4)
+        self.canvas_temp.init_plot("Temperature", "Temperature(C)", "Time(s)")
+        self.canvas_temp.setMinimumSize(self.canvas_temp.size())
+        self.verticalLayout_graphs.addWidget((self.canvas_temp))
+        # 4 humidity
+        self.data_hum = []
+        self.data_hum_time = []
+        self.data_hum_collectTime = []
+        self.canvas_hum = PlotCanvas(self, width=1, height=4)
+        self.canvas_hum.init_plot("Humidity", "Humidity(%)", "Time(s)")
+        self.canvas_hum.setMinimumSize(self.canvas_hum.size())
+        self.verticalLayout_graphs.addWidget((self.canvas_hum))
 
         """
         self.figure_temp = plt.figure(figsize=(1, 2.5))
