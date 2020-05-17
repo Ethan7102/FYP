@@ -8,9 +8,9 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QThread
 from PyQt5.QtWidgets import QFileDialog, QMessageBox, QApplication, QMainWindow, QWidget
 
-from Monitor.drone import Drone
-from Monitor.vehicleStatus import VehicleStatus
-from Monitor.vehicleLocation import VehicleLocation
+from drone import Drone
+from vehicleStatus import VehicleStatus
+from vehicleLocation import VehicleLocation
 
 from pyqtlet import L, MapWidget
 
@@ -24,8 +24,8 @@ from gi.repository import Gst, GObject
 GObject.threads_init()
 Gst.init(None)
 
-from Monitor.mqttClient import MqttClient
-from Monitor.plotCanvas import PlotCanvas
+from mqttClient import MqttClient
+from plotCanvas import PlotCanvas
 
 from threadGUI import ThreadGUI
 from qfi import qfi_ADI, qfi_ALT, qfi_SI, qfi_HSI, qfi_VSI, qfi_TC
