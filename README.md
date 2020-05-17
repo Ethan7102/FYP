@@ -305,9 +305,10 @@ We package up the Python Code in to a executable application.
 * [create_ap](https://github.com/oblique/create_ap) - The Access Point API used
 * [GStreamer](https://gstreamer.freedesktop.org) - The media-handling component used
 * [PyQt](https://riverbankcomputing.com/software/pyqt/intro) - The GUI framework used 
+* [GTK](https://www.gtk.org) - The GUI framework used 
 * [Eclipse Paho](https://www.eclipse.org/paho/) - The MQTT API used
 * [PyGObject](https://pygobject.readthedocs.io/en/latest/index.html) - It provides bindings for GObject based libraries such as GTK, GStreamer.
-* [pyqtlet](https://github.com/skylarkdrones/pyqtlet) - The map wraooer used
+* [pyqtlet](https://github.com/skylarkdrones/pyqtlet) - The map wrapper used
 * [Matplotlib](https://matplotlib.org) - The library for creating graphics and charts used
 * [QFlightInstruments](https://github.com/JdeRobot/ThirdParty/tree/master/qflightinstruments) - The flight instrument used
 
