@@ -303,7 +303,7 @@ sudo reboot
 pip3 install -r requirements.txt
 ```
 
-You can find the requirements.txt in the root directory.
+You can find the [requirements.txt](https://github.com/Ethan7102/FYP/raw/master/requirments.txt) in the root directory.
 
 ## How to run the system
 
