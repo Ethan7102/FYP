@@ -19,14 +19,15 @@ Hardware
 
 ```
 1. a Raspberry Pi 3B+
-2. a Navio2 Autopilot HAT
-3. a high power wireless USB adapter(Alfa AWUS036NHA)
-4. a DIY quadcopter
-5. a 4s battery
-6. a laptop
-7. a Smartphone
-8. DHT22 sensor
-9. SDS011 sensor
+2. a Raspberry Pi Camera Module
+3. a Navio2 Autopilot HAT
+4. a high power wireless USB adapter(Alfa AWUS036NHA)
+5. a DIY quadcopter
+6. a 4s battery
+7. a laptop
+8. a Smartphone
+9. DHT22 sensor
+10. SDS011 sensor
 ```
 
 Software
@@ -141,8 +142,10 @@ The DHT22 is a basic, low-cost digital temperature and humidity sensor. It uses 
 ![image](https://docs.emlid.com/navio2/dev/img/pinout.png)
 
 #### SDS011 Air Quality Sensor
-SDS sensor is connected through a USB-Serial-Converter,
+The SDS 011 Sensor is a quite recent Air Quality Sensor developed by Nova Fitness, a spin-off from the university of Jinan (in Shandong). 
+It is connected through a USB-Serial-Converter.
 
+![image](https://aqicn.org/air/images/sensors/sds011-large.png)
 
 ## Built With
 
