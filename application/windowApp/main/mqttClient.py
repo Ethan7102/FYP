@@ -158,15 +158,13 @@ class Widget(QtWidgets.QWidget):
     def on_stateChanged(self, state):
         if state == MqttClient.Connected:
             print(state)
-            self.client.subscribe("/IoTSensor/DHT22")
+            self.client.subscribe([("/IoTSensor/DHT22",0),("/IoTSensor/SDS011",1)])
 
     @QtCore.pyqtSlot(str)
     def on_messageSignal(self, msg):
-        try:
             val = msg
+            print(val)
             self.lcd_number.setText(val)
-        except ValueError:
-            print("error: Not is number")
 
 """
 if __name__ == '__main__':
