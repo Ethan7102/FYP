@@ -165,6 +165,10 @@ Start the streaming
 raspivid -t 999999 -w 1080 -h 720 -fps 25 -hf -b 2000000 -o - | \gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 \! gdppay ! tcpserversink host=192.168.12.1 port=5000
 ```
 
+The Streaming delay
+
+![image](https://raw.githubusercontent.com/Ethan7102/FYP/master/Streaming%20delay.png?token=ADHQL2SIB3HRSBFBK6CYEKS6YD7ZI)
+
 ## Built With
 
 * [DroneKit Python](https://github.com/dronekit/dronekit-python) - The drone api used
