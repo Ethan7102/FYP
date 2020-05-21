@@ -340,7 +340,7 @@ python3 monitor.py
 It will clear all the data from previous mission, please save before you start a new mission.
 ```
 
-![image](https://github.com/Ethan7102/FYP/raw/master/FYP_document/Final%20Report/rec/readme1.png)
+![image](https://github.com/Ethan7102/FYP/raw/master/Screen%20Shot/rec/readme1.png)
 
 ## How to quit the application
 
